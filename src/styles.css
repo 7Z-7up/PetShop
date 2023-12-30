@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "BukraRegular";
+  src: url("assets/Fonts/BukraRegular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

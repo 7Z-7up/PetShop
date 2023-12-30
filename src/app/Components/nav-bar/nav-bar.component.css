@@ -1,0 +1,16 @@
+nav {
+  padding: 0 !important;
+}
+a {
+  color: white !important;
+}
+a:hover {
+  background-color: #001672;
+}
+.active {
+  background-color: #001672;
+}
+
+.active:focus {
+  background-color: #001672 !important;
+}

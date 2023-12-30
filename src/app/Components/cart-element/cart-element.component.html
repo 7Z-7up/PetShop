@@ -1,0 +1,28 @@
+<td>
+  <img [src]="product.image" class="w-50 border border-secondary" />
+</td>
+<td>{{ product.name }}</td>
+<td>
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-primary up px-2 w-25" (click)="upQuantity()">
+      <i class="fa fa-chevron-up"></i>
+    </button>
+    <input
+      type="number"
+      class="form-control px-2 w-50"
+      [value]="product.quantity"
+    />
+    <button class="btn btn-primary down px-2 w-25" (click)="downQuantity()">
+      <i class="fa fa-chevron-down"></i>
+    </button>
+    <button class="btn btn-danger delete px-2 w-25" (click)="deleteProduct()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+</td>
+<td>
+  {{ product.price | currency : "EGP" }}
+</td>
+<td>
+  {{ product.quantity * product.price | currency : "EGP " }}
+</td>
