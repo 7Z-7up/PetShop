@@ -22,21 +22,6 @@ import { User } from '../../Helpers/users';
 })
 export class ShoppingCartComponent implements OnInit {
   subTotal = 0;
-
-  // test: Product = {
-  //   id: 20,
-  //   name: "Hill's Science Plan Small & Mini Adult Dog Food with Chicken",
-  //   quantity: 11,
-  //   price: 86.25,
-  //   image: '../../../assets/dog-images/20.jpg',
-  //   description:
-  //     "Ingredients: High quality protein and thoughtfully sourced ingredients: Chicken and turkey meal, maize, wheat, brewers' rice, animal fat, digest, vegetable oil, minerals, flaxseed, dried tomato pomace, dried citrus pulp, spinach powder.",
-  //   rating: 4.6,
-  //   reviews: 24,
-  //   categories: 'dog',
-  //   seller: 'Hills',
-  // };
-
   User!: any;
   product?: any;
   products: Product[] = [];

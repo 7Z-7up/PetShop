@@ -8,8 +8,6 @@ import { Product } from '../Helpers/products';
 })
 export class ProductService {
   private Dogs_URL =
-    'https://petshop-c2ff5-default-rtdb.firebaseio.com/dogs-supplements.json';
-  private Dogs_URL2 =
     'https://petshop-c2ff5-default-rtdb.firebaseio.com/dogs-supplements';
   private Users_URL =
     'https://petshop-c2ff5-default-rtdb.firebaseio.com/Users.json';
@@ -18,15 +16,18 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
   getAllDogSupplements() {
-    return this.httpClient.get(this.Dogs_URL);
+    return this.httpClient.get(this.Dogs_URL + '.json');
   }
 
   addDogSupplements(product: Product) {
-    return this.httpClient.post(this.Dogs_URL, product);
+    return this.httpClient.post(this.Dogs_URL + '.json', product);
   }
 
   updateDogSupplements(product: Product) {
-    return this.httpClient.patch(`${this.Dogs_URL}/${product.id}`, product);
+    return this.httpClient.patch(
+      `${this.Dogs_URL + '.json'}/${product.id}`,
+      product
+    );
   }
 
   // deleteDogSupplements(id: number) {
@@ -46,11 +47,11 @@ export class ProductService {
   }
 
   private deleteDogSupplement(key: string) {
-    return this.httpClient.delete(this.Dogs_URL2 + `/${key}.json`);
+    return this.httpClient.delete(this.Dogs_URL + '.json' + `/${key}.json`);
   }
 
   getDogSupplements(id: number) {
-    return this.httpClient.get(this.Dogs_URL, {
+    return this.httpClient.get(this.Dogs_URL + '.json', {
       params: new HttpParams().set('orderBy', '"id"').set('equalTo', id),
     });
   }

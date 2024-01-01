@@ -18,12 +18,22 @@ import { ProductService } from '../../Services/product.service';
 })
 export class CartElementComponent implements OnInit {
   @Input() product?: any;
-  @Input() userID?: any;
+  @Input() user?: any;
 
   subTotal = 0;
 
   constructor(private myService: ProductService) {}
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    console.log(this.user.cart);
+    let quanID!: number;
+
+    this.user.cart.forEach((element: any) => {
+      if (element.id == this.product.id) return (quanID = element.id);
+    });
+
+    this.product['quan'] = quanID;
+  }
   // ngOnInit(): void {
   //   this.refreshTotal();
   // }

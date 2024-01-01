@@ -22,7 +22,7 @@
       </thead>
       <tbody>
         @for(pr of products; track pr.id){
-        <tr app-cart-element [product]="pr" [userID]="User.id"></tr>
+        <tr app-cart-element [product]="pr" [user]="User"></tr>
         }
         <!-- @for(pr of test; track pr.name){
         <tr>
