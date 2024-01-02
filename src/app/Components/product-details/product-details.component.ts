@@ -24,7 +24,7 @@ export class ProductDetailsComponent {
     this.ID = myActivated.snapshot.params['id'];
   }
   ngOnInit(): void {
-    this.myProduct.getDogSupplements(this.ID).subscribe({
+    this.myProduct.getSupplements(this.ID).subscribe({
       next: (data) => {
         this.product = data;
         for (const key in this.product) {

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   Products: Product[] = [];
   constructor(private myProducts: ProductService) {}
   ngOnInit(): void {
-    this.myProducts.getAllDogSupplements().subscribe({
+    this.myProducts.getAllSupplements().subscribe({
       next: (data) => (this.Products = this.Products.concat(data)),
       error: () => console.log('Error getting the data!'),
     });

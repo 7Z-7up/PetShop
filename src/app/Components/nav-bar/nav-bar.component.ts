@@ -50,6 +50,13 @@ export class NavBarComponent {
 
   toggleTranslation() {
     this.isTranslated = !this.isTranslated;
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      const navbarItems = Array.from(navbar.children);
+      navbarItems.reverse();
+      navbar.innerHTML = '';
+      navbarItems.forEach((item) => navbar.appendChild(item));
+    }
   }
 
   openNewWindow() {

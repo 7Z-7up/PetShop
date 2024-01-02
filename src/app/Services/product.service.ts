@@ -7,37 +7,33 @@ import { Product } from '../Helpers/products';
   providedIn: 'root',
 })
 export class ProductService {
-  private Dogs_URL =
-    'https://petshop-c2ff5-default-rtdb.firebaseio.com/supplements';
+  private URL = 'https://petshop-c2ff5-default-rtdb.firebaseio.com/supplements';
   private Users_URL =
     'https://petshop-c2ff5-default-rtdb.firebaseio.com/Users.json';
   private key?: string;
 
   constructor(private httpClient: HttpClient) {}
 
-  getAllDogSupplements() {
-    return this.httpClient.get(this.Dogs_URL + '.json');
+  getAllSupplements() {
+    return this.httpClient.get(this.URL + '.json');
   }
 
-  addDogSupplements(product: Product) {
-    return this.httpClient.post(this.Dogs_URL + '.json', product);
+  addSupplements(product: Product) {
+    return this.httpClient.post(this.URL + '.json', product);
   }
 
-  updateDogSupplements(product: Product) {
+  updateSupplements(product: Product) {
     return this.httpClient.patch(
-      `${this.Dogs_URL + '.json'}/${product.id}`,
+      `${this.URL + '.json'}/${product.id}`,
       product
     );
   }
 
-  // deleteDogSupplements(id: number) {
-  //   return this.httpClient.delete(this.Dogs_URL2 + `/${id}.json`);
-  // }
-  deleteDogsupplements(id: number) {
-    this.getDogSupplements(id).subscribe({
+  deletesupplements(id: number) {
+    this.getSupplements(id).subscribe({
       next: (productData) => {
         for (const key in productData) {
-          this.deleteDogSupplement(key).subscribe({
+          this.deleteSupplement(key).subscribe({
             next: () => console.log('Deleted'),
             error: () => console.log('Could not delete'),
           });
@@ -46,12 +42,12 @@ export class ProductService {
     });
   }
 
-  private deleteDogSupplement(key: string) {
-    return this.httpClient.delete(this.Dogs_URL + '.json' + `/${key}.json`);
+  private deleteSupplement(key: string) {
+    return this.httpClient.delete(this.URL + '.json' + `/${key}.json`);
   }
 
-  getDogSupplements(id: number) {
-    return this.httpClient.get(this.Dogs_URL + '.json', {
+  getSupplements(id: number) {
+    return this.httpClient.get(this.URL + '.json', {
       params: new HttpParams().set('orderBy', '"id"').set('equalTo', id),
     });
   }

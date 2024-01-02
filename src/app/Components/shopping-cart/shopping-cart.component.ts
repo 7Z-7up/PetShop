@@ -6,6 +6,7 @@ import { Product } from '../../Helpers/products';
 import { ProductService } from '../../Services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { User } from '../../Helpers/users';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,6 +16,7 @@ import { User } from '../../Helpers/users';
     FontAwesomeModule,
     CartElementComponent,
     HttpClientModule,
+    RouterLink,
   ],
   providers: [ProductService],
   templateUrl: './shopping-cart.component.html',
@@ -27,7 +29,7 @@ export class ShoppingCartComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private myProducts: ProductService) {
-    myProducts.deleteDogsupplements(20);
+    myProducts.deletesupplements(20);
 
     this.myProducts.getUser(1).subscribe({
       next: (userData) => {
@@ -36,17 +38,15 @@ export class ShoppingCartComponent implements OnInit {
           this.User = this.User[key];
         }
         for (let i = 0; i < this.User.cart!.length; i++) {
-          if (this.User.cart![i].category === 'dog') {
-            this.myProducts.getDogSupplements(this.User.cart[i].id).subscribe({
-              next: (productData) => {
-                this.product = productData;
-                for (const key in this.product) {
-                  this.products.push(this.product[key]);
-                }
-              },
-              error: () => console.log('Error!'),
-            });
-          }
+          this.myProducts.getSupplements(this.User.cart[i].id).subscribe({
+            next: (productData) => {
+              this.product = productData;
+              for (const key in this.product) {
+                this.products.push(this.product[key]);
+              }
+            },
+            error: () => console.log('Error!'),
+          });
         }
       },
       error: () => console.log('Error!'),

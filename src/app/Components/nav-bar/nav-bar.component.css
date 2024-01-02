@@ -46,7 +46,7 @@ nav {
 a {
   color: white !important;
 }
-a:hover {
+li > a:hover {
   background-color: #001672;
 }
 .active {
