@@ -11,6 +11,4 @@ import { ShoppingCartComponent } from './Components/shopping-cart/shopping-cart.
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'test';
-}
+export class AppComponent {}

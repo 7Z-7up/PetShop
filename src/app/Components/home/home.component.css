@@ -1,0 +1,9 @@
+/* .image-container {
+  overflow: hidden;
+} */
+.hover-image {
+  transition: transform 0.3s ease;
+}
+.hover-image:hover {
+  transform: rotate(20deg);
+}

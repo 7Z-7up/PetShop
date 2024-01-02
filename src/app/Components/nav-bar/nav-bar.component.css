@@ -1,3 +1,44 @@
+/* .aaa {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+} */
+.top-head {
+  text-align: end;
+  background-color: DodgerBlue;
+  color: white;
+}
+.a {
+  background-color: white;
+  text-align: center;
+}
+
+/* .search-container {
+  /* display: flex; */
+/* max-width: 400px;
+  margin: 0 auto;
+} */
+
+#searchInput {
+  padding: 10px;
+  /* flex: 1; */
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  outline: 0;
+}
+
+.search-container > button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 0 4px 4px 0;
+  background-color: DodgerBlue;
+  color: #fff;
+  /* cursor: pointer; */
+}
+/* .b {
+  background-color: white;
+} */
+
 nav {
   padding: 0 !important;
 }
