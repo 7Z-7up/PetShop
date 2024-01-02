@@ -4,11 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { Product } from '../../Helpers/products';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ProductComponent } from '../product/product.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, RouterLink],
+  imports: [HttpClientModule, CommonModule, RouterLink, ProductComponent],
   providers: [ProductService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
