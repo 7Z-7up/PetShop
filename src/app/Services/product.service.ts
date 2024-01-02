@@ -8,7 +8,7 @@ import { Product } from '../Helpers/products';
 })
 export class ProductService {
   private Dogs_URL =
-    'https://petshop-c2ff5-default-rtdb.firebaseio.com/dogs-supplements';
+    'https://petshop-c2ff5-default-rtdb.firebaseio.com/supplements';
   private Users_URL =
     'https://petshop-c2ff5-default-rtdb.firebaseio.com/Users.json';
   private key?: string;

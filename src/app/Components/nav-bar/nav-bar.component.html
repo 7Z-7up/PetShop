@@ -48,7 +48,9 @@
         &nbsp; &nbsp;
       </label>
       <button class="btn btn-primary">
-        <fa-icon [icon]="faShop"></fa-icon>
+        <a routerLink="/shopping-cart">
+          <fa-icon [icon]="faShop"></fa-icon>
+        </a>
       </button>
     </div>
 
@@ -57,7 +59,15 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" id="navbarToggle">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="d-block d-lg-none">
@@ -65,12 +75,11 @@
           <fa-icon [icon]="faShop"></fa-icon>
         </button>
       </div>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav m-auto">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav m-auto" id="navbar">
           <li class="nav-item">
             <a
-              class="btn btn-primary nav-link mx-1 p-3"
+              class="btn btn-primary nav-link p-3 mt-lg-0 mt-sm-2 mx-lg-1 mt-2"
               [routerLinkActiveOptions]="{ exact: true }"
               routerLinkActive="active"
               routerLink="/"
@@ -81,20 +90,24 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
+
           <li class="nav-item">
             <a
-              class="btn btn-primary nav-link mx-1 p-3"
+              class="btn btn-primary nav-link p-3 mt-lg-0 mt-sm-2 mx-lg-1 mt-2"
               routerLinkActive="active"
-              routerLink="/contact-us"
+              routerLink="/add-product"
             >
-              <span id="ContactUs">{{
-                isTranslated ? translatedText.ContactUs : originalText.ContactUs
+              <span id="AddaProduct">{{
+                isTranslated
+                  ? translatedText.AddaProduct
+                  : originalText.AddaProduct
               }}</span>
             </a>
           </li>
+
           <li class="nav-item">
             <a
-              class="btn btn-primary nav-link mx-1 p-3"
+              class="btn btn-primary nav-link p-3 mt-lg-0 mt-sm-2 mx-lg-1 mt-2"
               routerLinkActive="active"
               routerLink="/about"
             >
@@ -103,16 +116,15 @@
               }}</span></a
             >
           </li>
+
           <li class="nav-item">
             <a
-              class="btn btn-primary nav-link mx-1 p-3"
+              class="btn btn-primary nav-link p-3 mt-lg-0 mt-sm-2 mx-lg-1 mt-2"
               routerLinkActive="active"
-              routerLink="/add-product"
+              routerLink="/contact-us"
             >
-              <span id="Add-Product">{{
-                isTranslated
-                  ? translatedText.AddaProduct
-                  : originalText.AddaProduct
+              <span id="ContactUs">{{
+                isTranslated ? translatedText.ContactUs : originalText.ContactUs
               }}</span>
             </a>
           </li>
