@@ -1,23 +1,20 @@
 import { Component } from '@angular/core';
-import { TranslationService } from '../../translation.service';
-
+import { TranslationService } from '../translation.service';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'app-ahmedalaa',
   standalone: true,
   imports: [],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  templateUrl: './ahmedalaa.component.html',
+  styleUrl: './ahmedalaa.component.css'
 })
-export class FooterComponent {
+export class AhmedalaaComponent {
   originalText = {
     paragraph: 'ahmedalaa ',
-    kareem:'kareem',
-    contactus:'Contact Us'
+    kareem:'kareem'
   };
 
   translatedText = {
-    contactus:'تواصل معنا',
     kareem:'كريم',
     paragraph: 'أحمد علاء'
   };
