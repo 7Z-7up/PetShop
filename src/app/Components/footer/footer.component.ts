@@ -26,6 +26,8 @@ export class FooterComponent {
   constructor(private translationService: TranslationService) {
     this.translationService.isTranslated$.subscribe((isTranslated) => {
       this.isTranslated = isTranslated;
+      let footer = document.getElementById('footer');
+      if (footer) footer.style.direction = this.isTranslated ? 'rtl' : 'ltr';
     });
   }
 }

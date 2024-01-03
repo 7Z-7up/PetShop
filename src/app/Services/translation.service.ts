@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TranslationService {
   private isTranslatedSubject = new BehaviorSubject<boolean>(false);
@@ -14,4 +14,3 @@ export class TranslationService {
     this.isTranslatedSubject.next(!this.isTranslatedSubject.value);
   }
 }
-

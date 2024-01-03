@@ -44,7 +44,7 @@ a {
   color: white !important;
 }
 li > a:hover {
-  background-color: #001672;
+  background-color: dodgerBlue;
 }
 .active {
   background-color: #001672;
@@ -52,4 +52,14 @@ li > a:hover {
 
 .active:focus {
   background-color: #001672 !important;
+}
+nav {
+  padding: 0 !important;
+}
+
+.hover {
+  border: 2px solid white;
+}
+.hover:hover {
+  background-color: DodgerBlue;
 }

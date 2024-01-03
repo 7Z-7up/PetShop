@@ -1,5 +1,4 @@
-<!-- <p>{{ isTranslated ? translatedText.kareem : originalText.kareem }}</p> -->
-<footer class="row d-flex bg-light bg-opacity-0 text-black p-2">
+<footer id="footer" class="row d-flex bg-light bg-opacity-0 text-black p-2">
   <div>
     <h2 class="head col-12 bg-primary bg-opacity-15">
       <a href="#"
@@ -18,7 +17,11 @@
   >
     <div class="d-flex col text-white" style="--bs-bg-opacity: 0.5">
       <div class="contact col m-2 p">
-        <p class="m-0"><a href="#">{{ isTranslated ? translatedText.contactus : originalText.contactus }}</a></p>
+        <p class="m-0">
+          <a href="#">{{
+            isTranslated ? translatedText.contactus : originalText.contactus
+          }}</a>
+        </p>
         <p class="m-0"><a href="#">About us</a></p>
         <p class="m-0"><a href="#">Help&Support</a></p>
         <p class="m-0"><a href="#">Investors</a></p>

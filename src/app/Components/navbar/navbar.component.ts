@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faShop } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { TranslationService } from '../../../../Services/translation.service';
+import { TranslationService } from '../../Services/translation.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +23,7 @@ export class NavbarComponent {
     searchpar: 'Type here to search',
     AddaProduct: 'Add a Product',
     About: 'About',
-    Shopping: 'Shopping',
+    Shopping: 'Shopping Cart',
     ContactUs: 'Contact Us!',
     Home: 'Home',
     search: 'search',
@@ -38,7 +38,7 @@ export class NavbarComponent {
     searchpar: 'أضغط هنا للبحث',
     AddaProduct: 'أضف منتج',
     About: 'حول',
-    Shopping: 'تسوق',
+    Shopping: 'سلة التسوق',
     ContactUs: '! تواصل معنا ',
     Home: 'الصفحة الرئيسية',
     search: 'بحث',
@@ -55,12 +55,9 @@ export class NavbarComponent {
     this.isTranslated = !this.isTranslated;
     this.translationService.toggleTranslation();
     const navbar = document.getElementById('navbar');
-    if (navbar) {
-      const navbarItems = Array.from(navbar.children);
-      navbarItems.reverse();
-      navbar.innerHTML = '';
-      navbarItems.forEach((item) => navbar.appendChild(item));
-    }
+    const nav = document.getElementById('nav');
+    if (navbar) navbar.style.direction = this.isTranslated ? 'rtl' : 'ltr';
+    if (nav) nav.style.direction = this.isTranslated ? 'rtl' : 'ltr';
   }
 
   //////////////////////////////////////////////////////////////////////////
