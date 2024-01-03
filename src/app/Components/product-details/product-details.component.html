@@ -1,4 +1,16 @@
 <div *ngIf="product" class="container mt-4">
+  <div class="row breadcrumb col-12">
+    <ul class="breadcrumb m-0">
+      <li>
+        <a class="home" routerLink="/"
+          ><i class="fa-solid fa-house-chimney"></i
+        ></a>
+      </li>
+      <li>
+        <a routerLink="/product/{{ product.id }}">{{ product.name }}</a>
+      </li>
+    </ul>
+  </div>
   <div class="card mb-3">
     <div class="row g-0">
       <!-- Card for Image -->

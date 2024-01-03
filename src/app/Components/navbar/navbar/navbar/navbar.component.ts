@@ -3,53 +3,50 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faShop } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { TranslationService } from '../../../../translation.service';
+import { TranslationService } from '../../../../Services/translation.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [FontAwesomeModule,RouterLinkActive,RouterLink,RouterOutlet],
+  imports: [FontAwesomeModule, RouterLinkActive, RouterLink, RouterOutlet],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
-
-
-
 export class NavbarComponent {
   constructor(private translationService: TranslationService) {}
 
   faShop = faShop;
-  faSearch=faSearch;
+  faSearch = faSearch;
   isSearchBarOpen = false;
 
   originalText = {
-    searchpar:"Type here to search",
-    AddaProduct:"Add a Product",
-    About:"About",
-    Shopping:"Shopping",
-    ContactUs:"Contact Us!",
-    Home:"Home",
-    search:'search',
-    hellothere:'hello there!',
+    searchpar: 'Type here to search',
+    AddaProduct: 'Add a Product',
+    About: 'About',
+    Shopping: 'Shopping',
+    ContactUs: 'Contact Us!',
+    Home: 'Home',
+    search: 'search',
+    hellothere: 'hello there!',
     ahmedalaa: 'ahmed alaa',
     title: 'Hello, World!',
     paragraph1: 'This is the firstttt paragraph to be translated.',
-    paragraph2: 'And here\'s the second paragraph waiting for translation.'
+    paragraph2: "And here's the second paragraph waiting for translation.",
   };
 
   translatedText = {
-    searchpar:"أضغط هنا للبحث",
-    AddaProduct:"أضف منتج",
-    About:"حول",
-    Shopping:"تسوق",
-    ContactUs:"! تواصل معنا ",
-    Home:"الصفحة الرئيسية",
-    search:'بحث',
-    hellothere:'!أهلا هناك',
+    searchpar: 'أضغط هنا للبحث',
+    AddaProduct: 'أضف منتج',
+    About: 'حول',
+    Shopping: 'تسوق',
+    ContactUs: '! تواصل معنا ',
+    Home: 'الصفحة الرئيسية',
+    search: 'بحث',
+    hellothere: '!أهلا هناك',
     ahmedalaa: 'أحمد علاء',
     title: 'مرحبا، عالم!',
     paragraph1: 'هذه هي الفقرة الأولى التي سيتم ترجمتها.',
-    paragraph2: 'وهذه الفقرة الثانية في انتظار الترجمة.'
+    paragraph2: 'وهذه الفقرة الثانية في انتظار الترجمة.',
   };
 
   isTranslated = false;
@@ -66,9 +63,8 @@ export class NavbarComponent {
     }
   }
 
- //////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////
   openAlert() {
-    
     // Check if the search bar is not already open
     if (!this.isSearchBarOpen) {
       // Set the flag to indicate that the search bar is now open
@@ -93,7 +89,9 @@ export class NavbarComponent {
       const input = document.createElement('input');
       input.type = 'text';
       ////////////////////////////////////////////////////////////////////////
-      input.placeholder = this.isTranslated ? this.translatedText.searchpar : this.originalText.searchpar;
+      input.placeholder = this.isTranslated
+        ? this.translatedText.searchpar
+        : this.originalText.searchpar;
       ////////////////////////////////////////////////////////////////////////
       input.style.width = '100%'; // Make the input full-width
       input.style.padding = '8px';
@@ -150,12 +148,12 @@ export class NavbarComponent {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const navbarToggle = document.getElementById('navbarToggle');
-    const navbarCollapse = document.getElementById('navbarSupportedContent');
-  
-    if (navbarToggle && navbarCollapse) {
-      navbarToggle.addEventListener('click', () => {
-        navbarCollapse.classList.toggle('show');
-      });
-    }
-  });
+  const navbarToggle = document.getElementById('navbarToggle');
+  const navbarCollapse = document.getElementById('navbarSupportedContent');
+
+  if (navbarToggle && navbarCollapse) {
+    navbarToggle.addEventListener('click', () => {
+      navbarCollapse.classList.toggle('show');
+    });
+  }
+});

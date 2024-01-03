@@ -1,25 +1,24 @@
 import { Component } from '@angular/core';
-import { TranslationService } from '../../translation.service';
-
+import { TranslationService } from '../../Services/translation.service';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
   imports: [],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  styleUrl: './footer.component.css',
 })
 export class FooterComponent {
   originalText = {
     paragraph: 'ahmedalaa ',
-    kareem:'kareem',
-    contactus:'Contact Us'
+    kareem: 'kareem',
+    contactus: 'Contact Us',
   };
 
   translatedText = {
-    contactus:'تواصل معنا',
-    kareem:'كريم',
-    paragraph: 'أحمد علاء'
+    contactus: 'تواصل معنا',
+    kareem: 'كريم',
+    paragraph: 'أحمد علاء',
   };
 
   isTranslated = false;

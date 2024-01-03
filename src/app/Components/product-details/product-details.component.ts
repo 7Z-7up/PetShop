@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [HttpClientModule, CommonModule],
+  imports: [HttpClientModule, CommonModule, RouterLink],
   providers: [ProductService],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
