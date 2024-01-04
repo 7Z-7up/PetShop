@@ -34,12 +34,13 @@ export class CartElementComponent implements OnInit {
     let quanID!: number;
 
     this.user.cart.forEach((element: any) => {
-      console.log(element.id, this.product.id);
-      if (element.id == this.product.id) return (quanID = element.id);
+      if (element.id == this.product.id) {
+        quanID = element.id;
+        this.product.quan = element.quantity;
+        console.log(this.product.quan);
+      }
     });
 
-    this.product.quan = quanID;
-    // console.log(this.user.cart[this.product.quan].quantity);
     this.refreshTotal();
   }
   // ngOnInit(): void {
@@ -56,15 +57,15 @@ export class CartElementComponent implements OnInit {
     // console.log(keyUpdate);
 
     for (const key in this.user.cart) {
-      if (this.product.id == this.user.cart[key].id) keyUpdate = +key;
+      if (this.product.id == this.user.cart[key].id) {
+        keyUpdate = +key;
+      }
     }
-    console.log(keyUpdate);
     this.user.cart[keyUpdate].quantity++;
-    console.log(this.user);
-    // this.myService.updateSupplements(this.product).subscribe({
-    //   next: () => console.log('done'),
-    //   error: () => console.log('error updating'),
-    // });
+    this.myService.updateUser(this.user).subscribe({
+      next: () => console.log('Success Updating'),
+      error: () => console.log('Error Updating'),
+    });
     this.refreshTotal();
   }
   downQuantity() {

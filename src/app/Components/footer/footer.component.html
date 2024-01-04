@@ -12,32 +12,112 @@
       <div class="contact col m-2 p">
         <p class="m-0">
           <a href="#">
-            {{isTranslated ? translatedText.contactus : originalText.contactus}}
+            {{
+              isTranslated ? translatedText.contactus : originalText.contactus
+            }}
           </a>
         </p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.Aboutus : originalText.Aboutus}}</a></p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.HelpSupport : originalText.HelpSupport}}</a></p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.Investors : originalText.Investors}}</a></p>
+        <p class="m-0">
+          <a href="#">{{
+            isTranslated ? translatedText.Aboutus : originalText.Aboutus
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a href="#">{{
+            isTranslated ? translatedText.HelpSupport : originalText.HelpSupport
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a href="#">{{
+            isTranslated ? translatedText.Investors : originalText.Investors
+          }}</a>
+        </p>
       </div>
       <div class="Terms col m-2">
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.Terms : originalText.Terms}}</a></p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.PrivacyandPolicy : originalText.PrivacyandPolicy}}</a></p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.CookieSettings : originalText.CookieSettings}}</a></p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.PaymentMethod : originalText.PaymentMethod}}</a></p>
+        <p class="m-0">
+          <a href="#">{{
+            isTranslated ? translatedText.Terms : originalText.Terms
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a href="#">{{
+            isTranslated
+              ? translatedText.PrivacyandPolicy
+              : originalText.PrivacyandPolicy
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a href="#">{{
+            isTranslated
+              ? translatedText.CookieSettings
+              : originalText.CookieSettings
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a href="#">{{
+            isTranslated
+              ? translatedText.PaymentMethod
+              : originalText.PaymentMethod
+          }}</a>
+        </p>
       </div>
       <div class="Terms col m-2">
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.Terms : originalText.Terms}}               </a></p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.PrivacyandPolicy : originalText.PrivacyandPolicy}}  </a></p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.CookieSettings : originalText.CookieSettings}}   </a></p>
-        <p class="m-0"><a href="#">{{isTranslated ? translatedText.PaymentMethod : originalText.PaymentMethod}}    </a></p>
+        <p class="m-0">
+          <a href="#"
+            >{{ isTranslated ? translatedText.Terms : originalText.Terms }}
+          </a>
+        </p>
+        <p class="m-0">
+          <a href="#"
+            >{{
+              isTranslated
+                ? translatedText.PrivacyandPolicy
+                : originalText.PrivacyandPolicy
+            }}
+          </a>
+        </p>
+        <p class="m-0">
+          <a href="#"
+            >{{
+              isTranslated
+                ? translatedText.CookieSettings
+                : originalText.CookieSettings
+            }}
+          </a>
+        </p>
+        <p class="m-0">
+          <a href="#"
+            >{{
+              isTranslated
+                ? translatedText.PaymentMethod
+                : originalText.PaymentMethod
+            }}
+          </a>
+        </p>
       </div>
     </div>
     <div class="pages col text-white h-25">
       <ul id="navbar">
-        <li><a href="#">{{isTranslated ? translatedText.Home : originalText.Home}}   </a></li>
-        <li><a href="#">{{isTranslated ? translatedText.shop : originalText.shop}}   </a></li>
-        <li><a href="#">{{isTranslated ? translatedText.About : originalText.About}}   </a></li>
-        <li><a href="#">{{isTranslated ? translatedText.Contact : originalText.Contact}} </a></li>
+        <li>
+          <a href="#"
+            >{{ isTranslated ? translatedText.Home : originalText.Home }}
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            >{{ isTranslated ? translatedText.shop : originalText.shop }}
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            >{{ isTranslated ? translatedText.About : originalText.About }}
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            >{{ isTranslated ? translatedText.Contact : originalText.Contact }}
+          </a>
+        </li>
       </ul>
     </div>
 
@@ -80,7 +160,11 @@
   <div class="flex-column col-12 col-md-6">
     <div class="flex-row col bg-light bg-opacity-75 text-info">
       <p class="my-1">
-        {{isTranslated ? translatedText.Getthefreshest : originalText.Getthefreshest}}
+        {{
+          isTranslated
+            ? translatedText.Getthefreshest
+            : originalText.Getthefreshest
+        }}
         <a href="#" class="text-danger-emphasis">
           <img
             src="assets/footer-images/logossss.png"
@@ -89,7 +173,7 @@
             alt=""
           />
         </a>
-        {{isTranslated ? translatedText.News : originalText.News}}
+        {{ isTranslated ? translatedText.News : originalText.News }}
       </p>
       <!-- form email & button  -->
       <form class="d-flex justify-content-start mb-3">
@@ -98,7 +182,11 @@
             type="email"
             class="form-control bg-opacity-15 text-white border border-primary-subtle"
             pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-            placeholder="  {{isTranslated ? translatedText.placeholder : originalText.placeholder}}"
+            placeholder="  {{
+              isTranslated
+                ? translatedText.placeholder
+                : originalText.placeholder
+            }}"
             aria-describedby="button-addon2"
           />
           <button
@@ -106,7 +194,9 @@
             type="submit"
             id="button-addon2"
           >
-          {{isTranslated ? translatedText.Subscribe : originalText.Subscribe}}
+            {{
+              isTranslated ? translatedText.Subscribe : originalText.Subscribe
+            }}
           </button>
         </div>
       </form>
@@ -115,7 +205,7 @@
     </div>
     <div class="col bg-opacity-10 text-info">
       <p>
-        {{isTranslated ? translatedText.Paragraph : originalText.Paragraph}}
+        {{ isTranslated ? translatedText.Paragraph : originalText.Paragraph }}
       </p>
     </div>
   </div>
@@ -140,21 +230,79 @@
     <!-- Github -->
     <a class="icon" href="#!"><i class="bi bi-github"></i> </a>
   </section>
+<<<<<<< Updated upstream
 
   <div class="bg_c mb-3 py-2" style="--bs-bg-opacity: 0.5">
     <h6>{{isTranslated ? translatedText.BusinessPartners : originalText.BusinessPartners}}</h6>
+=======
+  <div class="bg_c py-2">
+    <h6>
+      {{
+        isTranslated
+          ? translatedText.BusinessPartners
+          : originalText.BusinessPartners
+      }}
+    </h6>
+>>>>>>> Stashed changes
     <div class="d-flex col-12 justify-content-evenly">
       <div class="Business flex-wrap mb-2">
-        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.NutramaxLaboratories : originalText.NutramaxLaboratories}}</a></p>
-        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.NaturVet : originalText.NaturVet}}</a></p>
-        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.ZestyPaws : originalText.ZestyPaws}}</a></p>
-        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.ArkNaturals : originalText.ArkNaturals}}</a></p>
-        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.WellnessCORE : originalText.WellnessCORE}}</a></p>
-        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.HillsScienceDiet : originalText.HillsScienceDiet}} </a></p>
-        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.NutramaxLaboratories : originalText.NutramaxLaboratories}}</a></p>
+        <p class="m-0">
+          <a class="con" href="#!">{{
+            isTranslated
+              ? translatedText.NutramaxLaboratories
+              : originalText.NutramaxLaboratories
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a class="con" href="#!">{{
+            isTranslated ? translatedText.NaturVet : originalText.NaturVet
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a class="con" href="#!">{{
+            isTranslated ? translatedText.ZestyPaws : originalText.ZestyPaws
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a class="con" href="#!">{{
+            isTranslated ? translatedText.ArkNaturals : originalText.ArkNaturals
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a class="con" href="#!">{{
+            isTranslated
+              ? translatedText.WellnessCORE
+              : originalText.WellnessCORE
+          }}</a>
+        </p>
+        <p class="m-0">
+          <a class="con" href="#!"
+            >{{
+              isTranslated
+                ? translatedText.HillsScienceDiet
+                : originalText.HillsScienceDiet
+            }}
+          </a>
+        </p>
+        <p class="m-0">
+          <a class="con" href="#!">{{
+            isTranslated
+              ? translatedText.NutramaxLaboratories
+              : originalText.NutramaxLaboratories
+          }}</a>
+        </p>
       </div>
     </div>
-    <p style="text-align: center">{{isTranslated ? translatedText.Copyright : originalText.Copyright}} &copy; ...... {{isTranslated ? translatedText.Allrightsreseved : originalText.Allrightsreseved}}</p>
+    <p style="text-align: center">
+      {{
+        isTranslated ? translatedText.Copyright : originalText.Copyright
+      }}
+      &copy; ......
+      {{
+        isTranslated
+          ? translatedText.Allrightsreseved
+          : originalText.Allrightsreseved
+      }}
+    </p>
   </div>
 </footer>
-

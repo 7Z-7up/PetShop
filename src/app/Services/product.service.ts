@@ -53,10 +53,9 @@ export class ProductService {
       params: new HttpParams().set('orderBy', '"id"').set('equalTo', id),
     });
   }
-
   updateUser(updatedUser: User) {
     return this.httpClient.patch(
-      `${this.Users_URL}/${updatedUser.id}`,
+      `${this.Users_URL}/${updatedUser.id}.json`,
       updatedUser
     );
   }
