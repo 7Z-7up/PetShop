@@ -33,17 +33,8 @@ SendEmail:'أرسل البريد الإلكتروني'
   constructor(private translationService: TranslationService) {
     this.translationService.isTranslated$.subscribe((isTranslated) => {
       this.isTranslated = isTranslated;
-      let name = document.getElementById('name');
-    if (name) name.style.direction = this.isTranslated ? 'rtl' : 'ltr';
-
-    let Email = document.getElementById('email');
-    if (Email) Email.style.direction = this.isTranslated ? 'rtl' : 'ltr';
-
-    let object = document.getElementById('object');
-    if (object) object.style.direction = this.isTranslated ? 'rtl' : 'ltr';
-
-    let message = document.getElementById('message');
-    if (message) message.style.direction = this.isTranslated ? 'rtl' : 'ltr';
+      let form = document.getElementById('form');
+      if (form) form.style.direction = this.isTranslated ? 'rtl' : 'ltr';
     });
   }
 }

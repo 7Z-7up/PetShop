@@ -6,28 +6,28 @@
             <img src="https://colorlib.com/etc/cf/ContactFrom_v1/images/img-01.png" alt="IMG">
         </div>
 
-        <form class="contact1-form validate-form">
+        <form class="contact1-form validate-form" id="form">
             <span class="contact1-form-title">
                 {{ isTranslated ? translatedText.Getintouch : originalText.Getintouch }}
             </span>
 
             <div class="wrap-input1 validate-input" data-validate = "Name is required">
-                <input id = "name" class="input1" type="text" name="name" placeholder="{{ isTranslated ? translatedText.Name : originalText.Name }}">
+                <input  class="input1" type="text" name="name" placeholder="{{ isTranslated ? translatedText.Name : originalText.Name }}">
                 <span class="shadow-input1"></span>
             </div>
 
             <div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                <input id = "email" class="input1" type="text" name="email" placeholder="{{ isTranslated ? translatedText.Email : originalText.Email }}">
+                <input  class="input1" type="text" name="email" placeholder="{{ isTranslated ? translatedText.Email : originalText.Email }}">
                 <span class="shadow-input1"></span>
             </div>
 
             <div class="wrap-input1 validate-input" data-validate = "Subject is required">
-                <input id="object" class="input1" type="text" name="subject" placeholder="{{ isTranslated ? translatedText.Subject : originalText.Subject }}">
+                <input  class="input1" type="text" name="subject" placeholder="{{ isTranslated ? translatedText.Subject : originalText.Subject }}">
                 <span class="shadow-input1"></span>
             </div>
 
             <div class="wrap-input1 validate-input" data-validate = "Message is required">
-                <textarea id='message' class="input1" name="message" placeholder="{{ isTranslated ? translatedText.Message : originalText.Message }}"></textarea>
+                <textarea  class="input1" name="message" placeholder="{{ isTranslated ? translatedText.Message : originalText.Message }}"></textarea>
                 <span class="shadow-input1"></span>
             </div>
 
