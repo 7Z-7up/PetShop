@@ -1,31 +1,30 @@
 .about-us-container {
-    background-color: #f8f9fa;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    color: #6c757d;
-  }
-  
-  img {
-    max-width: 100%;
-    border: 8px solid #ffffff;
-    border-radius: 50%;
-  }
-  
-  p {
-    font-size: 18px;
-    color: #343a40;
-  }
-  
-  ul {
-    font-size: 18px;
-    color: #343a40;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
+  background-color: #f8f9fa;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #6c757d;
+}
+
+img {
+  max-width: 100%;
+  border: 8px solid #ffffff;
+  border-radius: 50%;
+}
+
+p {
+  font-size: 18px;
+  color: #343a40;
+}
+
+ul {
+  font-size: 18px;
+  color: #343a40;
+}
+
+li {
+  margin-bottom: 10px;
+}

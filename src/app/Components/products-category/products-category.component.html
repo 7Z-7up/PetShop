@@ -54,10 +54,22 @@
           <h5 class="card-title">{{ product.name }}</h5>
           <p class="card-text">{{ product.price | currency : "EGP " }}</p>
           <p class="card-text">
-            rating: {{ product.rating }} &#11088; &#11088; &#11088;
+            Rating:
+            <span class="stars text-warning">
+              <p
+                *ngFor="let star of displayStars(product.rating)"
+                [class]="star"
+              ></p>
+            </span>
+            <span style="font-size: 0.7em">
+              ({{ product.reviews }} Reviews)
+            </span>
           </p>
-          <p class="card-text">reviews: {{ product.reviews }}</p>
-          <a href="#" class="btn btn-primary w-100">Add to Cart</a>
+          <a
+            (click)="addToCart(product.id, product.categories)"
+            class="btn btn-primary w-100"
+            >Add to Cart</a
+          >
         </div>
       </div>
     </div>

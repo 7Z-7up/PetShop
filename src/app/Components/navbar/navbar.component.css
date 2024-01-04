@@ -63,3 +63,7 @@ nav {
 .hover:hover {
   background-color: DodgerBlue;
 }
+
+*:not(i) {
+  font-family: BukraRegular;
+}

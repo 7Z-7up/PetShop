@@ -14,6 +14,7 @@ import { ProductService } from '../../Services/product.service';
 })
 export class ProductsCategoryComponent {
   products: Product[] = [];
+
   constructor(private myProducts: ProductService) {
     myProducts.getAllSupplements().subscribe({
       next: (data) => (this.products = this.products.concat(data)),
@@ -73,5 +74,10 @@ export class ProductsCategoryComponent {
     }
 
     return starsArray;
+  }
+
+  addToCart(id?: number, category?: string) {
+    console.log(id, category);
+    // console.log(this.user)
   }
 }
