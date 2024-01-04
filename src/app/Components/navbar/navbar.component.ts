@@ -39,7 +39,7 @@ export class NavbarComponent {
     AddaProduct: 'أضف منتج',
     About: 'حول',
     Shopping: 'سلة التسوق',
-    ContactUs: '! تواصل معنا ',
+    ContactUs: 'تواصل معنا ! ',
     Home: 'الصفحة الرئيسية',
     search: 'بحث',
     hellothere: '!أهلا هناك',
