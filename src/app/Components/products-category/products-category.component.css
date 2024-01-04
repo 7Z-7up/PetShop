@@ -1,0 +1,10 @@
+.image-container {
+  overflow: hidden;
+}
+.hover-image {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.hover-image:hover {
+  transform: rotate(30deg);
+}
