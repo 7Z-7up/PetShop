@@ -1,20 +1,18 @@
-
-*{
-    box-sizing: border-box;
-    margin: 0% ;
+* {
+  box-sizing: border-box;
+  margin: 0%;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-p{
-font-size: 70%;
-line-height: -10px;
-font-weight:500 ;
-
+p {
+  font-size: 70%;
+  line-height: -10px;
+  font-weight: 500;
 }
 
-  /* @keyframes btn {
+/* @keyframes btn {
     form {
       transform: scale(0);
     }
@@ -29,122 +27,115 @@ font-weight:500 ;
 
 } */
 
-  .bg_c{
-    background-color: navy;
-    color: aliceblue;
-  }
-  
-    button{
-    padding: 4px 2px;
-    margin-left: 10px;
-    width:20%;
-    height: 40px !important;
-    font-size: 12px;
-    cursor: pointer;
-    transition: transform 0.5s ease-in-out;
-  }
+.bg_c {
+  background-color: navy;
+  color: aliceblue;
+}
 
-  
-  button:hover{
-    transform: scale(1.05);
-      box-shadow: #3498db 2px 2px 5px;
-      /* background-color: rgb(12, 132, 253); */
+button {
+  padding: 4px 2px;
+  margin-left: 10px;
+  width: 20%;
+  height: 40px !important;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
 
-  }
-  input[type="email"]{
-    height:40px !important;
-    width:80%;
-    font-size: 12px;
-    padding: 8px 8px;
-    transition: transform 0.5s ease-in-out;
-  }
-  input[type="email"]:hover{
-    transform: scale(1.03);
-      box-shadow: #3498db 2px 2px 5px;
-      /* background-color: rgb(195, 250, 255); */
-  }
-  .icon{
-    padding: 5px;
-    color:navy;
-    transition: transform 0.5s ease-in-out;
-    font-size: large;
- 
-
-  }
-  .icon:hover{
-    transform: scale(1.2);
-    color: skyblue;
-  }
+button:hover {
+  transform: scale(1.05);
+  box-shadow: #3498db 2px 2px 5px;
+  /* background-color: rgb(12, 132, 253); */
+}
+input[type="email"] {
+  height: 40px !important;
+  width: 80%;
+  font-size: 12px;
+  padding: 8px 8px;
+  transition: transform 0.5s ease-in-out;
+}
+input[type="email"]:hover {
+  transform: scale(1.03);
+  box-shadow: #3498db 2px 2px 5px;
+  /* background-color: rgb(195, 250, 255); */
+}
+.icon {
+  padding: 5px;
+  color: navy;
+  transition: transform 0.5s ease-in-out;
+  font-size: large;
+}
+.icon:hover {
+  transform: scale(1.2);
+  color: skyblue;
+}
 
 #navbar {
-    display : flex;
-    align-items:flex-end;
-    justify-content:start;
-    height:65%;
-    padding-left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: start;
+  height: 65%;
+  padding-left: 0;
 }
 #navbar li {
-    list-style: none;
-    padding: 0 8px;
-    position: relative;
+  list-style: none;
+  padding: 0 8px;
+  position: relative;
 }
 #navbar li a {
-    text-decoration:none ;
-    font-size: 70%;
-    font-weight: 650;
-    color:black;
-   transition: 0.3s ease;
+  text-decoration: none;
+  font-size: 70%;
+  font-weight: 650;
+  color: black;
+  transition: 0.3s ease;
 }
-#navbar li a:hover{
-    color:#ff4545;
+#navbar li a:hover {
+  color: #ff4545;
+}
 
+#navbar li a:hover::after {
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: #ff4545;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
 }
-
-#navbar li a:hover::after{
-    content:""; 
-    width: 30%;
-    height: 2px;
-    background:#ff4545;
-    position:absolute;
-    bottom:-4px;
-    left:20px;
-}
-.Business{
-  display : flex;
+.Business {
+  display: flex;
   align-items: center;
   justify-content: start;
-  justify-self:center;
+  justify-self: center;
 }
-p .con{
+p .con {
   font-size: 100%;
   font-weight: 580;
-  color:ghostwhite;
- 
+  color: ghostwhite;
 }
 .Business p {
   list-style: none;
   padding: 0 8px;
   position: relative;
 }
-.con:hover{
-  color:cornflowerblue;
+.con:hover {
+  color: cornflowerblue;
 }
- .con::after{
-    content:""; 
-    width: 2px;
-    height: 80%;
-    background:#ff4545;
-    position:absolute;
-    bottom:1px;
-    left:5px;
+.con::after {
+  content: "";
+  width: 2px;
+  height: 80%;
+  background: #ff4545;
+  position: absolute;
+  bottom: 1px;
+  left: 5px;
 }
-
 
 @media (max-width: 766px) {
-    #navbar {
-      justify-content: space-evenly;
-    }
-    .Payment {
-      justify-content: space-evenly;
-    }
+  #navbar {
+    justify-content: space-evenly;
   }
+  .Payment {
+    justify-content: space-evenly;
+  }
+}

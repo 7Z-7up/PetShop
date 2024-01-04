@@ -2,11 +2,9 @@
   <button class="btn btn-primary border m-1" (click)="toggleTranslation()">
     {{ isTranslated ? "Back to English" : "ترجمة إلي العربية" }}
   </button>
-  <p>
-    <button class="btn btn-primary d-lg-none" (click)="openAlert()">
-      <fa-icon [icon]="faSearch"></fa-icon>
-    </button>
-  </p>
+  <button class="btn btn-primary d-lg-none w-100" (click)="openAlert()">
+    <i class="fa-solid fa-search fa-xl"></i>
+  </button>
 </div>
 
 <!-- يتحط ف الصغيره ويتشال ف الكبيره- -->
@@ -32,7 +30,7 @@
       }}"
     />
     <!-- //////////////////////////////////////////////////////////////////////// -->
-    <button class="w-25">
+    <button id="searchBtn" class="w-25">
       <span id="search">{{
         isTranslated ? translatedText.search : originalText.search
       }}</span>
@@ -135,6 +133,7 @@
 
 <!-- ناف بار معين ف الشاشات الصغيره  -->
 <nav
+  id="smallNav"
   class="navbar navbar-expand-lg navbar-dark bg-primary d-block d-lg-none m-auto"
 >
   <div class="container-fluid">

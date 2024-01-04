@@ -8,8 +8,7 @@ import { Product } from '../Helpers/products';
 })
 export class ProductService {
   private URL = 'https://petshop-c2ff5-default-rtdb.firebaseio.com/supplements';
-  private Users_URL =
-    'https://petshop-c2ff5-default-rtdb.firebaseio.com/Users.json';
+  private Users_URL = 'https://petshop-c2ff5-default-rtdb.firebaseio.com/Users';
   private key?: string;
 
   constructor(private httpClient: HttpClient) {}
@@ -22,11 +21,8 @@ export class ProductService {
     return this.httpClient.post(this.URL + '.json', product);
   }
 
-  updateSupplements(product: Product) {
-    return this.httpClient.patch(
-      `${this.URL + '.json'}/${product.id}`,
-      product
-    );
+  updateSupplements(product: any) {
+    return this.httpClient.patch(`${this.URL}/${product.id}.json`, product);
   }
 
   deletesupplements(id: number) {
@@ -53,7 +49,7 @@ export class ProductService {
   }
 
   getUser(id: number) {
-    return this.httpClient.get(this.Users_URL, {
+    return this.httpClient.get(this.Users_URL + '.json', {
       params: new HttpParams().set('orderBy', '"id"').set('equalTo', id),
     });
   }

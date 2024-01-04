@@ -56,8 +56,20 @@ export class NavbarComponent {
     this.translationService.toggleTranslation();
     const navbar = document.getElementById('navbar');
     const nav = document.getElementById('nav');
+    const smallNav = document.getElementById('smallNav');
+    const search = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
     if (navbar) navbar.style.direction = this.isTranslated ? 'rtl' : 'ltr';
     if (nav) nav.style.direction = this.isTranslated ? 'rtl' : 'ltr';
+    if (smallNav) smallNav.style.direction = this.isTranslated ? 'rtl' : 'ltr';
+    if (search)
+      search.style.borderRadius = this.isTranslated
+        ? '4px 0 0 4px'
+        : '0 4px 4px 0';
+    if (searchInput)
+      searchInput.style.borderRadius = this.isTranslated
+        ? '0 4px 4px 0'
+        : '4px 0 0 4px';
   }
 
   //////////////////////////////////////////////////////////////////////////

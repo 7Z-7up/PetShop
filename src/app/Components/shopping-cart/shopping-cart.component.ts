@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartElementComponent } from '../cart-element/cart-element.component';
 import { Product } from '../../Helpers/products';
@@ -23,14 +23,17 @@ import { RouterLink } from '@angular/router';
   styleUrl: './shopping-cart.component.css',
 })
 export class ShoppingCartComponent implements OnInit {
+  subTotalArr: { id: number; subTotal: string }[] = [];
   subTotal = 0;
   User!: any;
   product?: any;
   products: Product[] = [];
 
   constructor(private myProducts: ProductService) {
-    myProducts.deletesupplements(20);
+    this.refreshTotal();
+  }
 
+  ngOnInit(): void {
     this.myProducts.getUser(1).subscribe({
       next: (userData) => {
         this.User = userData;
@@ -51,37 +54,16 @@ export class ShoppingCartComponent implements OnInit {
       },
       error: () => console.log('Error!'),
     });
+  }
+  getSubtotal(data: any) {
+    this.subTotalArr[data.id] = data;
     this.refreshTotal();
   }
 
-  ngOnInit(): void {}
-
   refreshTotal() {
-    // this.subTotal = 0;
-    // this.User.cart?.forEach((product: any) => {
-    //   this.subTotal += product.price * product.quantity;
-    // });
+    this.subTotal = 0;
+    this.subTotalArr.forEach((element) => {
+      this.subTotal += +element.subTotal;
+    });
   }
-
-  // upQuantity(id: number) {
-  //   let currentID = this.test.findIndex((x: any) => x.id == id);
-  //   this.test[currentID].quantity += 1;
-  //   this.refreshTotal();
-  // }
-  // downQuantity(id: number) {
-  //   let currentID = this.test.findIndex((x: any) => x.id == id);
-  //   if (this.test[currentID].quantity > 1) {
-  //     this.test[currentID].quantity -= 1;
-  //   } else {
-  //     let option = confirm('are you sure you wanna delete?');
-  //     if (option)
-  //       this.test = this.test.filter((product: any) => product.id != id);
-  //   }
-  //   this.refreshTotal();
-  // }
-
-  // deleteProduct(id: number) {
-  //   this.test = this.test.filter((product: any) => product.id != id);
-  //   this.refreshTotal();
-  // }
 }

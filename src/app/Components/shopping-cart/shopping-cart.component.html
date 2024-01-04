@@ -23,7 +23,12 @@
       </thead>
       <tbody>
         @for(pr of products; track pr.id){
-        <tr app-cart-element [product]="pr" [user]="User"></tr>
+        <tr
+          app-cart-element
+          [product]="pr"
+          [user]="User"
+          (setSubTotal)="getSubtotal($event)"
+        ></tr>
         }
       </tbody>
     </table>
