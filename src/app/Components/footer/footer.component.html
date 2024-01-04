@@ -18,33 +18,33 @@
     <div class="d-flex col text-white" style="--bs-bg-opacity: 0.5">
       <div class="contact col m-2 p">
         <p class="m-0">
-          <a href="#">{{
-            isTranslated ? translatedText.contactus : originalText.contactus
-          }}</a>
+          <a href="#">
+            {{isTranslated ? translatedText.contactus : originalText.contactus}}
+          </a>
         </p>
-        <p class="m-0"><a href="#">About us</a></p>
-        <p class="m-0"><a href="#">Help&Support</a></p>
-        <p class="m-0"><a href="#">Investors</a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.Aboutus : originalText.Aboutus}}</a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.HelpSupport : originalText.HelpSupport}}</a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.Investors : originalText.Investors}}</a></p>
       </div>
       <div class="Terms col m-2">
-        <p class="m-0"><a href="#">Terms</a></p>
-        <p class="m-0"><a href="#">Privacy and Policy</a></p>
-        <p class="m-0"><a href="#">Cookie Settings</a></p>
-        <p class="m-0"><a href="#">Payment Method</a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.Terms : originalText.Terms}}</a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.PrivacyandPolicy : originalText.PrivacyandPolicy}}</a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.CookieSettings : originalText.CookieSettings}}</a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.PaymentMethod : originalText.PaymentMethod}}</a></p>
       </div>
       <div class="Terms col m-2">
-        <p class="m-0"><a href="#">Terms</a></p>
-        <p class="m-0"><a href="#">Privacy and Policy</a></p>
-        <p class="m-0"><a href="#">Cookie Settings</a></p>
-        <p class="m-0"><a href="#">Payment Method</a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.Terms : originalText.Terms}}               </a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.PrivacyandPolicy : originalText.PrivacyandPolicy}}  </a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.CookieSettings : originalText.CookieSettings}}   </a></p>
+        <p class="m-0"><a href="#">{{isTranslated ? translatedText.PaymentMethod : originalText.PaymentMethod}}    </a></p>
       </div>
     </div>
     <div class="pages col text-white h-25">
       <ul id="navbar">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">shop</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">{{isTranslated ? translatedText.Home : originalText.Home}}   </a></li>
+        <li><a href="#">{{isTranslated ? translatedText.shop : originalText.shop}}   </a></li>
+        <li><a href="#">{{isTranslated ? translatedText.About : originalText.About}}   </a></li>
+        <li><a href="#">{{isTranslated ? translatedText.Contact : originalText.Contact}} </a></li>
       </ul>
     </div>
 
@@ -87,7 +87,7 @@
   <div class="flex-column col-12 col-md-6">
     <div class="flex-row col bg-light bg-opacity-75 text-info">
       <p class="my-1">
-        Get the freshest
+        {{isTranslated ? translatedText.Getthefreshest : originalText.Getthefreshest}}
         <a href="#" class="text-danger-emphasis">
           <img
             src="assets/footer-images/logossss.png"
@@ -96,7 +96,7 @@
             alt=""
           />
         </a>
-        News
+        {{isTranslated ? translatedText.News : originalText.News}}
       </p>
       <!-- form email & button  -->
       <form class="d-flex justify-content-start mb-3">
@@ -105,7 +105,7 @@
             type="email"
             class="form-control bg-opacity-15 text-white border border-primary-subtle"
             pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-            placeholder="Your email address"
+            placeholder="  {{isTranslated ? translatedText.placeholder : originalText.placeholder}}"
             aria-describedby="button-addon2"
           />
           <button
@@ -113,7 +113,7 @@
             type="submit"
             id="button-addon2"
           >
-            Subscribe
+          {{isTranslated ? translatedText.Subscribe : originalText.Subscribe}}
           </button>
         </div>
       </form>
@@ -122,10 +122,7 @@
     </div>
     <div class="col bg-opacity-10 text-info">
       <p>
-        we are a pet shop online and we aim to offer our customers a variety of
-        the latest Pet Products online. supplying you with high quality yet
-        budget-friendly products. We offer all of this while providing excellent
-        customer service and friendly support.
+        {{isTranslated ? translatedText.Paragraph : originalText.Paragraph}}
       </p>
     </div>
   </div>
@@ -152,18 +149,19 @@
   </section>
 
   <div class="bg_c mb-3 py-2" style="--bs-bg-opacity: 0.5">
-    <h6>Business Partners</h6>
+    <h6>{{isTranslated ? translatedText.BusinessPartners : originalText.BusinessPartners}}</h6>
     <div class="d-flex col-12 justify-content-evenly">
       <div class="Business flex-wrap mb-2">
-        <p class="m-0"><a class="con" href="#!">Nutramax Laboratories</a></p>
-        <p class="m-0"><a class="con" href="#!">NaturVet</a></p>
-        <p class="m-0"><a class="con" href="#!">Zesty Paws</a></p>
-        <p class="m-0"><a class="con" href="#!">Ark Naturals</a></p>
-        <p class="m-0"><a class="con" href="#!">Wellness CORE</a></p>
-        <p class="m-0"><a class="con" href="#!">Hill's Science Diet</a></p>
-        <p class="m-0"><a class="con" href="#!">Nutramax Laboratories</a></p>
+        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.NutramaxLaboratories : originalText.NutramaxLaboratories}}</a></p>
+        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.NaturVet : originalText.NaturVet}}</a></p>
+        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.ZestyPaws : originalText.ZestyPaws}}</a></p>
+        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.ArkNaturals : originalText.ArkNaturals}}</a></p>
+        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.WellnessCORE : originalText.WellnessCORE}}</a></p>
+        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.HillsScienceDiet : originalText.HillsScienceDiet}} </a></p>
+        <p class="m-0"><a class="con" href="#!">{{isTranslated ? translatedText.NutramaxLaboratories : originalText.NutramaxLaboratories}}</a></p>
       </div>
     </div>
-    <p style="text-align: center">Copyright &copy; ...... All rights reseved</p>
+    <p style="text-align: center">{{isTranslated ? translatedText.Copyright : originalText.Copyright}} &copy; ...... {{isTranslated ? translatedText.Allrightsreseved : originalText.Allrightsreseved}}</p>
   </div>
 </footer>
+
