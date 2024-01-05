@@ -10,6 +10,7 @@ import {
 import { Product } from '../../Helpers/products';
 import { ProductService } from '../../Services/product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: '[app-cart-element]',
@@ -27,7 +28,7 @@ export class CartElementComponent implements OnInit {
   @Output() setSubTotal = new EventEmitter();
   subTotal = 0;
 
-  constructor(private myService: ProductService) {}
+  constructor(private myService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     // console.log(this.user.cart);
@@ -37,14 +38,11 @@ export class CartElementComponent implements OnInit {
       if (element.id == this.product.id) {
         quanID = element.id;
         this.product.quan = element.quantity;
-        console.log(this.product.quan);
       }
     });
 
     this.refreshTotal();
   }
-  // ngOnInit(): void {
-  // }
 
   refreshTotal() {
     this.subTotal = this.product.quan * this.product.price;
@@ -54,7 +52,6 @@ export class CartElementComponent implements OnInit {
   upQuantity() {
     this.product.quan += 1;
     let keyUpdate = 0;
-    // console.log(keyUpdate);
 
     for (const key in this.user.cart) {
       if (this.product.id == this.user.cart[key].id) {
@@ -69,18 +66,54 @@ export class CartElementComponent implements OnInit {
     this.refreshTotal();
   }
   downQuantity() {
-    if (this.product.quan > 1) {
+    let keyUpdate = 0;
+
+    for (const key in this.user.cart) {
+      if (this.product.id == this.user.cart[key].id) {
+        keyUpdate = +key;
+      }
+    }
+    if (this.user.cart[keyUpdate].quantity > 1) {
       this.product.quan -= 1;
+      this.user.cart[keyUpdate].quantity--;
+      this.myService.updateUser(this.user).subscribe({
+        next: () => console.log('Success Updating'),
+        error: () => console.log('Error Updating'),
+      });
     } else {
-      let option = confirm('are you sure you wanna delete?');
-      if (option) alert('deleted');
-      // this.cartProduct = this.test.filter((product: any) => product.id != id);
+      if (confirm('Do you want to delete this product from cart?')) {
+        this.user.cart = this.user.cart.filter(
+          (item: any) => item.id !== this.product.id
+        );
+        this.myService.updateUser(this.user).subscribe({
+          next: () =>
+            this.router
+              .navigateByUrl('/home', { skipLocationChange: true })
+              .then(() => {
+                this.router.navigate(['/shopping-cart']);
+              }),
+          error: () => console.log('Error Updating'),
+        });
+      }
     }
     this.refreshTotal();
   }
 
   deleteProduct() {
-    //   // this.test = this.test.filter((product: any) => product.id != id);
-    //   this.refreshTotal();
+    if (confirm('Do you want to delete this product from cart?')) {
+      this.user.cart = this.user.cart.filter(
+        (item: any) => item.id !== this.product.id
+      );
+      this.myService.updateUser(this.user).subscribe({
+        next: () =>
+          this.router
+            .navigateByUrl('/home', { skipLocationChange: true })
+            .then(() => {
+              this.router.navigate(['/shopping-cart']);
+            }),
+        error: () => console.log('Error Updating'),
+      });
+    }
+    this.refreshTotal();
   }
 }

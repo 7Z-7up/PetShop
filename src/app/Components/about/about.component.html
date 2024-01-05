@@ -1,54 +1,62 @@
-<div class="container mt-4">
-  <div class="about-us-container text-center">
-    <h2 class="text-uppercase mb-4">About Us</h2>
-    <p>Welcome to Pets Time, where passion meets pet wellness!</p>
-
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <img
-          src="assets/about-us-image.png"
-          alt="About Us Image"
-          class="img-fluid rounded-circle mb-4"
-        />
+<section class="about-section" id="form">
+  <div class="container">
+    <div class="row">
+      <div class="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+        <div class="inner-column">
+          <div class="sec-title aaa">
+            <span class="title">{{
+              isTranslated ? translatedText.a1 : originalText.a1
+            }}</span>
+            <h2>{{ isTranslated ? translatedText.a2 : originalText.a2 }}</h2>
+          </div>
+          <div class="text">
+            {{ isTranslated ? translatedText.a3 : originalText.a3 }}
+          </div>
+          <div class="text">
+            {{ isTranslated ? translatedText.a4 : originalText.a4 }}
+          </div>
+          <div class="btn-box">
+            <a routerLink="/contact-us" class="theme-btn btn-style-one">{{
+              isTranslated ? translatedText.a5 : originalText.a5
+            }}</a>
+          </div>
+        </div>
       </div>
-      <div class="col-md-6">
-        <p>
-          At Pets Time, we believe in the power of pets to make our lives
-          better. That's why we're dedicated to providing top-notch supplements
-          to enhance the health and happiness of your furry friends.
-        </p>
-        <p>
-          Our team is made up of pet enthusiasts and experts who carefully
-          curate a selection of supplements, ensuring that your pets get the
-          love and care they deserve.
-        </p>
+
+      <!-- Image Column -->
+      <div class="image-column col-lg-6 col-md-12 col-sm-12">
+        <div class="inner-column wow fadeInLeft">
+          <figure class="image-1">
+            <a href="#" class="lightbox-image" data-fancybox="images"
+              ><img
+                title="Rahul Kumar Yadav"
+                src="https://media.istockphoto.com/id/646426312/photo/group-of-different-pets.jpg?s=612x612&w=0&k=20&c=iGav2uTWUwHt3j_mtJDcC9_p02aZRLv0u47gP5Ffpqw="
+                alt=""
+            /></a>
+          </figure>
+        </div>
       </div>
     </div>
-
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <p>Why choose us?</p>
-        <ul class="list-unstyled">
-          <li>
-            <i class="bi bi-check-circle-fill text-success"></i> Quality
-            products from trusted sources
-          </li>
-          <li>
-            <i class="bi bi-check-circle-fill text-success"></i> Thoughtfully
-            curated selection for all pet needs
-          </li>
-          <li>
-            <i class="bi bi-check-circle-fill text-success"></i> Passionate
-            commitment to pet health and happiness
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <p>
-          Join us in our mission to make every tail wag with joy. Thank you for
-          choosing Pets Time for all your pet supplement needs!
-        </p>
-      </div>
+    <div class="sec-title">
+      <span class="title">{{
+        isTranslated ? translatedText.a6 : originalText.a6
+      }}</span>
+      <h2>{{ isTranslated ? translatedText.a7 : originalText.a7 }}</h2>
+    </div>
+    <div class="text">
+      {{ isTranslated ? translatedText.a8 : originalText.a8 }}
+    </div>
+    <div class="text">
+      {{ isTranslated ? translatedText.a9 : originalText.a9 }}
+    </div>
+    <div class="text">
+      {{ isTranslated ? translatedText.a10 : originalText.a10 }}
+    </div>
+    <div class="text">
+      {{ isTranslated ? translatedText.a11 : originalText.a11 }}
+    </div>
+    <div class="text">
+      {{ isTranslated ? translatedText.a12 : originalText.a12 }}
     </div>
   </div>
-</div>
+</section>

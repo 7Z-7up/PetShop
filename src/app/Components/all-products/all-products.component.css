@@ -1,0 +1,21 @@
+.hover-image {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.hover-image:hover {
+  transform: rotate(30deg);
+}
+
+*:not(.fa-star, i) {
+  font-family: BukraRegular;
+}
+
+.selected {
+  /* background-color: #001672; */
+  border: 15px solid #001672;
+  border-radius: 10px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}

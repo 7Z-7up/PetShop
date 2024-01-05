@@ -44,16 +44,32 @@ export class ProductDetailsComponent {
   }
 
   displayStars(rating: number) {
-    const filledStars = '★'.repeat(Math.floor(rating));
-    const decimalPart = rating % 1;
-    let halfStar = '';
-    if (decimalPart > 0 && decimalPart <= 0.5) {
-      halfStar = '★';
-    } else if (decimalPart > 0.5) {
-      halfStar = '★★';
+    let fullStars = Math.floor(rating);
+    let decimalPart = rating - fullStars;
+
+    const starsArray: string[] = [];
+
+    for (let i = 1; i <= 5; i++) {
+      if (i <= fullStars) {
+        starsArray.push('fas fa-star');
+      } else {
+        if (decimalPart > 0) {
+          if (decimalPart >= 0.25 && decimalPart <= 0.75) {
+            starsArray.push('fas fa-star-half-alt');
+            decimalPart = 0;
+          } else if (decimalPart > 0.75) {
+            starsArray.push('fas fa-star');
+            decimalPart = 0;
+          } else {
+            starsArray.push('far fa-star');
+          }
+        } else {
+          starsArray.push('far fa-star');
+        }
+      }
     }
-    const emptyStars = '☆'.repeat(5 - Math.ceil(rating));
-    return filledStars + halfStar + emptyStars;
+
+    return starsArray;
   }
 
   generateQuantityOptions(maxQuantity: number): number[] {
@@ -64,4 +80,8 @@ export class ProductDetailsComponent {
   selectQuantity(quantity: number): void {
     this.selectedQuantity = quantity;
   }
+
+  addToCart() {}
+  buyNow() {}
+  changeImage() {}
 }

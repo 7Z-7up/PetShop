@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../Helpers/products';
 import { ProductService } from '../../Services/product.service';
+import { User } from '../../Helpers/users';
 
 @Component({
   selector: 'app-products-category',
@@ -14,12 +15,20 @@ import { ProductService } from '../../Services/product.service';
 })
 export class ProductsCategoryComponent {
   products: Product[] = [];
+  User?: any;
 
   constructor(private myProducts: ProductService) {
     myProducts.getAllSupplements().subscribe({
       next: (data) => (this.products = this.products.concat(data)),
       error: (err) => console.log(err),
       complete: () => this.getbirds(),
+    });
+    myProducts.getUser(1).subscribe({
+      next: (userData) => {
+        let user: any = userData;
+        for (const key in user) this.User = user[key];
+      },
+      error: () => console.log('Error!'),
     });
   }
   filterdproduct: Product[] = [];
@@ -76,8 +85,17 @@ export class ProductsCategoryComponent {
     return starsArray;
   }
 
-  addToCart(id?: number, category?: string) {
-    console.log(id, category);
-    // console.log(this.user)
+  addToCart(id?: any, category?: any) {
+    // console.log(id, category);
+    if (this.User?.cart?.some((item: any) => item.id == id)) {
+      let index = this.User?.cart?.findIndex((item: any) => item.id == id);
+      this.User.cart[index].quantity++;
+    } else {
+      this.User?.cart?.push({ category: category, id: id, quantity: 1 });
+    }
+    this.myProducts.updateUser(this.User).subscribe({
+      next: () => console.log('Added Successfully!'),
+      error: () => console.log('Could not Add!'),
+    });
   }
 }

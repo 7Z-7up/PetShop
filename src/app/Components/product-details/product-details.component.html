@@ -1,4 +1,4 @@
-<div *ngIf="product" class="container mt-4">
+<!-- <div *ngIf="product" class="container mt-4">
   <div class="row breadcrumb col-12">
     <ul class="breadcrumb m-0">
       <li>
@@ -13,19 +13,19 @@
   </div>
   <div class="card mb-3">
     <div class="row g-0">
-      <!-- Card for Image -->
-      <div class="col-md-6">
+      Card for Image 
+      <div class="col-md-6 p-3">
         <div class="card">
           <img
-            style="height: 40vw; width: 40vw"
+            style="height: 100%; width: 100%"
             [src]="product.image"
             alt="{{ product.name }}"
-            class="card-img-top img-fluid"
+            class="card-img-top img-fluid ,"
           />
         </div>
       </div>
 
-      <!-- Card for Remaining Data -->
+      Card for Remaining Data
       <div class="col-md-6">
         <div class="card-body">
           <h2 class="card-title text-primary">
@@ -46,11 +46,11 @@
           <p class="card-text text-muted">
             <strong>Rating:</strong>
             <span id="starts" class="stars text-warning">
-              <!-- <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i> -->
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
             </span>
           </p>
           <p class="card-text text-muted">
@@ -71,4 +71,88 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<section class="section-content padding-y bg">
+  <div class="container">
+    <div class="card-container">
+      <div class="card">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              [src]="product.image"
+              alt="{{ product.name }}"
+              class="card-img-top img-fluid"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h2 class="card-title text-primary text-center font-italic">
+                <strong>{{ product.name }}</strong>
+              </h2>
+              <p class="card-text text-muted">
+                <strong>Price: </strong>
+                <strong class="price">{{
+                  product.price | currency : "EGP " : "symbol" : "1.2-2"
+                }}</strong>
+              </p>
+
+              <div>
+                <p class="bi bi-gift-fill">
+                  Gift wrapping available. Select at checkout.
+                </p>
+                <p class="bi bi-truck">
+                  &nbsp;Free Delivery on Orders over 500 EGP.
+                </p>
+                <p class="bi bi-box-seam-fill">&nbsp;Free Return.</p>
+                <p class="bi bi-wallet2">&nbsp;Secure Payment.</p>
+
+                <span class="stars text-warning">
+                  <p
+                    *ngFor="let star of displayStars(product.rating)"
+                    [class]="star"
+                  ></p>
+                </span>
+                on {{ product.reviews }} Reviews.
+              </div>
+
+              <div class="text-center m-3">
+                <a href="#" class="btn btn-primary mr-1">Buy Now</a>
+                <a href="#" class="btn btn-light">Add to Cart</a>
+              </div>
+
+              <div id="accordion" class="accordion mt-3">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button
+                        class="btn btn-link"
+                        data-toggle="collapse"
+                        data-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                      >
+                        <strong>Description:</strong>
+                      </button>
+                    </h5>
+                  </div>
+
+                  <div
+                    id="collapseOne"
+                    class="collapse show"
+                    aria-labelledby="headingOne"
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      {{ product.description }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

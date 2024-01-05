@@ -56,10 +56,11 @@
           <p class="card-text">
             Rating:
             <span class="stars text-warning">
-              <p
+              ({{ product.rating }})
+              <i
                 *ngFor="let star of displayStars(product.rating)"
                 [class]="star"
-              ></p>
+              ></i>
             </span>
             <span style="font-size: 0.7em">
               ({{ product.reviews }} Reviews)

@@ -32,6 +32,7 @@ export class NavbarComponent {
     title: 'Hello, World!',
     paragraph1: 'This is the firstttt paragraph to be translated.',
     paragraph2: "And here's the second paragraph waiting for translation.",
+    allproducts: 'Products',
   };
 
   translatedText = {
@@ -47,6 +48,7 @@ export class NavbarComponent {
     title: 'مرحبا، عالم!',
     paragraph1: 'هذه هي الفقرة الأولى التي سيتم ترجمتها.',
     paragraph2: 'وهذه الفقرة الثانية في انتظار الترجمة.',
+    allproducts: 'المنتجات',
   };
 
   isTranslated = false;

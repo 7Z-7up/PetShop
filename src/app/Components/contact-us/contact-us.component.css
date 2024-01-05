@@ -103,46 +103,6 @@ iframe {
 
 /*//////////////////////////////////////////////////////////////////
   [ Contact 1 ]*/
-<<<<<<< Updated upstream
-  
-  .contact1 {
-    width: 100%;
-    min-height: 100%;
-    padding: 15px;
-  
-  
-  
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .container-contact1 {
-    margin-top: 10px;
-    width: 1163px;
-    background: #00aeef;
-    border-radius: 10px;
-    overflow: hidden;
-  
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-  
-    padding: 90px 130px 88px 148px;
-  }
-  
-  /*------------------------------------------------------------------
-=======
 
 .contact1 {
   width: 100%;
@@ -162,7 +122,7 @@ iframe {
 .container-contact1 {
   margin-top: 10px;
   width: 1163px;
-  background: #0099ffb7;
+  background: #00aeef;
   border-radius: 10px;
   overflow: hidden;
 
@@ -179,7 +139,6 @@ iframe {
 }
 
 /*------------------------------------------------------------------
->>>>>>> Stashed changes
   [  ]*/
 .contact1-pic {
   width: 296px;

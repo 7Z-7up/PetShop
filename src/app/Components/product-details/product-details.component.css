@@ -2,3 +2,27 @@
   width: 30px;
   height: 30px;
 }
+*:not(.fa-star) {
+  font-family: BukraRegular;
+}
+
+.card-container {
+  max-width: 800px; /* Adjust the maximum width as needed */
+  margin: auto;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.img-big-wrap {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.accordion {
+  margin-top: 20px;
+}
