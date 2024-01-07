@@ -6,6 +6,7 @@ import { ProductService } from '../../Services/product.service';
 import { Product } from '../../Helpers/products';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../Helpers/users';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-all-products',
@@ -15,6 +16,7 @@ import { User } from '../../Helpers/users';
     CommonModule,
     RouterLink,
     FormsModule,
+    NgxPaginationModule,
     // ReactiveFormsModule,
   ],
   providers: [ProductService],
@@ -30,6 +32,8 @@ export class AllProductsComponent implements OnInit {
   User: User = { id: 0, cart: [] };
   dummy = [1, 2, 3, 4];
 
+  User: User = { id: 0, cart: [] };
+
   constructor(private myProducts: ProductService) {}
 
   ngOnInit(): void {
@@ -42,7 +46,9 @@ export class AllProductsComponent implements OnInit {
     });
 
     this.myProducts.getAllSupplements().subscribe({
-      next: (data) => (this.Products = this.Products.concat(data)),
+      next: (data) => {
+        this.Products = this.Products.concat(data);
+      },
       error: () => console.log('Error getting the data!'),
       complete: () => this.allproducts(),
     });
@@ -71,6 +77,7 @@ export class AllProductsComponent implements OnInit {
         (product) => product.categories === name
       );
     this.defaultfilterdproduct = [...this.filterdproduct];
+    this.changeValue(12);
   }
 
   allproducts() {
@@ -155,5 +162,17 @@ export class AllProductsComponent implements OnInit {
       default:
         this.filterdproduct = [...this.defaultfilterdproduct];
     }
+  }
+  page = 1;
+  total: number = this.filterdproduct.length;
+  itemsInPage: any = 12;
+  changeValue(val: number) {
+    this.itemsInPage = val;
+    this.page = 1;
+    this.total = this.filterdproduct.length;
+  }
+  changePage(event: any) {
+    this.page = event;
+    this.total = this.filterdproduct.length;
   }
 }

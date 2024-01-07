@@ -6,6 +6,7 @@ import { ShoppingCartComponent } from './Components/shopping-cart/shopping-cart.
 import { FooterComponent } from './Components/footer/footer.component';
 
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
     ShoppingCartComponent,
     FooterComponent,
     NavbarComponent,
+    NgxPaginationModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
