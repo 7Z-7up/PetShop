@@ -7,43 +7,31 @@ import { Product } from '../Helpers/products';
   providedIn: 'root',
 })
 export class ProductService {
-  private URL = 'https://petshop-c2ff5-default-rtdb.firebaseio.com/supplements';
+  private URL =
+    'https://petshop-c2ff5-default-rtdb.firebaseio.com/supplements.json';
   private Users_URL = 'https://petshop-c2ff5-default-rtdb.firebaseio.com/Users';
   private key?: string;
 
   constructor(private httpClient: HttpClient) {}
 
   getAllSupplements() {
-    return this.httpClient.get(this.URL + '.json');
+    return this.httpClient.get(this.URL);
   }
 
   addSupplements(product: Product) {
-    return this.httpClient.post(this.URL + '.json', product);
+    return this.httpClient.post(this.URL, product);
   }
 
   updateSupplements(product: any) {
     return this.httpClient.patch(`${this.URL}/${product.id}.json`, product);
   }
 
-  deletesupplements(id: number) {
-    this.getSupplements(id).subscribe({
-      next: (productData) => {
-        for (const key in productData) {
-          this.deleteSupplement(key).subscribe({
-            next: () => console.log('Deleted'),
-            error: () => console.log('Could not delete'),
-          });
-        }
-      },
-    });
-  }
-
-  private deleteSupplement(key: string) {
-    return this.httpClient.delete(this.URL + '.json' + `/${key}.json`);
+  deleteSupplement(products: Product[]) {
+    return this.httpClient.put(this.URL, products);
   }
 
   getSupplements(id: number) {
-    return this.httpClient.get(this.URL + '.json', {
+    return this.httpClient.get(this.URL, {
       params: new HttpParams().set('orderBy', '"id"').set('equalTo', id),
     });
   }

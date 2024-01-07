@@ -1,66 +1,199 @@
-<div class="cart-page">
-  <div class="container">
-    <button class="mb-3">+ Add</button>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead class="thead-dark">
-              <tr>
-                <th>Id</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Reviews</th>
-                <th>Category</th>
-                <th>Seller</th>
-                <th>Remove</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody class="align-middle">
-              @for(product of Products; track product.id){
-              <tr>
-                <td>
-                  <h5>{{ product.id }}</h5>
-                </td>
-                <td>
-                  <a href="#"><img [src]="product.image" alt="Image" /></a>
-                </td>
-                <td>
-                  <a href="#"
-                    ><h5>{{ product.name }}</h5></a
-                  >
-                </td>
-                <td>
-                  <h5>{{ product.price }}</h5>
-                </td>
-                <td>
-                  <h5>{{ product.quantity }}</h5>
-                </td>
-                <!--  -->
-                <td>
-                  <h5>{{ product.reviews }}</h5>
-                </td>
-                <td>
-                  <h5>{{ product.categories }}</h5>
-                </td>
-                <td>
-                  <h5>{{ product.seller }}</h5>
-                </td>
-                <!--  -->
-                <td>
-                  <button><i class="fa fa-trash"></i></button>
-                </td>
-                <td>
-                  <button><i class="fa fa-edit"></i></button>
-                </td>
-              </tr>
-              }
-            </tbody>
-          </table>
+<div class="container">
+  <div class="row breadcrumb col-12 my-3">
+    <ul class="breadcrumb m-0">
+      <li>
+        <a class="home" routerLink="/"
+          ><i class="fa-solid fa-house-chimney"></i
+        ></a>
+      </li>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+    </ul>
+  </div>
+
+  <!-- <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#exampleModal"
+  >
+    Launch demo modal
+  </button> -->
+  <button class="mb-3 add" data-toggle="modal" data-target="#addProductModal">
+    <span>+ Add</span>
+  </button>
+  <div
+    class="modal fade"
+    id="addProductModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+          <button
+            type="button"
+            class="btn btn-danger rounded"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <form class="w-100">
+            <div class="form-row">
+              <label class="pb-2" for="productName">Product Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="productName"
+                placeholder="Product Name"
+              />
+            </div>
+            <div class="form-row d-flex gap-2">
+              <div class="form-group col-md-6">
+                <label class="py-2" for="productID">Product ID</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="productID"
+                  placeholder="Product ID"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="py-2" for="productID">Product Quantity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="productQuantity"
+                  placeholder="Product Quantity"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="py-2" for="productDescription"
+                >Product Description</label
+              >
+              <textarea
+                class="form-control"
+                id="productDescription"
+                placeholder="Product Description"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="form-row d-flex gap-2">
+              <div class="form-group col-md-6">
+                <label class="py-2" for="sellerName">Seller Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="sellerName"
+                  placeholder="Seller Name"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="py-2" for="category">Category</label>
+                <select id="category" class="form-control">
+                  <option selected disabled>Choose...</option>
+                  <option>cat</option>
+                  <option>dog</option>
+                  <option>rodents</option>
+                  <option>bird</option>
+                  <option>fish</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="pb-2" for="productImage">Product Image</label>
+              <input
+                type="text"
+                class="form-control"
+                id="productImage"
+                placeholder="Product Image Path or URL"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-around w-100">
+          <button type="button" class="btn btn-dark col-5" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary col-5">
+            Add Product
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive text-center">
+        <table class="table table-hover table-bordered" style="font-size: 1rem">
+          <thead class="thead-dark">
+            <tr>
+              <th class="col-1">ID</th>
+              <th class="col-1">Image</th>
+              <th class="col-3">Name</th>
+              <th class="col-1">Price</th>
+              <th class="col-1 d-none d-lg-table-cell d-md-table-cell">
+                Quantity
+              </th>
+              <th class="col-1 d-none d-lg-table-cell">Reviews</th>
+              <th class="col-1 d-none d-lg-table-cell">Category</th>
+              <th class="col-1 d-none d-lg-table-cell">Seller</th>
+              <th class="col-1">Remove</th>
+              <th class="col-1">Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(product of Products; track product.id){
+            <tr>
+              <td>
+                <p>{{ product.id }}</p>
+              </td>
+              <td>
+                <a routerLink="/product/{{ product.id }}"
+                  ><img [src]="product.image" alt="Image"
+                /></a>
+              </td>
+              <td>
+                <a routerLink="/product/{{ product.id }}"
+                  ><p>{{ product.name }}</p></a
+                >
+              </td>
+              <td>
+                <p>{{ product.price | currency : "EGP " }}</p>
+              </td>
+              <td class="col-1 d-none d-lg-table-cell d-md-table-cell">
+                <p>{{ product.quantity }}</p>
+              </td>
+              <!--  -->
+              <td class="d-none d-lg-table-cell">
+                <p>{{ product.reviews }}</p>
+              </td>
+              <td class="d-none d-lg-table-cell">
+                <p>{{ product.categories }}</p>
+              </td>
+              <td class="d-none d-lg-table-cell">
+                <p>{{ product.seller }}</p>
+              </td>
+              <!--  -->
+              <td>
+                <button (click)="deleteProduct(product.id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+              <td>
+                <button><i class="fa fa-edit"></i></button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

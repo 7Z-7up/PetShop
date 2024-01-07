@@ -28,6 +28,7 @@ export class AllProductsComponent implements OnInit {
   defaultfilterdproduct: Product[] = [];
   selectedSort = 'default';
   User: User = { id: 0, cart: [] };
+  dummy = [1, 2, 3, 4];
 
   constructor(private myProducts: ProductService) {}
 

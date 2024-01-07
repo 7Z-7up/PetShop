@@ -51,13 +51,11 @@ export class CartHoverComponent implements OnInit {
         next: () => console.log('Deleted'),
         error: () => console.log('Error Updating'),
         complete: () => {
-          console.log(this.products);
           this.products = this.products.filter((element) => element.id != id);
-          console.log(this.products);
+          this.refreshTotal();
         },
       });
     }
-    this.refreshTotal();
   }
 
   refreshTotal() {

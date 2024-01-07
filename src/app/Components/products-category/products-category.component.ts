@@ -16,6 +16,7 @@ import { User } from '../../Helpers/users';
 export class ProductsCategoryComponent {
   products: Product[] = [];
   User: User = { id: 0, cart: [] };
+  dummy = [1, 2, 3, 4];
 
   constructor(private myProducts: ProductService) {
     myProducts.getAllSupplements().subscribe({

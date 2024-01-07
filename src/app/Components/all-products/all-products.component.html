@@ -82,6 +82,7 @@
       </select>
     </div>
   </div>
+  @if(filterdproduct.length > 0){
   <div
     class="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-lg-4 g-4 mt-5"
   >
@@ -119,4 +120,41 @@
     </div>
     }
   </div>
+  } @else{
+
+  <div
+    class="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-lg-4 g-4 mt-5"
+  >
+    @for(dum of dummy; track dummy){
+    <div class="col">
+      <div class="card card-height" style="border-radius: 25px">
+        <div class="card" aria-hidden="true">
+          <img
+            src="assets/placeholder-image.png"
+            class="card-img-top placeholder-image"
+            style="height: 20vw"
+            alt="..."
+          />
+          <div class="card-body h-40">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-12"></span>
+
+              <span class="placeholder col-3"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-6"></span>
+            </p>
+            <span class="placeholder col-12"></span>
+
+            <a
+              class="btn btn-primary disabled placeholder w-100"
+              aria-disabled="true"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  }
 </div>
