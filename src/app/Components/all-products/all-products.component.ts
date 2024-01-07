@@ -32,7 +32,6 @@ export class AllProductsComponent implements OnInit {
   User: User = { id: 0, cart: [] };
   dummy = [1, 2, 3, 4];
 
-  User: User = { id: 0, cart: [] };
 
   constructor(private myProducts: ProductService) {}
 

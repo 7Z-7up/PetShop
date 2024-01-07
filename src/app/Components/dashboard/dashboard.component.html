@@ -150,8 +150,12 @@
             </tr>
           </thead>
           <tbody>
-            @for(product of Products; track product.id){
-            <tr>
+            <!-- @for(product of Products; track product.id){ -->
+              @if(Products){
+            <tr *ngFor="let product of Products | paginate: { id: 'pagination',
+            itemsPerPage: itemsInPage,
+            currentPage: page,
+            totalItems: total }">
               <td>
                 <p>{{ product.id }}</p>
               </td>
@@ -191,10 +195,33 @@
                 <button><i class="fa fa-edit"></i></button>
               </td>
             </tr>
-            }
+          }
+            <!-- } -->
           </tbody>
         </table>
       </div>
     </div>
   </div>
+</div>
+<div class="d-flex justify-content-center">
+  <label class="ms-3 me-2">Show:</label>
+  <select #selectedNumber
+          [(ngModel)]="itemsInPage" 
+          (change)="changeValue(+selectedNumber.value)" 
+          class="form-control w-25"
+          name="show"
+          id="show">
+    <option value="12">12</option>
+    <option value="16">16</option>
+    <option value="20">20</option>
+    <option value="24">24</option>
+  </select>
+</div>
+
+<div>
+  <pagination-controls 
+                      (pageChange)="changePage($event)"
+                      id="pagination"
+                      class="page-item d-flex justify-content-center mt-4">
+  </pagination-controls>
 </div>

@@ -137,7 +137,11 @@
   }
   </div>
   <div>
-    <pagination-controls (pageChange)="changePage($event)" id="pagination"></pagination-controls>
+    <pagination-controls 
+                        (pageChange)="changePage($event)"
+                        id="pagination"
+                        class="page-item d-flex justify-content-center mt-4">
+    </pagination-controls>
   </div>
   } @else{
 

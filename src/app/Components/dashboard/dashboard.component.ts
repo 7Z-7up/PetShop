@@ -4,11 +4,13 @@ import { Product } from '../../Helpers/products';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterLink],
+  imports: [CommonModule, HttpClientModule, RouterLink, NgxPaginationModule, FormsModule],
   providers: [ProductService],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
@@ -36,5 +38,19 @@ export class DashboardComponent implements OnInit {
       error: () => console.log('Could not delete'),
       // complete: () => this.ngOnInit(),
     });
+  }
+
+
+  page = 1;
+  total: number = this.Products.length;
+  itemsInPage: any = 12;
+  changeValue(val: number) {
+    this.itemsInPage = val;
+    this.page = 1;
+    this.total = this.Products.length;
+  }
+  changePage(event: any) {
+    this.page = event;
+    this.total = this.Products.length;
   }
 }
