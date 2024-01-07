@@ -74,7 +74,12 @@
         <option value="reviewshigh">Highest Reviews</option>
       </select>
       <label class="ms-3">Show: &nbsp;</label>
-      <select #sorts class="form-control w-25" name="show" id="show">
+      <select #selectedNumber
+              [(ngModel)]="itemsInPage" 
+              (change)=changeValue(+selectedNumber.value) 
+              class="form-control w-25"
+              name="show"
+              id="show">
         <option value="12">12</option>
         <option value="16">16</option>
         <option value="20">20</option>
@@ -85,8 +90,16 @@
   <div
     class="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-lg-4 g-4 mt-5"
   >
-    @for(product of filterdproduct; track product.id){
-    <div class="col">
+    <!-- @for(product of filterdproduct; track product.id| paginate: { id: 'foo',
+                                                                        itemsPerPage: pageSize,
+                                                                        currentPage: p,
+                                                                        totalItems: total }){ -->
+
+    @if(filterdproduct.length > 0){
+    <div class="col" *ngFor="let product of filterdproduct | paginate: { id: 'pagination',
+                                                                        itemsPerPage: itemsInPage,
+                                                                        currentPage: page,
+                                                                        totalItems: total }">
       <div class="card h-100 pt-2">
         <a routerLink="/product/{{ product.id }}">
           <img
@@ -116,7 +129,13 @@
           >
         </div>
       </div>
+      
     </div>
-    }
+    
+    <!-- } -->
+  }
+  </div>
+  <div>
+    <pagination-controls (pageChange)="changePage($event)" id="pagination"></pagination-controls>
   </div>
 </div>
