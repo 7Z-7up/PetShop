@@ -40,16 +40,19 @@ export class ShoppingCartComponent implements OnInit {
         for (const key in this.User) {
           this.User = this.User[key];
         }
-        for (let i = 0; i < this.User.cart!.length; i++) {
-          this.myProducts.getSupplements(this.User.cart[i].id).subscribe({
-            next: (productData) => {
-              this.product = productData;
-              for (const key in this.product) {
-                this.products.push(this.product[key]);
-              }
-            },
-            error: () => console.log('Error!'),
-          });
+        if (this.User.cart) {
+          for (let i = 0; i < this.User.cart.length; i++) {
+            this.myProducts.getSupplements(this.User.cart[i].id).subscribe({
+              next: (productData) => {
+                this.product = productData;
+                for (const key in this.product) {
+                  this.products.push(this.product[key]);
+                }
+                if (!this.products) this.products = [];
+              },
+              error: () => console.log('Error!'),
+            });
+          }
         }
       },
       error: () => console.log('Error!'),

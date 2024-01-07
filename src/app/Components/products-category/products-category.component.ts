@@ -15,7 +15,7 @@ import { User } from '../../Helpers/users';
 })
 export class ProductsCategoryComponent {
   products: Product[] = [];
-  User?: any;
+  User: User = { id: 0, cart: [] };
 
   constructor(private myProducts: ProductService) {
     myProducts.getAllSupplements().subscribe({
@@ -86,12 +86,12 @@ export class ProductsCategoryComponent {
   }
 
   addToCart(id?: any, category?: any) {
-    // console.log(id, category);
-    if (this.User?.cart?.some((item: any) => item.id == id)) {
-      let index = this.User?.cart?.findIndex((item: any) => item.id == id);
+    if (!this.User.cart) this.User.cart = [];
+    if (this.User.cart.some((item: any) => item.id == id)) {
+      let index = this.User.cart.findIndex((item: any) => item.id == id);
       this.User.cart[index].quantity++;
     } else {
-      this.User?.cart?.push({ category: category, id: id, quantity: 1 });
+      this.User.cart.push({ category: category, id: id, quantity: 1 });
     }
     this.myProducts.updateUser(this.User).subscribe({
       next: () => console.log('Added Successfully!'),

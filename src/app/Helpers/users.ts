@@ -1,6 +1,6 @@
 import { Product } from './products';
 
 export class User {
-  id?: number;
-  cart?: { id: number; quantity: number; category: string }[];
+  id = 0;
+  cart: { id: number; quantity: number; category: string }[] = [];
 }

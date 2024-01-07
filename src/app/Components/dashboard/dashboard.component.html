@@ -1,0 +1,67 @@
+<div class="cart-page">
+  <div class="container">
+    <button class="mb-3">+ Add</button>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Reviews</th>
+                <th>Category</th>
+                <th>Seller</th>
+                <th>Remove</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody class="align-middle">
+              @for(product of Products; track product.id){
+              <tr>
+                <td>
+                  <h5>{{ product.id }}</h5>
+                </td>
+                <td>
+                  <a href="#"><img [src]="product.image" alt="Image" /></a>
+                </td>
+                <td>
+                  <a href="#"
+                    ><h5>{{ product.name }}</h5></a
+                  >
+                </td>
+                <td>
+                  <h5>{{ product.price }}</h5>
+                </td>
+                <td>
+                  <h5>{{ product.quantity }}</h5>
+                </td>
+                <!--  -->
+                <td>
+                  <h5>{{ product.reviews }}</h5>
+                </td>
+                <td>
+                  <h5>{{ product.categories }}</h5>
+                </td>
+                <td>
+                  <h5>{{ product.seller }}</h5>
+                </td>
+                <!--  -->
+                <td>
+                  <button><i class="fa fa-trash"></i></button>
+                </td>
+                <td>
+                  <button><i class="fa fa-edit"></i></button>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

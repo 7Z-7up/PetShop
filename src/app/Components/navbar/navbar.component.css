@@ -1,8 +1,44 @@
-/* .aaa {
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
-} */
+#bubble {
+  display: none;
+}
+
+.bubble {
+  right: -10%;
+}
+.bubbleAR {
+  left: 35%;
+}
+
+.bubbleAR,
+.bubble {
+  position: absolute;
+  top: 100%;
+  padding: 10px;
+  background-color: #1e90ff;
+  border-radius: 15px;
+  border: 1px solid white;
+  width: 25vw;
+  margin-top: 10px; /* Adjust spacing */
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.bubbleAR::after,
+.bubble::after {
+  content: "";
+  position: absolute;
+  top: -20px; /* Position the pointy corner above the bubble */
+  border-width: 0 20px 20px 0; /* Adjust triangle size */
+  border-style: solid;
+  border-color: transparent transparent #1e90ff transparent; /* Color for the triangle */
+  transform: translateX(-50%); /* Adjust the position of the triangle */
+}
+
+.bubbleAR::after {
+  left: 20px;
+}
+.bubble::after {
+  right: 10px; /* Position towards the right of the bubble */
+}
 
 .top-head {
   text-align: end;

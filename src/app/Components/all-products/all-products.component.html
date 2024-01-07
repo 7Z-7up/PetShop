@@ -108,7 +108,12 @@
             </span>
             on {{ product.reviews }} Reviews.
           </div>
-          <a href="#" class="bi bi-cart4 btn btn-primary"> Add to Cart</a>
+          <a
+            (click)="addToCart(product.id, product.categories)"
+            class="bi bi-cart4 btn btn-primary"
+          >
+            Add to Cart</a
+          >
         </div>
       </div>
     </div>

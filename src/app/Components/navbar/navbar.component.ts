@@ -1,22 +1,64 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faShop } from '@fortawesome/free-solid-svg-icons';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { TranslationService } from '../../Services/translation.service';
+import { User } from '../../Helpers/users';
+import { ProductService } from '../../Services/product.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Product } from '../../Helpers/products';
+import { CommonModule } from '@angular/common';
+import { CartHoverComponent } from '../cart-hover/cart-hover.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [FontAwesomeModule, RouterLinkActive, RouterLink, RouterOutlet],
+  imports: [
+    FontAwesomeModule,
+    RouterLinkActive,
+    RouterLink,
+    RouterOutlet,
+    HttpClientModule,
+    CommonModule,
+    CartHoverComponent,
+  ],
+  providers: [ProductService],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {
-  constructor(private translationService: TranslationService) {}
+export class NavbarComponent implements OnInit {
+  User: User = { id: 0, cart: [] };
+  cartProducts: Product[] = [];
+  quantities: number[] = [];
+  constructor(
+    private translationService: TranslationService,
+    private myService: ProductService
+  ) {}
 
-  faShop = faShop;
-  faSearch = faSearch;
+  ngOnInit(): void {
+    this.myService.getUser(1).subscribe({
+      next: (data: any) => {
+        for (const key in data) {
+          this.User = data[key];
+        }
+        this.User.cart.forEach((element) => {
+          this.myService.getSupplements(element.id).subscribe({
+            next: (productData) => {
+              let product: any = productData;
+              for (const key in product) {
+                this.cartProducts.push(product[key]);
+              }
+              if (!this.cartProducts) this.cartProducts = [];
+            },
+            error: () => console.log('Error!'),
+          });
+          this.quantities[element.id] = element.quantity;
+        });
+      },
+      error: () => console.log('Error getting user info!'),
+      complete: () => {},
+    });
+  }
+
   isSearchBarOpen = false;
 
   originalText = {
@@ -33,6 +75,7 @@ export class NavbarComponent {
     paragraph1: 'This is the firstttt paragraph to be translated.',
     paragraph2: "And here's the second paragraph waiting for translation.",
     allproducts: 'Products',
+    dashboard: 'Dashboard',
   };
 
   translatedText = {
@@ -49,6 +92,7 @@ export class NavbarComponent {
     paragraph1: 'هذه هي الفقرة الأولى التي سيتم ترجمتها.',
     paragraph2: 'وهذه الفقرة الثانية في انتظار الترجمة.',
     allproducts: 'المنتجات',
+    dashboard: 'لوحة التحكم',
   };
 
   isTranslated = false;
@@ -72,6 +116,16 @@ export class NavbarComponent {
       searchInput.style.borderRadius = this.isTranslated
         ? '0 4px 4px 0'
         : '4px 0 0 4px';
+
+    const bubble = document.getElementById('bubble');
+
+    if (this.isTranslated) {
+      bubble?.classList.add('bubbleAR');
+      bubble?.classList.remove('bubble');
+    } else {
+      bubble?.classList.add('bubble');
+      bubble?.classList.remove('bubbleAR');
+    }
   }
 
   //////////////////////////////////////////////////////////////////////////
@@ -155,6 +209,14 @@ export class NavbarComponent {
         }
       });
     }
+  }
+  cartShow() {
+    const bubble = document.getElementById('bubble');
+    bubble!.style.display = 'block';
+  }
+  cartHide() {
+    const bubble = document.getElementById('bubble');
+    bubble!.style.display = 'none';
   }
 }
 

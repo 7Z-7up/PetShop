@@ -1,0 +1,35 @@
+<div class="w-100 m-auto">
+  @for(product of products; track product.id){
+  <div
+    class="border border-secondary rounded mb-1 p-1 w-100 align-items-center d-flex justify-content-between bg-white"
+  >
+    <img [src]="product.image" class="me-2" style="width: 4vw; height: 4vw" />
+    <p class="col-5">
+      <a routerLink="/product/{{ product.id }}">{{ product.name }}</a>
+    </p>
+    <p>x{{ product.quan }}</p>
+    <p>
+      {{ product.quan * product.price | currency : "EGP " }}
+    </p>
+    <button
+      class="btn btn-danger delete px-2"
+      (click)="deleteProduct(product.id)"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  }
+  <div
+    class="border border-secondary rounded mb-1 p-1 w-100 align-items-center d-flex justify-content-between bg-white"
+  >
+    <p class="fs-5 m-0">Subtotal:</p>
+    <p class="fs-5 m-0">{{ subTotal | currency : "EGP " }}</p>
+  </div>
+  <button
+    class="w-100 btn btn-primary fs-5"
+    style="background-color: #001672"
+    routerLink="/shopping-cart"
+  >
+    View Cart
+  </button>
+</div>

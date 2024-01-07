@@ -2,7 +2,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivationEnd,
+  Router,
+  RouterLink,
+} from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
@@ -17,11 +22,13 @@ export class ProductDetailsComponent {
   product?: any;
   selectedQuantity: number | undefined;
   quantityOptions: number[] = [];
-  constructor(
-    private myActivated: ActivatedRoute,
-    private myProduct: ProductService
-  ) {
-    this.ID = myActivated.snapshot.params['id'];
+  constructor(private myProduct: ProductService, router: Router) {
+    router.events.subscribe((data) => {
+      if (data instanceof ActivationEnd) {
+        this.ID = data.snapshot.params['id'];
+        this.ngOnInit();
+      }
+    });
   }
   ngOnInit(): void {
     this.myProduct.getSupplements(this.ID).subscribe({

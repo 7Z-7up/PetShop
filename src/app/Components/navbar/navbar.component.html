@@ -38,17 +38,31 @@
   </div>
 
   <div class="d-none d-lg-block m-4">
-    <label
-      ><span id="Shopping">{{
-        isTranslated ? translatedText.Shopping : originalText.Shopping
-      }}</span>
-      &nbsp; &nbsp;
-    </label>
-    <button class="btn btn-primary">
-      <a routerLink="/shopping-cart">
-        <i class="fa-solid fa-shop fa-xl"></i>
-      </a>
-    </button>
+    <div (mouseleave)="cartHide()" class="row align-items-center">
+      <div class="col-auto">
+        <label>
+          <span id="Shopping">{{
+            isTranslated ? translatedText.Shopping : originalText.Shopping
+          }}</span>
+        </label>
+      </div>
+      <div class="col-auto" style="position: relative">
+        <a
+          (mouseenter)="cartShow()"
+          class="btn btn-primary"
+          routerLink="/shopping-cart"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+        <div
+          id="bubble"
+          (mouseenter)="cartShow()"
+          class="position-absolute bubble text-start"
+        >
+          <app-cart-hover></app-cart-hover>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!--  -->
@@ -107,12 +121,10 @@
           <a
             class="btn btn-primary nav-link p-3 mt-lg-0 mt-sm-2 mx-lg-1 mt-2"
             routerLinkActive="active"
-            routerLink="/add-product"
+            routerLink="/dashboard"
           >
-            <span id="AddaProduct">{{
-              isTranslated
-                ? translatedText.AddaProduct
-                : originalText.AddaProduct
+            <span id="Dashboard">{{
+              isTranslated ? translatedText.dashboard : originalText.dashboard
             }}</span>
           </a>
         </li>
@@ -165,7 +177,7 @@
     <div class="d-block d-lg-none">
       <button class="btn btn-primary mx-1">
         <a routerLink="/shopping-cart">
-          <fa-icon [icon]="faShop"></fa-icon>
+          <i class="fa-solid fa-cart-shopping fa-xl"></i>
         </a>
       </button>
     </div>
