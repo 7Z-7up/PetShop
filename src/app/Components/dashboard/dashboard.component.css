@@ -44,3 +44,7 @@ img {
 .table-responsive button:hover {
   background: #1e90ff;
 }
+
+#idExisted {
+  display: none;
+}

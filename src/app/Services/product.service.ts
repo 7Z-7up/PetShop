@@ -22,8 +22,8 @@ export class ProductService {
     return this.httpClient.post(this.URL, product);
   }
 
-  updateSupplements(product: any) {
-    return this.httpClient.patch(`${this.URL}/${product.id}.json`, product);
+  updateSupplements(products: Product[]) {
+    return this.httpClient.put(this.URL, products);
   }
 
   deleteSupplement(products: Product[]) {

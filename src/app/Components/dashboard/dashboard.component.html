@@ -71,20 +71,25 @@
             id="addproduct"
             class="w-100"
           >
-            <div class="form-row">
-              <label class="pb-2" for="productName">Product Name</label>
-              <input
-                formControlName="name"
-                required
-                type="text"
-                class="form-control"
-                id="productName"
-                placeholder="Product Name"
-              />
-            </div>
-            <div class="form-row d-flex gap-2">
+            <div class="form-row d-flex gap-2 justify-content-between">
               <div class="form-group col-md-6">
-                <label class="py-2" for="productID">Product ID</label>
+                <label class="pb-2" for="productName">Product Name</label>
+                <input
+                  formControlName="name"
+                  required
+                  type="text"
+                  class="form-control"
+                  id="productName"
+                  placeholder="Product Name"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="pb-2" for="productID"
+                  >Product ID
+                  <span id="idExisted" class="alert alert-danger p-1"
+                    >ID Already existed!</span
+                  ></label
+                >
                 <input
                   formControlName="id"
                   type="number"
@@ -93,14 +98,27 @@
                   placeholder="Product ID"
                 />
               </div>
+            </div>
+
+            <div class="form-row d-flex gap-2 justify-content-between">
               <div class="form-group col-md-6">
-                <label class="py-2" for="productID">Product Quantity</label>
+                <label class="py-2" for="productQuantity">Quantity</label>
                 <input
                   formControlName="quantity"
                   type="number"
                   class="form-control"
                   id="productQuantity"
-                  placeholder="Product Quantity"
+                  placeholder="Quantity"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="py-2" for="productPrice">Price</label>
+                <input
+                  formControlName="price"
+                  type="number"
+                  class="form-control"
+                  id="productPrice"
+                  placeholder="Price"
                 />
               </div>
             </div>
@@ -109,6 +127,7 @@
                 >Product Description</label
               >
               <textarea
+                formControlName="description"
                 class="form-control"
                 id="productDescription"
                 placeholder="Product Description"
@@ -142,7 +161,7 @@
               </div>
             </div>
             <div class="form-row">
-              <label class="pb-2" for="productImage">Product Image</label>
+              <label class="py-2" for="productImage">Product Image</label>
               <input
                 formControlName="image"
                 type="text"
@@ -174,6 +193,149 @@
       </div>
     </div>
   </div>
+
+  <!-- MODAL UPDATE  START-->
+  <!-- MODAL UPDATE -->
+  <div
+    class="modal fade"
+    id="updateProductModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="updateModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateModalLabel">Update Product</h5>
+          <button
+            type="button"
+            class="btn btn-danger rounded"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            [formGroup]="updatedProduct"
+            (ngSubmit)="update()"
+            id="updateproduct"
+            class="w-100"
+          >
+            <div class="form-row d-flex gap-2 justify-content-between">
+              <div class="form-group col-md-6">
+                <label class="pb-2" for="productName">Product Name</label>
+                <input
+                  formControlName="name"
+                  required
+                  type="text"
+                  class="form-control"
+                  id="productName"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="pb-2" for="productID">Product ID </label>
+                <input
+                  formControlName="id"
+                  type="number"
+                  class="form-control"
+                  id="productID"
+                />
+              </div>
+            </div>
+
+            <div class="form-row d-flex gap-2 justify-content-between">
+              <div class="form-group col-md-6">
+                <label class="py-2" for="productQuantity">Quantity</label>
+                <input
+                  formControlName="quantity"
+                  type="number"
+                  class="form-control"
+                  id="productQuantity"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="py-2" for="productPrice">Price</label>
+                <input
+                  formControlName="price"
+                  type="number"
+                  class="form-control"
+                  id="productPrice"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="py-2" for="productDescription"
+                >Product Description</label
+              >
+              <textarea
+                formControlName="description"
+                class="form-control"
+                id="productDescription"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="form-row d-flex gap-2">
+              <div class="form-group col-md-6">
+                <label class="py-2" for="sellerName">Seller Name</label>
+                <input
+                  formControlName="seller"
+                  type="text"
+                  class="form-control"
+                  id="sellerName"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="py-2" for="category">Category</label>
+                <select
+                  formControlName="categories"
+                  id="category"
+                  class="form-control"
+                >
+                  <option>cat</option>
+                  <option>dog</option>
+                  <option>rodents</option>
+                  <option>bird</option>
+                  <option>fish</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="py-2" for="productImage">Product Image</label>
+              <input
+                formControlName="image"
+                type="text"
+                class="form-control"
+                id="productImage"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-around w-100">
+          <button
+            #closebuttonupdate
+            type="button"
+            class="btn btn-dark col-5"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            [disabled]="updatedProduct.invalid"
+            form="updateproduct"
+            type="submit"
+            class="btn btn-primary col-5"
+          >
+            Apply Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL UPDATE END -->
+  <!-- MODAL UPDATE -->
 
   <div class="row">
     <div class="col-md-12">
@@ -246,7 +408,13 @@
                 </button>
               </td>
               <td>
-                <button><i class="fa fa-edit"></i></button>
+                <button
+                  data-toggle="modal"
+                  data-target="#updateProductModal"
+                  (click)="updateProduct(product.id)"
+                >
+                  <i class="fa fa-edit"></i>
+                </button>
               </td>
             </tr>
             }

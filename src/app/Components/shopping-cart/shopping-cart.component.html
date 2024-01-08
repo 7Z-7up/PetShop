@@ -10,7 +10,6 @@
     </ul>
   </div>
   <div class="row col-12 m-0 mt-5">
-    @if(products.length > 0){
     <h2 class="ps-0">Shopping Cart</h2>
     <table class="table table-bordered text-center">
       <thead>
@@ -23,19 +22,48 @@
         </tr>
       </thead>
       <tbody>
-        @for(pr of products; track pr.id){
+        @if(products.length > 0){ @for(pr of products; track pr.id){
         <tr
           app-cart-element
           [product]="pr"
           [user]="User"
           (setSubTotal)="getSubtotal($event)"
         ></tr>
+        } } @else {
+        <tr>
+          <td class="m-3 col-2">
+            <img
+              src="assets/cart-placeholder.png"
+              class="border border-secondary"
+            />
+          </td>
+          <td class="m-2 col-5">
+            <p class="placeholder-glow col-12">
+              <span class="placeholder col-12 placeholder-lg"></span>
+            </p>
+            <p class="placeholder-glow col-12 text-start">
+              <span class="placeholder col-6 placeholder-lg"></span>
+            </p>
+          </td>
+          <td class="m-2 col-2">
+            <p class="placeholder-glow col-12">
+              <span class="placeholder col-8 placeholder-lg"></span>
+            </p>
+          </td>
+          <td class="m-2 col-1">
+            <p class="placeholder-glow col-12">
+              <span class="placeholder col-8 placeholder-lg"></span>
+            </p>
+          </td>
+          <td class="m-2 col-2">
+            <p class="placeholder-glow col-12">
+              <span class="placeholder col-8 placeholder-lg"></span>
+            </p>
+          </td>
+        </tr>
         }
       </tbody>
     </table>
-    } @else {
-    <h1>You do not have anything in your cart!</h1>
-    }
   </div>
   <div class="row m-0 d-flex justify-content-end text-center">
     <!-- <div class="w-75 bg-primary d-flex align-items-start">

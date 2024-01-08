@@ -1,32 +1,27 @@
 * {
   font-family: BukraRegular !important;
 }
-/*---------------------------------------------*/
+
 a {
-  font-family: BukraRegular;
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
-  margin: 0px;
   transition: all 0.4s;
 }
 
-a:focus {
-  outline: none !important;
-}
-
 a:hover {
-  text-decoration: none;
   color: #57b846;
 }
 
-/*---------------------------------------------*/
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p,
+ul,
+li {
   margin: 0px;
 }
 
@@ -35,84 +30,29 @@ p {
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
-  margin: 0px;
 }
 
-ul,
-li {
-  margin: 0px;
-  list-style-type: none;
-}
-
-/*---------------------------------------------*/
-input {
+input,
+textarea,
+button,
+iframe {
   outline: none;
   border: none;
 }
 
-textarea {
-  outline: none;
-  border: none;
-}
-
-textarea:focus,
-input:focus {
+input:focus,
+textarea:focus {
   border-color: transparent !important;
-}
-
-/* input::-webkit-input-placeholder {
-  color: #999999;
-}
-input:-moz-placeholder {
-  color: #999999;
-}
-input::-moz-placeholder {
-  color: #999999;
-}
-input:-ms-input-placeholder {
-  color: #999999;
-}
-
-textarea::-webkit-input-placeholder {
-  color: #999999;
-}
-textarea:-moz-placeholder {
-  color: #999999;
-}
-textarea::-moz-placeholder {
-  color: #999999;
-}
-textarea:-ms-input-placeholder {
-  color: #999999;
-} */
-
-/*---------------------------------------------*/
-button {
-  outline: none !important;
-  border: none;
-  background: transparent;
 }
 
 button:hover {
   cursor: pointer;
 }
 
-iframe {
-  border: none !important;
-}
-
-/*//////////////////////////////////////////////////////////////////
-  [ Contact 1 ]*/
-
 .contact1 {
   width: 100%;
   min-height: 100%;
   padding: 15px;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -124,22 +64,13 @@ iframe {
   width: 1163px;
   background: #00aeef;
   border-radius: 10px;
-  overflow: hidden;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
+  padding: 90px 130px 88px 148px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-
-  padding: 90px 130px 88px 148px;
 }
 
-/*------------------------------------------------------------------
-  [  ]*/
 .contact1-pic {
   width: 296px;
 }
@@ -148,46 +79,16 @@ iframe {
   max-width: 100%;
 }
 
-/*------------------------------------------------------------------
-  [  ]*/
 .contact1-form {
   width: 390px;
 }
 
 .contact1-form-title {
-  display: block;
   font-family: Montserrat-ExtraBold;
   font-size: 24px;
   color: #333333;
-  line-height: 1.2;
   text-align: center;
   padding-bottom: 44px;
-}
-
-input.input1 {
-  height: 50px;
-  border-radius: 25px;
-  padding: 0 30px;
-}
-input.input1 + .shadow-input1 {
-  border-radius: 25px;
-}
-
-textarea.input1 {
-  min-height: 150px;
-  border-radius: 25px;
-  padding: 12px 30px;
-}
-textarea.input1 + .shadow-input1 {
-  border-radius: 25px;
-}
-
-/*---------------------------------------------*/
-.wrap-input1 {
-  position: relative;
-  width: 100%;
-  z-index: 1;
-  margin-bottom: 20px;
 }
 
 .input1 {
@@ -200,13 +101,27 @@ textarea.input1 + .shadow-input1 {
   color: #666666;
 }
 
+input.input1,
+textarea.input1 {
+  border-radius: 25px;
+  padding: 0 30px;
+}
+
+textarea.input1 {
+  min-height: 150px;
+}
+
+.wrap-input1 {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .shadow-input1 {
-  content: "";
   display: block;
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: -1;
   width: 100%;
   height: 100%;
   box-shadow: 0px 0px 0px 0px;
@@ -214,15 +129,7 @@ textarea.input1 + .shadow-input1 {
 }
 
 .input1:focus + .shadow-input1 {
-  -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
   animation: anim-shadow 0.5s ease-in-out forwards;
-}
-
-@-webkit-keyframes anim-shadow {
-  to {
-    box-shadow: 0px 0px 80px 30px;
-    opacity: 0;
-  }
 }
 
 @keyframes anim-shadow {
@@ -232,12 +139,7 @@ textarea.input1 + .shadow-input1 {
   }
 }
 
-/*---------------------------------------------*/
 .container-contact1-form-btn {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -252,27 +154,15 @@ textarea.input1 + .shadow-input1 {
   font-size: 15px;
   line-height: 1.5;
   color: #fff;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 25px;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
   transition: all 0.4s;
 }
 
 .contact1-form-btn i {
   margin-left: 7px;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
   transition: all 0.4s;
 }
 
@@ -281,15 +171,8 @@ textarea.input1 + .shadow-input1 {
 }
 
 .contact1-form-btn:hover i {
-  -webkit-transform: translateX(10px);
-  -moz-transform: translateX(10px);
-  -ms-transform: translateX(10px);
-  -o-transform: translateX(10px);
   transform: translateX(10px);
 }
-
-/*------------------------------------------------------------------
-  [ Responsive ]*/
 
 @media (max-width: 1200px) {
   .contact1-pic {
@@ -335,9 +218,6 @@ textarea.input1 + .shadow-input1 {
   }
 }
 
-/*------------------------------------------------------------------
-  [ Alert validate ]*/
-
 .validate-input {
   position: relative;
 }
@@ -351,41 +231,25 @@ textarea.input1 + .shadow-input1 {
   border-radius: 13px;
   padding: 4px 25px 4px 10px;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
   transform: translateY(-50%);
   right: 8px;
-  pointer-events: none;
-
   font-family: Montserrat-Medium;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
   text-align: left;
-
   visibility: hidden;
   opacity: 0;
-
-  -webkit-transition: opacity 0.4s;
-  -o-transition: opacity 0.4s;
-  -moz-transition: opacity 0.4s;
   transition: opacity 0.4s;
 }
 
 .alert-validate::after {
   content: "\f06a";
   font-family: FontAwesome;
-  display: block;
   position: absolute;
   color: #c80000;
   font-size: 15px;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
   transform: translateY(-50%);
   right: 13px;
 }
