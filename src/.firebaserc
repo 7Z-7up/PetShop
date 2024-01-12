@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "petshop-c2ff5"
+  },
+  "targets": {
+    "angular-auth-9cc2e": {
+      "hosting": {
+        "angular-auth": [
+          "angular-auth-9cc2e"
+        ]
+      }
+    }
+  }
+}

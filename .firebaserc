@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "petshop-c2ff5",
+    " auth": "login100-312b1"
+  },
+  "targets": {
+    "petshop-c2ff5": {
+      "hosting": {
+        "petshop": [
+          "petshop-c2ff5"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

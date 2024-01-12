@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "supplements":{
+              ".indexOn":["id"]
+      },
+        "Users":{
+              ".indexOn":["id"]
+      },
+    ".read": true,
+    ".write": true
+  }
+}

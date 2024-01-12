@@ -22,7 +22,7 @@ export class FooterComponent implements OnInit {
     About: 'About',
     Contact: 'Contact',
     contactus: 'Contact Us',
-    placeholder: 'Type here to search',
+    placeholder: 'subscribe to contact',
     Getthefreshest: 'Get the freshest',
     News: 'News',
     Subscribe: 'Subscribe',
@@ -52,7 +52,7 @@ export class FooterComponent implements OnInit {
     About: ' حول ',
     Contact: ' تواصل معنا ',
     contactus: '  تواصل معنا ',
-    placeholder: 'أضغط هنا للبحث',
+    placeholder: ' يسعدنا تواصلك معنا',
 
     Getthefreshest: 'ترقية للأحدث',
     News: 'الأخبار',

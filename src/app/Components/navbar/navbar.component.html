@@ -2,11 +2,19 @@
   <button class="btn btn-primary border m-1" (click)="toggleTranslation()">
     {{ isTranslated ? "Back to English" : "ترجمة إلي العربية" }}
   </button>
+
+  <!-- start Sign In button -->
+  <a routerLink="/register"
+    ><button type="button" class="btn btn-outline-black">
+      <i class="bi bi-people"></i>Sign In
+    </button></a
+  >
+  <!-- end Sign In button -->
+
   <button class="btn btn-primary d-lg-none w-100" (click)="openAlert()">
     <i class="fa-solid fa-search fa-xl"></i>
   </button>
 </div>
-
 <!-- يتحط ف الصغيره ويتشال ف الكبيره- -->
 <div class="d-block d-lg-none a my-4">
   <img src="../../../assets/logo.png" />
