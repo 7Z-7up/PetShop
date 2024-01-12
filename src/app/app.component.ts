@@ -7,14 +7,11 @@ import { ShoppingCartComponent } from './Components/shopping-cart/shopping-cart.
 import { FooterComponent } from './Components/footer/footer.component';
 
 import { NavbarComponent } from './Components/navbar/navbar.component';
-<<<<<<< Updated upstream
 import { NgxPaginationModule } from 'ngx-pagination';
-=======
 import { LoginComponent } from './Components/login/login.component';
 import { RegistComponent } from './Components/regist/regist.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-root',
@@ -27,14 +24,11 @@ import { AngularFireModule } from '@angular/fire/compat';
     ShoppingCartComponent,
     FooterComponent,
     NavbarComponent,
-<<<<<<< Updated upstream
-    NgxPaginationModule
-=======
-    LoginComponent,
+    NgxPaginationModule,
+        LoginComponent,
     RegistComponent,
     AngularFireAuthModule,
     AngularFireModule,
->>>>>>> Stashed changes
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
