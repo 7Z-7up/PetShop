@@ -7,6 +7,7 @@ import { ProductService } from '../../Services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { User } from '../../Helpers/users';
 import { RouterLink } from '@angular/router';
+import { CartServiceService } from '../../Services/cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -28,9 +29,14 @@ export class ShoppingCartComponent implements OnInit {
   User!: any;
   product?: any;
   products: Product[] = [];
+  // cartProduct: Product[]= []
 
-  constructor(private myProducts: ProductService) {
+  constructor(
+    private myProducts: ProductService,
+    private cartService: CartServiceService
+  ) {
     this.refreshTotal();
+    // cartService.cartItems$.subscribe()
   }
 
   ngOnInit(): void {

@@ -8,6 +8,8 @@ import {
   Router,
   RouterLink,
 } from '@angular/router';
+import { CartServiceService } from '../../Services/cart.service';
+import { User } from '../../Helpers/users';
 
 @Component({
   selector: 'app-product-details',
@@ -22,7 +24,13 @@ export class ProductDetailsComponent {
   product?: any;
   selectedQuantity: number | undefined;
   quantityOptions: number[] = [];
-  constructor(private myProduct: ProductService, router: Router) {
+  User: User = { id: 0, cart: [] };
+
+  constructor(
+    private myProduct: ProductService,
+    router: Router,
+    private cartService: CartServiceService
+  ) {
     router.events.subscribe((data) => {
       if (data instanceof ActivationEnd) {
         this.ID = data.snapshot.params['id'];
@@ -31,11 +39,18 @@ export class ProductDetailsComponent {
     });
   }
   ngOnInit(): void {
+    this.myProduct.getUser(1).subscribe({
+      next: (userData) => {
+        let user: any = userData;
+        for (const key in user) this.User = user[key];
+      },
+      error: () => console.log('Error!'),
+    });
+
     this.myProduct.getSupplements(this.ID).subscribe({
       next: (data) => {
         this.product = data;
         for (const key in this.product) {
-          // this.product = this.product[key];
           this.product = this.product[key];
           for (const key in this.product) {
             if (key === 'quantity') {
@@ -50,35 +65,6 @@ export class ProductDetailsComponent {
     });
   }
 
-  displayStars(rating: number) {
-    let fullStars = Math.floor(rating);
-    let decimalPart = rating - fullStars;
-
-    const starsArray: string[] = [];
-
-    for (let i = 1; i <= 5; i++) {
-      if (i <= fullStars) {
-        starsArray.push('fas fa-star');
-      } else {
-        if (decimalPart > 0) {
-          if (decimalPart >= 0.25 && decimalPart <= 0.75) {
-            starsArray.push('fas fa-star-half-alt');
-            decimalPart = 0;
-          } else if (decimalPart > 0.75) {
-            starsArray.push('fas fa-star');
-            decimalPart = 0;
-          } else {
-            starsArray.push('far fa-star');
-          }
-        } else {
-          starsArray.push('far fa-star');
-        }
-      }
-    }
-
-    return starsArray;
-  }
-
   generateQuantityOptions(maxQuantity: number): number[] {
     // Generate an array of numbers from 1 to maxQuantity
     return Array.from({ length: maxQuantity }, (_, index) => index + 1);
@@ -88,7 +74,40 @@ export class ProductDetailsComponent {
     this.selectedQuantity = quantity;
   }
 
-  addToCart() {}
+  displayStars(rating: any) {
+    const starsArray: string[] = [];
+
+    // Round to nearest half
+    rating = Math.round(rating * 2) / 2;
+    // Append all the filled whole stars
+    for (var i = rating; i >= 1; i--) starsArray.push('fa fa-star');
+
+    // If there is a half a star, append it
+    if (i == 0.5) starsArray.push('fas fa-star-half-alt');
+
+    // Fill the empty stars
+    for (let i = 5 - rating; i >= 1; i--) starsArray.push('far fa-star');
+
+    return starsArray;
+  }
+
   buyNow() {}
   changeImage() {}
+
+  addToCart(id?: any, category?: any) {
+    if (!this.User.cart) this.User.cart = [];
+    if (this.User.cart.some((item: any) => item.id == id)) {
+      let index = this.User.cart.findIndex((item: any) => item.id == id);
+      this.User.cart[index].quantity++;
+    } else {
+      this.User.cart.push({ category: category, id: id, quantity: 1 });
+    }
+
+    this.myProduct.updateUser(this.User).subscribe({
+      next: () => {
+        this.cartService.getCart();
+      },
+      error: () => console.log('Could not Add!'),
+    });
+  }
 }

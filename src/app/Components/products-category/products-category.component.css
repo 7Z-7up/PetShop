@@ -6,6 +6,6 @@
   transform: rotate(30deg);
 }
 
-*:not(.fa-star) {
+*:not(.fa-star, i) {
   font-family: BukraRegular;
 }

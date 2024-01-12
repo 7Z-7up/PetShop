@@ -7,6 +7,7 @@ import { Product } from '../../Helpers/products';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../Helpers/users';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartServiceService } from '../../Services/cart.service';
 
 @Component({
   selector: 'app-all-products',
@@ -31,8 +32,14 @@ export class AllProductsComponent implements OnInit {
   selectedSort = 'default';
   User: User = { id: 0, cart: [] };
   dummy = [1, 2, 3, 4];
+  page: number = 1;
+  total: number = this.filterdproduct.length;
+  itemsInPage: number = 12;
 
-  constructor(private myProducts: ProductService) {}
+  constructor(
+    private myProducts: ProductService,
+    private cartService: CartServiceService
+  ) {}
 
   ngOnInit(): void {
     this.myProducts.getUser(1).subscribe({
@@ -60,8 +67,11 @@ export class AllProductsComponent implements OnInit {
     } else {
       this.User.cart.push({ category: category, id: id, quantity: 1 });
     }
+
     this.myProducts.updateUser(this.User).subscribe({
-      next: () => console.log('Added Successfully!'),
+      next: () => {
+        this.cartService.getCart();
+      },
       error: () => console.log('Could not Add!'),
     });
   }
@@ -161,9 +171,7 @@ export class AllProductsComponent implements OnInit {
         this.filterdproduct = [...this.defaultfilterdproduct];
     }
   }
-  page = 1;
-  total: number = this.filterdproduct.length;
-  itemsInPage: any = 12;
+
   changeValue(val: number) {
     this.itemsInPage = val;
     this.page = 1;

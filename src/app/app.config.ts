@@ -5,11 +5,15 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import {provideFirestore, getFirestore } from '@angular/fire/firestore';
 //import { getFirestore } from "firebase/firestore"; 
 import { routes } from './app.routes';
+<<<<<<< Updated upstream
 //import { getAuth } from 'firebase/auth';
 //import{initializeApp} from 'firebase/app';
 import { getAuth , provideAuth } from '@angular/fire/auth';
 import { provideHttpClient } from '@angular/common/http';
 import { firebaseConfig } from './Services/firebase.config';
+=======
+import { provideHttpClient } from '@angular/common/http';
+>>>>>>> Stashed changes
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     /*importProvidersFrom([
       provideFirebaseApp(() => initializeApp(firebaseConfig)),
+<<<<<<< Updated upstream
       provideStorage(() => getStorage()),provideFirestore( ()=>getFirestore())
     ])*/
     importProvidersFrom(
@@ -35,6 +40,11 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(provideAuth(() => getAuth())),
     importProvidersFrom(provideFirestore(() => getFirestore())),
     importProvidersFrom(provideStorage(() => getStorage())),
+=======
+      provideStorage(() => getStorage()),
+    ]),
+    provideHttpClient(),
+>>>>>>> Stashed changes
   ],
 };
 

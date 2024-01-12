@@ -2,7 +2,7 @@
   width: 30px;
   height: 30px;
 }
-*:not(.fa-star) {
+*:not(.fa-star, i) {
   font-family: BukraRegular;
 }
 

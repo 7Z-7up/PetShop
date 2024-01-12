@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../../Services/product.service';
 import { User } from '../../Helpers/users';
 import { Router, RouterLink } from '@angular/router';
+import { CartServiceService } from '../../Services/cart.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart-hover',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, HttpClientModule],
   providers: [ProductService],
   templateUrl: './cart-hover.component.html',
   styleUrl: './cart-hover.component.css',
@@ -19,30 +21,49 @@ export class CartHoverComponent implements OnInit {
   products: any[] = [];
   subTotal = 0;
 
-  constructor(private myService: ProductService, private router: Router) {}
+  constructor(
+    private myService: ProductService,
+    private cartService: CartServiceService
+  ) {}
   ngOnInit(): void {
-    this.myService.getUser(1).subscribe({
-      next: (userData: any) => {
-        for (const key in userData) {
-          this.User = userData[key];
-        }
-        if (this.User.cart) {
-          for (let i = 0; i < this.User.cart.length; i++) {
-            this.myService.getSupplements(this.User.cart[i].id).subscribe({
-              next: (productData: any) => {
-                for (const key in productData) {
-                  productData[key].quan = this.User.cart[i].quantity;
-                  this.products.push(productData[key]);
-                }
-              },
-              error: () => console.log('Error!'),
-              complete: () => this.refreshTotal(),
-            });
-          }
-        }
-      },
-      error: () => console.log('Error!'),
+    this.cartService.cartItems$.subscribe((data) => {
+      this.products = [];
+      for (let i = 0; i < data.length; i++) {
+        this.myService.getSupplements(data[i].id).subscribe({
+          next: (productData: any) => {
+            for (const key in productData) {
+              productData[key].quan = data[i].quantity;
+              this.products.push(productData[key]);
+            }
+          },
+          complete: () => this.refreshTotal(),
+        });
+      }
     });
+    this.cartService.getCart();
+
+    // this.myService.getUser(1).subscribe({
+    //   next: (userData: any) => {
+    //     for (const key in userData) {
+    //       this.User = userData[key];
+    //     }
+    //     if (this.User.cart) {
+    //       for (let i = 0; i < this.User.cart.length; i++) {
+    //         this.myService.getSupplements(this.User.cart[i].id).subscribe({
+    //           next: (productData: any) => {
+    //             for (const key in productData) {
+    //               productData[key].quan = this.User.cart[i].quantity;
+    //               this.products.push(productData[key]);
+    //             }
+    //           },
+    //           error: () => console.log('Error!'),
+    //           complete: () => this.refreshTotal(),
+    //         });
+    //       }
+    //     }
+    //   },
+    //   error: () => console.log('Error!'),
+    // });
   }
   deleteProduct(id: number) {
     if (confirm('Do you want to delete this product from cart?')) {
