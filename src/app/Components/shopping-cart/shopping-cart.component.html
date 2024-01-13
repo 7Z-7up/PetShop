@@ -65,12 +65,46 @@
       </tbody>
     </table>
   </div>
-  <div class="row m-0 d-flex justify-content-end text-center">
-    <!-- <div class="w-75 bg-primary d-flex align-items-start">
-      <button data-toggle="collapse" data-target="#demo">Collapsible</button>
+  <div class="row m-0 d-flex justify-content-start">
+    <div class="w-75 d-flex align-items-start ps-0">
+      <!-- <button data-toggle="collapse" data-target="#demo">Collapsible</button>
 
-      <div id="demo" class="collapse">Lorem ipsum dolor text....</div>
-    </div> -->
+      <div id="demo" class="collapse">Lorem ipsum dolor text....</div> -->
+      <div id="accordion" class="accordion w-100">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link"
+                data-toggle="collapse"
+                data-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <strong>Terms & Conditions of Use:</strong>
+              </button>
+            </h5>
+          </div>
+
+          <div
+            id="collapseOne"
+            class="collapse show"
+            aria-labelledby="headingOne"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              The privacy policies of PetShop explain how we treat your personal
+              data and protect your privacy when using PetShop. You may need to
+              provide service providers with some of your personal information,
+              such as your name and email address, for purposes of processing
+              your transactions or providing you with content, as service
+              providers agree to use this information in accordance with their
+              privacy policies.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <table class="table table-bordered w-25">
       <tbody>
         <tr>

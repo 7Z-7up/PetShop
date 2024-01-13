@@ -11,9 +11,67 @@
   >
   <!-- end Sign In button -->
 
-  <button class="btn btn-primary d-lg-none w-100" (click)="openAlert()">
+  <button
+    class="btn btn-primary d-lg-none w-100"
+    data-toggle="modal"
+    data-target="#searchModal"
+  >
     <i class="fa-solid fa-search fa-xl"></i>
   </button>
+
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    id="searchModal"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog text-primary" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Search</h3>
+          <button
+            type="button"
+            class="btn btn-danger rounded"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input
+            #mobileSearch
+            class="w-100"
+            type="text"
+            id="searchInput"
+            placeholder="{{
+              isTranslated ? translatedText.searchpar : originalText.searchpar
+            }}"
+          />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="search(mobileSearch.value)"
+          >
+            Search
+          </button>
+          <button
+            #closeSearch
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  -->
 </div>
 <!-- يتحط ف الصغيره ويتشال ف الكبيره- -->
 <div class="d-block d-lg-none a my-4">
@@ -30,6 +88,7 @@
   <div class="d-none d-lg-block mt-4 search-container col-6">
     <!-- //////////////////////////////////////////////////////////////////////// -->
     <input
+      #searchQuery
       class="w-75"
       type="text"
       id="searchInput"
@@ -38,7 +97,7 @@
       }}"
     />
     <!-- //////////////////////////////////////////////////////////////////////// -->
-    <button id="searchBtn" class="w-25">
+    <button (click)="search(searchQuery.value)" id="searchBtn" class="w-25">
       <span id="search">{{
         isTranslated ? translatedText.search : originalText.search
       }}</span>

@@ -27,7 +27,7 @@ export class ShoppingCartComponent implements OnInit {
   subTotalArr: { id: number; subTotal: string }[] = [];
   subTotal = 0;
   User!: any;
-  product?: any;
+  product: Product = {};
   products: Product[] = [];
   // cartProduct: Product[]= []
 
@@ -49,10 +49,9 @@ export class ShoppingCartComponent implements OnInit {
         if (this.User.cart) {
           for (let i = 0; i < this.User.cart.length; i++) {
             this.myProducts.getSupplements(this.User.cart[i].id).subscribe({
-              next: (productData) => {
-                this.product = productData;
-                for (const key in this.product) {
-                  this.products.push(this.product[key]);
+              next: (productData: any) => {
+                for (const key in productData) {
+                  this.products.push(productData[key]);
                 }
                 if (!this.products) this.products = [];
               },

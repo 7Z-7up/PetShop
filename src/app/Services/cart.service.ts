@@ -22,7 +22,6 @@ export class CartServiceService {
     return this.httpClient
       .get<cartItem[]>(this.Users_URL + `/${id}/cart.json`)
       .subscribe((data) => {
-        console.log(data);
         this.cartItems$.next(data);
       });
   }

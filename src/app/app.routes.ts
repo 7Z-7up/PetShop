@@ -9,6 +9,7 @@ import { AllProductsComponent } from './Components/all-products/all-products.com
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegistComponent } from './Components/regist/regist.component';
+import { SearchComponent } from './Components/search/search.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +19,8 @@ export const routes: Routes = [
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegistComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegistComponent },
+  { path: 'search/:query', component: SearchComponent },
   { path: '**', component: ErrorComponent },
 ];

@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslationService } from '../../Services/translation.service';
 import { User } from '../../Helpers/users';
@@ -29,9 +34,14 @@ export class NavbarComponent implements OnInit {
   User: User = { id: 0, cart: [] };
   cartProducts: Product[] = [];
   quantities: number[] = [];
+
+  @ViewChild('closeSearch') closeSearch: any;
+  @ViewChild('mobileSearch') mobileSearch: any;
+
   constructor(
     private translationService: TranslationService,
-    private myService: ProductService
+    private myService: ProductService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -128,88 +138,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  //////////////////////////////////////////////////////////////////////////
-  openAlert() {
-    // Check if the search bar is not already open
-    if (!this.isSearchBarOpen) {
-      // Set the flag to indicate that the search bar is now open
-      this.isSearchBarOpen = true;
-
-      // Create a modal overlay
-      const overlay = document.createElement('div');
-      overlay.className = 'overlay';
-
-      // Create modal content (search bar)
-      const searchBar = document.createElement('div');
-      searchBar.className = 'search-bar-modal';
-      searchBar.style.background = '#fff';
-      searchBar.style.padding = '20px';
-      searchBar.style.borderRadius = '8px';
-      searchBar.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
-      searchBar.style.position = 'fixed';
-      searchBar.style.top = '0';
-      searchBar.style.left = '50%';
-      searchBar.style.transform = 'translateX(-50%)';
-
-      const input = document.createElement('input');
-      input.type = 'text';
-      ////////////////////////////////////////////////////////////////////////
-      input.placeholder = this.isTranslated
-        ? this.translatedText.searchpar
-        : this.originalText.searchpar;
-      ////////////////////////////////////////////////////////////////////////
-      input.style.width = '100%'; // Make the input full-width
-      input.style.padding = '8px';
-      input.style.marginBottom = '8px';
-      input.style.border = '1px solid #ccc';
-      input.style.borderRadius = '4px';
-
-      const buttonContainer = document.createElement('div');
-      buttonContainer.style.display = 'flex';
-      buttonContainer.style.gap = '8px'; // Adjust the gap as needed
-
-      const searchButton = document.createElement('button');
-      searchButton.innerText = 'Search';
-      searchButton.style.flex = '1'; // Make the button take up available space
-      searchButton.style.padding = '8px';
-      searchButton.style.background = '#007bff';
-      searchButton.style.color = '#fff';
-      searchButton.style.border = 'none';
-      searchButton.style.borderRadius = '4px';
-      searchButton.style.cursor = 'pointer';
-
-      const cancelButton = document.createElement('button');
-      cancelButton.innerText = 'Cancel';
-      cancelButton.style.flex = '1'; // Make the button take up available space
-      cancelButton.style.padding = '8px';
-      cancelButton.style.background = '#007bff';
-      cancelButton.style.color = '#fff';
-      cancelButton.style.border = 'none';
-      cancelButton.style.borderRadius = '4px';
-      cancelButton.style.cursor = 'pointer';
-      cancelButton.addEventListener('click', () => {
-        document.body.removeChild(overlay);
-        this.isSearchBarOpen = false;
-      });
-
-      buttonContainer.appendChild(searchButton);
-      buttonContainer.appendChild(cancelButton);
-
-      searchBar.appendChild(input);
-      searchBar.appendChild(buttonContainer);
-
-      overlay.appendChild(searchBar);
-      document.body.appendChild(overlay);
-
-      // Add an event listener to close the overlay when clicking outside the content
-      overlay.addEventListener('click', (event) => {
-        if (event.target === overlay) {
-          document.body.removeChild(overlay);
-          this.isSearchBarOpen = false;
-        }
-      });
-    }
-  }
   cartShow() {
     const bubble = document.getElementById('bubble');
     bubble!.style.display = 'block';
@@ -217,6 +145,12 @@ export class NavbarComponent implements OnInit {
   cartHide() {
     const bubble = document.getElementById('bubble');
     bubble!.style.display = 'none';
+  }
+
+  search(query: string) {
+    this.router.navigateByUrl(`/search/${query}`);
+    this.closeSearch.nativeElement.click();
+    this.mobileSearch.nativeElement.value = '';
   }
 }
 

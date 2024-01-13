@@ -25,7 +25,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     FooterComponent,
     NavbarComponent,
     NgxPaginationModule,
-        LoginComponent,
+    LoginComponent,
     RegistComponent,
     AngularFireAuthModule,
     AngularFireModule,
@@ -34,16 +34,10 @@ import { AngularFireModule } from '@angular/fire/compat';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  
+  constructor(private firestore: Firestore) {}
 
-  constructor(private firestore: Firestore) { }
- 
- 
- 
   ngOnInit(): void {
-   const testCollection=collection(this.firestore,'test');
-   addDoc(testCollection,{text:"Fuck to the Firebase"});
+    const testCollection = collection(this.firestore, 'test');
+    addDoc(testCollection, { text: 'Fuck to the Firebase' });
   }
-
-
 }

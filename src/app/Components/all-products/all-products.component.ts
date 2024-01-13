@@ -78,8 +78,7 @@ export class AllProductsComponent implements OnInit {
 
   filter(name: string = '', id: number = 0) {
     this.backgroundUpdate(id);
-    if (name === '' && id === 0)
-      this.filterdproduct = this.Products.slice(1, 50);
+    if (name === '' && id === 0) this.filterdproduct = this.Products;
     else
       this.filterdproduct = this.Products.filter(
         (product) => product.categories === name
