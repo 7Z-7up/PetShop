@@ -1,14 +1,34 @@
-<div class="top-head">
-  <button class="btn btn-primary border m-1" (click)="toggleTranslation()">
-    {{ isTranslated ? "Back to English" : "ترجمة إلي العربية" }}
-  </button>
-
+<div class="top-head d-flex justify-content-between">
   <!-- start Sign In button -->
-  <a routerLink="/register"
-    ><button type="button" class="btn btn-outline-black">
-      <i class="bi bi-people"></i>Sign In
-    </button></a
-  >
+
+  <!-- <div class="p-0 m-1"> -->
+  <!-- @if (userServ.user) {
+    <a href="#" (click)="userServ.signout()"
+      ><button type="button" class="btn btn-primary border m-1">
+        <i class="bi bi-person-dash"></i> Sign Out
+      </button></a
+    >
+    } @if(!userServ.user){
+    <a routerLink="/login"
+      ><button type="button" class="btn btn-primary border m-1">
+        <i class="bi bi-people"></i> Sign In
+      </button></a
+    >
+    } 
+  -->
+
+  <div class="col text-white h-100 m-auto">
+    <ul id="log">
+      <li>
+        @if (userServ.getUser()) {
+        <a href="#" (click)="userServ.signout()"
+          ><i class="bi bi-person-dash"></i> Sign Out
+        </a>
+        } @if(!userServ.getUser()) {
+        <a routerLink="/login"><i class="bi bi-people"></i> Sign In </a>}
+      </li>
+    </ul>
+  </div>
   <!-- end Sign In button -->
 
   <button
@@ -72,6 +92,12 @@
     </div>
   </div>
   <!--  -->
+
+  <div class="p-0 m-1">
+    <button class="btn btn-primary border m-1" (click)="toggleTranslation()">
+      {{ isTranslated ? "Back to English" : "ترجمة إلي العربية" }}
+    </button>
+  </div>
 </div>
 <!-- يتحط ف الصغيره ويتشال ف الكبيره- -->
 <div class="d-block d-lg-none a my-4">

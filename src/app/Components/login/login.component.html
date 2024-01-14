@@ -4,29 +4,59 @@
       <span class="title">Login</span>
       <form [formGroup]="validate" action="#">
         <!-- email -->
-        <div class="input-field">
-          <input
-            type="text"
-            [(ngModel)]="email"
-            placeholder="Enter your email"
-            required
-            formControlName="userEmail"
-          />
-          <i class="bi bi-envelope-at"></i>
+        <div>
+          <div class="input-field m-1 mt-2">
+            <input
+              type="text"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              formControlName="userEmail"
+            />
+            <i class="bi bi-envelope-at"></i>
+          </div>
+          @if(emailValid){
+          <p style="color: green; font-size: smaller">Valid input</p>
+          } @else if (email){
+          <p style="color: red">
+            <span style="font-size: smaller">
+              Not Valid input => exemple"&#64;"gmail.com</span
+            >
+          </p>
+          } @else {
+          <p style="color: red; font-size: smaller">*required</p>
+          }
         </div>
+
         <!-- password -->
-        <div class="input-field">
-          <input
-            [type]="show_hide"
-            [(ngModel)]="password"
-            formControlName="userPassword"
-            class="password"
-            placeholder="Enter your password"
-            required
-          />
-          <i [class]="icon" (click)="showHidePw()"></i>
-          <i class="bi bi-person-lock"></i>
+        <div>
+          <div class="input-field m-0">
+            <input
+              [type]="show_hide"
+              [(ngModel)]="password"
+              name="password"
+              formControlName="userPassword"
+              class="password"
+              placeholder="Enter your password"
+              required
+            />
+            <i [class]="icon" (click)="showHidePw()"></i>
+            <i class="bi bi-person-lock"></i>
+          </div>
+          @if(passValid){
+          <p style="color: green; font-size: smaller">Valid input</p>
+          } @else if (password){
+          <p style="color: red">
+            <span style="font-size: smaller">
+              *Not Valid => password character length must be > 7
+            </span>
+          </p>
+          } @else {
+          <p style="color: red; font-size: smaller">*required</p>
+          }
         </div>
+
         <!-- checkbox ==> Remember me & Forgot password? link -->
         <div class="checkbox-text">
           <div class="checkbox-content">
@@ -37,8 +67,16 @@
         </div>
         <!-- Login button -->
         <div class="input-field button">
-          <input type="button" value="Login" (click)="login_config()" />
-          <!-- (click)="login_config()" -->
+          <!-- <input type="button" value="Login" (click)="login_config()" /> -->
+          <button
+            [disabled]="validate.invalid"
+            type="button"
+            class="btn btn-primary w-100 h-100"
+            id="liveToastBtn"
+            (click)="login_config()"
+          >
+            LogIn
+          </button>
         </div>
       </form>
 

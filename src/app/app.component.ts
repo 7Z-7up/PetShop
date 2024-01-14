@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, IMAGE_CONFIG } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 
@@ -12,6 +12,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegistComponent } from './Components/regist/regist.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',

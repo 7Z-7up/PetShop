@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import {
   Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
+
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslationService } from '../../Services/translation.service';
 import { User } from '../../Helpers/users';
@@ -13,11 +16,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { Product } from '../../Helpers/products';
 import { CommonModule } from '@angular/common';
 import { CartHoverComponent } from '../cart-hover/cart-hover.component';
+import { AuthService } from '../../Services/auth.service';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { Auth } from '@angular/fire/auth';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
+    FormsModule,
     FontAwesomeModule,
     RouterLinkActive,
     RouterLink,
@@ -25,8 +34,11 @@ import { CartHoverComponent } from '../cart-hover/cart-hover.component';
     HttpClientModule,
     CommonModule,
     CartHoverComponent,
+    AngularFireAuthModule,
+    AngularFireModule,
+    ReactiveFormsModule
   ],
-  providers: [ProductService],
+  providers: [ProductService,AuthService],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
@@ -34,17 +46,22 @@ export class NavbarComponent implements OnInit {
   User: User = { id: 0, cart: [] };
   cartProducts: Product[] = [];
   quantities: number[] = [];
-
   @ViewChild('closeSearch') closeSearch: any;
   @ViewChild('mobileSearch') mobileSearch: any;
 
   constructor(
     private translationService: TranslationService,
     private myService: ProductService,
-    private router: Router
+    private router: Router,public userServ:AuthService
   ) {}
 
+  private  auth:Auth=inject(Auth);
+
+ 
+  
+ 
   ngOnInit(): void {
+    
     this.myService.getUser(1).subscribe({
       next: (data: any) => {
         for (const key in data) {

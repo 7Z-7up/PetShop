@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Product } from '../../Helpers/products';
-import { CommonModule } from '@angular/common';
+import { CommonModule, IMAGE_CONFIG } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SliderComponent } from '../slider/slider.component';
 import { ProductsCategoryComponent } from '../products-category/products-category.component';

@@ -4,66 +4,138 @@
       <span class="title">Registration</span>
       <form [formGroup]="validate" action="#">
         <!-- Name -->
-        <div class="input-field">
-          <input
-            type="text"
-            [(ngModel)]="name"
-            placeholder="Enter your name"
-            required
-            formControlName="userName"
-          />
-          <i class="bi bi-person-plus"></i>
+        <div>
+          <div class="input-field">
+            <input
+              id="name"
+              type="text"
+              [(ngModel)]="name"
+              placeholder="Enter your name"
+              required
+              formControlName="userName"
+            />
+            <i class="bi bi-person-plus"></i>
+          </div>
+
+          @if(nameValid){
+          <p style="color: green; font-size: smaller">Valid input</p>
+          }@else if (name){
+          <p style="color: red">
+            <span style="font-size: smaller"
+              >*Not Valid input-length must > 2</span
+            >
+          </p>
+          } @else {
+          <p style="color: red; font-size: smaller">*required</p>
+          }
         </div>
 
         <!-- Email -->
-        <div class="input-field">
-          <input
-            type="text"
-            [(ngModel)]="email"
-            placeholder="Enter your email"
-            required
-            formControlName="userEmail"
-          />
-          <i class="bi bi-envelope-at"></i>
+        <div>
+          <div class="input-field m-0">
+            <input
+              type="text"
+              [(ngModel)]="email"
+              placeholder="Enter your email"
+              required
+              formControlName="userEmail"
+            />
+            <i class="bi bi-envelope-at"></i>
+          </div>
+
+          @if(emailValid){
+          <p style="color: green; font-size: smaller">Valid input</p>
+          } @else if (email){
+          <p style="color: red">
+            <span style="font-size: smaller">
+              Not Valid input => exemple"&#64;"gmail.com</span
+            >
+          </p>
+          } @else {
+          <p style="color: red; font-size: smaller">*required</p>
+          }
         </div>
 
         <!-- password  -->
-        <div class="input-field">
-          <input
-            [type]="show_hide"
-            [(ngModel)]="password"
-            formControlName="userPassword"
-            class="password"
-            placeholder="Create a password"
-            required
-          />
-          <i [class]="icon" (click)="showHidePw()"></i>
-          <i class="bi bi-person-lock"></i>
+        <div>
+          <div class="input-field m-0">
+            <input
+              [type]="show_hide"
+              [(ngModel)]="password"
+              formControlName="userPassword"
+              class="password"
+              placeholder="Create a password"
+              required
+            />
+            <i [class]="icon" (click)="showHidePw()"></i>
+            <i class="bi bi-person-lock"></i>
+          </div>
+
+          @if(passValid){
+          <p style="color: green; font-size: smaller">Valid input</p>
+          } @else if (password){
+          <p style="color: red">
+            <span style="font-size: smaller">
+              *Not Valid => password character length must be > 7
+            </span>
+          </p>
+          } @else {
+          <p style="color: red; font-size: smaller">*required</p>
+          }
         </div>
+
         <!-- confirm password  -->
-        <div class="input-field">
-          <input
-            [type]="show_hide"
-            [(ngModel)]="conPass"
-            formControlName="passconfirm"
-            class="password"
-            placeholder="Confirm a password"
-            required
-          />
-          <i [class]="icon" (click)="showHidePw()"></i>
-          <i class="bi bi-person-lock"></i>
+        <div>
+          <div class="input-field m-0">
+            <input
+              [type]="show_hide"
+              [(ngModel)]="conPass"
+              formControlName="passconfirm"
+              class="password"
+              placeholder="Confirm a password"
+              required
+            />
+            <i [class]="icon" (click)="showHidePw()"></i>
+            <i class="bi bi-person-lock"></i>
+          </div>
+          @if(passwordconfirm){
+          <p style="color: green; font-size: smaller">Valid input</p>
+          } @else if (conPass){
+          <p style="color: red">
+            <span style="font-size: smaller">
+              *Not match to password yet!
+            </span>
+          </p>
+          } @else {
+          <p style="color: red; font-size: smaller">*required</p>
+          }
         </div>
+
+        <!-- checkbox -->
         <div class="checkbox-text">
           <div class="checkbox-content">
-            <input type="checkbox" id="termCon" />
+            <input
+              type="checkbox"
+              formControlName="checkbox"
+              id="termCon"
+              required
+            />
             <label for="termCon" class="text"
               >I accepted all terms and conditions</label
             >
           </div>
         </div>
         <div class="input-field button">
-          <input type="button" value="Signup" (click)="register_config()" />
-          <!-- (click)="register_config()" -->
+          <!-- <input type="button" value="Signup" (click)="register_config()" /> -->
+          <button
+            [disabled]="validate.invalid || passwordconfirm === false"
+            type="button"
+            class="btn btn-primary w-100 h-100"
+            id="liveToastBtn"
+            (click)="register_config()"
+          >
+            Signup
+          </button>
         </div>
       </form>
       <div class="login-signup">
@@ -75,3 +147,26 @@
     </div>
   </div>
 </div>
+
+<!-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div
+    id="liveToast"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="..." />
+      <strong class="me-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">Hello, world! This is a toast message.</div>
+  </div>
+</div> -->
