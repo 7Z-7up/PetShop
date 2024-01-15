@@ -27,7 +27,7 @@ export class RegistComponent {
   //container="container";
 
   // private userAuth:AuthService
-  constructor(private rout:Router ,private User:AuthService){}
+  constructor(private rout:Router ,public User:AuthService){}
   
 
 

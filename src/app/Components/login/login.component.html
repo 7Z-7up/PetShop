@@ -1,10 +1,33 @@
 <div id="outercontainer">
   <div class="container">
-    <div class="form login col-10 col-md-6">
+    <div class="form login col-10 col-md-6 position-relative">
       <span class="title">Login</span>
+
+      @if(User.ckeckError()){
+
+      <button
+        type="button"
+        class="btn btn-light position-absolute end-0 mx-2 px-2 Err"
+        data-bs-toggle="popover"
+        data-bs-title="Popover title"
+        data-bs-trigger="hover focus"
+        data-bs-title="error"
+        data-bs-content="the email or password that you've entered doesn't match any account (may you need to register first or check your input and try again)"
+      >
+        <i
+          class="bi bi-exclamation-triangle btn btn-outline-danger m-1 px-1"
+        ></i>
+      </button>
+
+      }
+      <span class="popup end-0 top-0">
+        The Email or Password that you've entered doesn't match any account....
+        may you need to register first or check your input and try again
+      </span>
+
       <form [formGroup]="validate" action="#">
         <!-- email -->
-        <div>
+        <div class="">
           <div class="input-field m-1 mt-2">
             <input
               type="text"
@@ -17,13 +40,12 @@
             <i class="bi bi-envelope-at"></i>
           </div>
           @if(emailValid){
-          <p style="color: green; font-size: smaller">Valid input</p>
+          <p></p>
           } @else if (email){
-          <p style="color: red">
-            <span style="font-size: smaller">
-              Not Valid input => exemple"&#64;"gmail.com</span
-            >
+          <p style="color: skyblue">
+            <span style="font-size: smaller"> exemple"&#64;"gmail.com</span>
           </p>
+
           } @else {
           <p style="color: red; font-size: smaller">*required</p>
           }
@@ -44,15 +66,7 @@
             <i [class]="icon" (click)="showHidePw()"></i>
             <i class="bi bi-person-lock"></i>
           </div>
-          @if(passValid){
-          <p style="color: green; font-size: smaller">Valid input</p>
-          } @else if (password){
-          <p style="color: red">
-            <span style="font-size: smaller">
-              *Not Valid => password character length must be > 7
-            </span>
-          </p>
-          } @else {
+          @if(passValid){ } @else if(password){
           <p style="color: red; font-size: smaller">*required</p>
           }
         </div>

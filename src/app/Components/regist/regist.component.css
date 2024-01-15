@@ -5,6 +5,43 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+
+.popup {
+    display: none ;
+    width: 240px;
+    background: darkred;
+    padding: 10px;
+    border-radius: 6px;
+    color: white;
+    position: absolute;
+    left: 130px;
+    bottom: 500px;
+    top: -100px;
+    font-size: 12px;
+    line-height: 20px;
+    z-index:100 ;
+    /* opacity: 0.5; */
+}
+.popup:before {
+    content: "";
+    display: block;
+    width: 0; 
+    height: 0; 
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 12px solid darkred; 
+    position: absolute;
+    top: 30px;
+    right: -12px;
+    z-index: 99;
+}
+
+.Err:hover + .popup {
+    display: inline-block;
+    opacity: 0.8;
+}
+
 #outercontainer{
     height: 100vh;
     display: flex;
