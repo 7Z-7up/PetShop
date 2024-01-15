@@ -12,6 +12,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ImageService } from '../../Services/image.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,25 +25,60 @@ import {
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    NgxDropzoneModule,
   ],
   providers: [ProductService],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
+  files: File[] = [];
+  onSelect(e: any) {
+    this.files.push(...e.addedFiles);
+  }
+  onRemove(r: any) {
+    this.files.splice(this.files.indexOf(r, 1));
+  }
+  uploadfiles() {
+    if (!this.files[0]) {
+      alert('No file selected');
+    } else {
+      let file_data = this.files[0];
+      let data = new FormData();
+      data.append('file', file_data);
+      data.append('upload_preset', 'cmbpis3g');
+      data.append('cloud_name', 'dmdg4vamg');
+      this.images.uploadimage(data).subscribe({
+        next: (data: any) => (this.addedProduct.image = data.secure_url),
+        complete: () => {
+          this.Products.push(this.addedProduct);
+          this.Products.sort(
+            (product1: any, product2: any) => product1.id - product2.id
+          );
+          this.myService.updateSupplements(this.Products).subscribe({
+            next: () => console.log('product added!'),
+            error: () => console.log('Error Adding the product'),
+            complete: () => {
+              this.product.reset();
+              this.files = [];
+              this.closebutton.nativeElement.click();
+            },
+          });
+        },
+      });
+    }
+  }
+
   @ViewChild('closebutton') closebutton: any;
   @ViewChild('closebuttonupdate') closebuttonupdate: any;
 
   product = new FormGroup({
-    name: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+    name: new FormControl(null, Validators.required),
     id: new FormControl(null, [Validators.required, Validators.min(1)]),
     quantity: new FormControl(null, [Validators.required, Validators.min(1)]),
-    seller: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
+    seller: new FormControl(null, Validators.required),
     category: new FormControl(null, Validators.required),
-    image: new FormControl(null, Validators.required),
+    // image: new FormControl(null, Validators.required),
     description: new FormControl(null),
     price: new FormControl(null, [Validators.required, Validators.min(1)]),
   });
@@ -60,7 +97,11 @@ export class DashboardComponent implements OnInit {
   editedProduct: Product = {};
   Products: Product[] = [];
   productIndex: number = 0;
-  constructor(private myService: ProductService) {}
+  addedProduct: Product = {};
+  constructor(
+    private myService: ProductService,
+    private images: ImageService
+  ) {}
 
   ngOnInit(): void {
     this.myService.getAllSupplements().subscribe({
@@ -72,12 +113,14 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteProduct(id: any) {
-    this.Products = this.Products.filter((element) => element.id != id);
+    if (confirm('Are you sure you wanna delete this product?')) {
+      this.Products = this.Products.filter((element) => element.id != id);
 
-    this.myService.deleteSupplement(this.Products).subscribe({
-      next: () => console.log('Deleted'),
-      error: () => console.log('Could not delete'),
-    });
+      this.myService.deleteSupplement(this.Products).subscribe({
+        next: () => console.log('Deleted'),
+        error: () => console.log('Could not delete'),
+      });
+    }
   }
 
   page = 1;
@@ -99,31 +142,19 @@ export class DashboardComponent implements OnInit {
       console.log('existed');
     } else {
       document.getElementById('idExisted')!.style.display = 'none';
-      let addedProduct: Product = {
+      this.addedProduct = {
         id: this.product.value.id ?? 0,
         name: this.product.value.name ?? '',
         quantity: this.product.value.quantity ?? 0,
         price: this.product.value.price ?? 0,
-        image: this.product.value.image ?? '',
+        image: '',
         description: this.product.value.description ?? '',
         rating: 0,
         reviews: 0,
         categories: this.product.value.category ?? '',
         seller: this.product.value.seller ?? '',
       };
-
-      this.Products.push(addedProduct);
-      this.Products.sort(
-        (product1: any, product2: any) => product1.id - product2.id
-      );
-      this.myService.updateSupplements(this.Products).subscribe({
-        next: () => console.log('product added!'),
-        error: () => console.log('Error Adding the product'),
-        complete: () => {
-          this.product.reset();
-          this.closebutton.nativeElement.click();
-        },
-      });
+      this.uploadfiles();
     }
   }
 
