@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -8,6 +8,7 @@ import { AuthService } from '../../Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
+import { Popover } from 'bootstrap'
    
 
 @Component({
@@ -18,7 +19,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private  auth:Auth=inject(Auth);
   
   email:string ="";
@@ -26,11 +27,21 @@ export class LoginComponent {
   show_hide="password";
   icon:string = "bi bi-eye-slash showHidePw"
   container="container"
-  
-  
-  constructor(private rout:Router,private User:AuthService){}
- 
+ error_message: string = "";
+ error: string = "";
+ isErr=this.User.ckeckError();
 
+  
+  
+  constructor(private rout:Router,public User:AuthService){}
+ 
+  
+  ngOnInit() {
+    //Select all the html button elements have attribute data-bs-toggle="popover" will apply popver toggle event
+    Array.from(document.querySelectorAll('button[data-bs-toggle="popover"]'))
+    .forEach(popoverNode => new Popover(popoverNode))
+    
+  }
 
   //login
 /*
@@ -70,6 +81,7 @@ export class LoginComponent {
 login_config(){
   if(this.validate){
   this.User.login( this.email, this.password);
+  this.User.ckeckError();
   }else{console.log("error");}
 }
 

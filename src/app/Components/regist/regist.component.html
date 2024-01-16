@@ -1,7 +1,29 @@
 <div id="outercontainer">
   <div class="container">
-    <div class="form signup col-10 col-md-6">
+    <div class="form signup col-10 col-md-6 position-relative">
       <span class="title">Registration</span>
+
+      @if(User.register_error()){
+
+      <button
+        type="button"
+        class="btn btn-light position-absolute end-0 mx-2 px-2 Err"
+        data-bs-toggle="popover"
+        data-bs-title="Popover title"
+        data-bs-trigger="hover focus"
+        data-bs-title="error"
+        data-bs-content="the email or password that you've entered doesn't match any account (may you need to register first or check your input and try again)"
+      >
+        <i
+          class="bi bi-exclamation-triangle btn btn-outline-danger m-1 px-1"
+        ></i>
+      </button>
+
+      }
+      <span class="popup end-0 top-0">
+        Incorrect Email or Password check your input and try again !
+      </span>
+
       <form [formGroup]="validate" action="#">
         <!-- Name -->
         <div>
@@ -47,9 +69,7 @@
           <p style="color: green; font-size: smaller">Valid input</p>
           } @else if (email){
           <p style="color: red">
-            <span style="font-size: smaller">
-              Not Valid input => exemple"&#64;"gmail.com</span
-            >
+            <span style="font-size: smaller"> exemple"&#64;"gmail.com</span>
           </p>
           } @else {
           <p style="color: red; font-size: smaller">*required</p>
@@ -76,7 +96,7 @@
           } @else if (password){
           <p style="color: red">
             <span style="font-size: smaller">
-              *Not Valid => password character length must be > 7
+              password character length must be > 7
             </span>
           </p>
           } @else {

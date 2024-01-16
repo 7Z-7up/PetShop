@@ -9,6 +9,8 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 })
 export class AuthService {
   //private auth:Auth=inject(Auth);
+  //errMessage:string="disappers"
+  
   constructor( private rout:Router,private auth:Auth) {  }
   
  async login( email:string, password:string){
@@ -18,6 +20,7 @@ export class AuthService {
         const user = userCredential.user;
         this.rout.navigate(['/home']);
         localStorage.setItem("user", user.email??"username")
+        localStorage.removeItem("error");
         // console.log(user);
         // console.log(user.email);
         // console.log(this.flags);
@@ -26,7 +29,9 @@ export class AuthService {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(`something went wrong${errorMessage}`)
+        this.ckeckError();
+        localStorage.setItem("error", error.code)
+        //alert(`something went wrong${errorMessage}`)
         //this.rout.navigate(['/login']);
         // console.log(errorCode)
         // console.log("*********************")
@@ -35,10 +40,7 @@ export class AuthService {
       });
 
 }
- 
-getUser(){
-  return localStorage.getItem('user');
-}
+
 
 async register( email: string, password: string){
    await createUserWithEmailAndPassword(this.auth,email,password)
@@ -46,13 +48,12 @@ async register( email: string, password: string){
       const user = userCredential.user;
       //this.flags={user:email.charAt(0)};
       alert(`${user.email} => registered successfully`);
+      localStorage.removeItem("error_regis");
       this.rout.navigate(['/login']);
-      console.log(user);
+      
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(`something went wrong${errorMessage}`)
+      localStorage.setItem("error_regis", error.code);
     
     });
   }
@@ -60,6 +61,8 @@ async register( email: string, password: string){
   async signout() {
     await signOut(this.auth).then(() => {
       localStorage.removeItem("user");
+      localStorage.removeItem("error");
+      localStorage.removeItem("error_regis");
       alert(`Sign-out successful.`);
       
     }).catch((error) => {
@@ -68,6 +71,20 @@ async register( email: string, password: string){
     });
     
 }
+
+ckeckError(){
+   return localStorage.getItem('error');
+
+}
+
+register_error(){
+  return localStorage.getItem('error_regis');
+}
+//check if user is logged in from local storage
+getUser(){
+  return localStorage.getItem('user');
+}
+//
 
 
 }
