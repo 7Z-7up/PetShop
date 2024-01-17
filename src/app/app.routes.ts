@@ -11,12 +11,13 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegistComponent } from './Components/regist/regist.component';
 import { SearchComponent } from './Components/search/search.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { gaurdGuard } from './Gaurds/gaurd.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent,canActivate:[gaurdGuard] },
   { path: 'all-products', component: AllProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'checkout', component: CheckoutComponent },

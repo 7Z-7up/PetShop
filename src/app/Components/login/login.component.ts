@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   
   constructor(private rout:Router,public User:AuthService){}
  
-  
+  // 
   ngOnInit() {
     //Select all the html button elements have attribute data-bs-toggle="popover" will apply popver toggle event
     Array.from(document.querySelectorAll('button[data-bs-toggle="popover"]'))
@@ -56,21 +56,13 @@ export class LoginComponent implements OnInit {
       this.email="";
       this.password="";
       this.rout.navigate(['/home']);
-      console.log(user);
-      console.log(user.email);
-      console.log(userCredential);
       
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       alert(`something went wrong${errorMessage}`)
-      //this.rout.navigate(['/login']);
-      // console.log(errorCode)
-      // console.log("*********************")
-      // console.log(errorMessage)
-  
+     
     });}
     
     }

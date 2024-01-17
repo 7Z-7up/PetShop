@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-//import { initializeApp } from 'firebase/app';
 import { Auth } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 @Injectable({
@@ -27,8 +26,6 @@ export class AuthService {
         
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
         this.ckeckError();
         localStorage.setItem("error", error.code)
         //alert(`something went wrong${errorMessage}`)
@@ -42,11 +39,11 @@ export class AuthService {
 }
 
 
+//registeration
 async register( email: string, password: string){
    await createUserWithEmailAndPassword(this.auth,email,password)
     .then((userCredential) => {
       const user = userCredential.user;
-      //this.flags={user:email.charAt(0)};
       alert(`${user.email} => registered successfully`);
       localStorage.removeItem("error_regis");
       this.rout.navigate(['/login']);
@@ -58,6 +55,8 @@ async register( email: string, password: string){
     });
   }
 
+
+//login
   async signout() {
     await signOut(this.auth).then(() => {
       localStorage.removeItem("user");
@@ -72,11 +71,15 @@ async register( email: string, password: string){
     
 }
 
+
+
+
+
+// check error at login
 ckeckError(){
    return localStorage.getItem('error');
-
 }
-
+// check error at regist
 register_error(){
   return localStorage.getItem('error_regis');
 }
@@ -84,7 +87,6 @@ register_error(){
 getUser(){
   return localStorage.getItem('user');
 }
-//
 
 
 }
