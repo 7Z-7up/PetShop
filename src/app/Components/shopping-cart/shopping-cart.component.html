@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container mt-3" [dir]="isTranslated ? 'rtl' : 'ltr'">
   <div class="row breadcrumb col-12">
     <ul class="breadcrumb m-0">
       <li>
@@ -6,19 +6,43 @@
           ><i class="fa-solid fa-house-chimney"></i
         ></a>
       </li>
-      <li><a routerLink="/shopping-cart">Shopping Cart</a></li>
+      <li>
+        <a routerLink="/shopping-cart">{{
+          isTranslated ? translatedText.ShoppingCart : originalText.ShoppingCart
+        }}</a>
+      </li>
     </ul>
   </div>
   <div class="row col-12 m-0 mt-5">
-    <h2 class="ps-0">Shopping Cart</h2>
+    <h2 class="ps-0">
+      {{
+        isTranslated ? translatedText.ShoppingCart : originalText.ShoppingCart
+      }}
+    </h2>
     <table class="table table-bordered text-center">
       <thead>
         <tr class="">
-          <th class="col-2">Image</th>
-          <th class="col-5">Product Name</th>
-          <th class="col-2">Quantity</th>
-          <th class="col-1">Unit Price</th>
-          <th class="col-2">Total</th>
+          <th class="col-2">
+            {{ isTranslated ? translatedText.Image : originalText.Image }}
+          </th>
+          <th class="col-5">
+            {{
+              isTranslated
+                ? translatedText.ProductName
+                : originalText.ProductName
+            }}
+          </th>
+          <th class="col-2">
+            {{ isTranslated ? translatedText.Quantity : originalText.Quantity }}
+          </th>
+          <th class="col-1">
+            {{
+              isTranslated ? translatedText.UnitPrice : originalText.UnitPrice
+            }}
+          </th>
+          <th class="col-2">
+            {{ isTranslated ? translatedText.Total : originalText.Total }}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -69,7 +93,7 @@
   <div class="row m-0 d-flex justify-content-between gap-lg-0 gap-2">
     <div
       id="accordion"
-      class="accordion col-lg-9 col-12 d-flex align-items-start p-0 pe-lg-2"
+      class="accordion col-lg-9 col-12 d-flex align-items-start"
     >
       <div class="card col-12 p-0">
         <div class="card-header" id="headingOne">
@@ -81,7 +105,9 @@
               aria-expanded="true"
               aria-controls="collapseOne"
             >
-              <strong>Terms & Conditions of Use:</strong>
+              <strong>{{
+                isTranslated ? translatedText.Terms : originalText.Terms
+              }}</strong>
             </button>
           </h5>
         </div>
@@ -93,13 +119,7 @@
           data-parent="#accordion"
         >
           <div class="card-body">
-            The privacy policies of PetShop explain how we treat your personal
-            data and protect your privacy when using PetShop. You may need to
-            provide service providers with some of your personal information,
-            such as your name and email address, for purposes of processing your
-            transactions or providing you with content, as service providers
-            agree to use this information in accordance with their privacy
-            policies.
+            {{ isTranslated ? translatedText.policies : originalText.policies }}
           </div>
         </div>
       </div>
@@ -108,24 +128,47 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <td class="col-4">Sub-Total:</td>
-            <td class="col-8">{{ subTotal | currency : "EGP " }}</td>
-          </tr>
-          <tr>
-            <td class="col-4">Vat (15%):</td>
-            <td class="col-8">{{ subTotal * 0.15 | currency : "EGP " }}</td>
-          </tr>
-          <tr>
-            <td class="col-4">Total:</td>
+            <td class="col-4">
+              {{ isTranslated ? translatedText.Sub : originalText.Sub }}
+            </td>
             <td class="col-8">
-              {{ subTotal + subTotal * 0.15 | currency : "EGP " }}
+              {{
+                subTotal
+                  | currency
+                    : (isTranslated ? translatedText.EGP : originalText.EGP)
+              }}
+            </td>
+          </tr>
+          <tr>
+            <td class="col-4">
+              {{ isTranslated ? translatedText.Vat : originalText.Vat }}
+            </td>
+            <td class="col-8">
+              {{
+                subTotal * 0.15
+                  | currency
+                    : (isTranslated ? translatedText.EGP : originalText.EGP)
+              }}
+            </td>
+          </tr>
+          <tr>
+            <td class="col-4">
+              {{ isTranslated ? translatedText.Total : originalText.Total }}
+            </td>
+            <td class="col-8">
+              {{
+                subTotal + subTotal * 0.15
+                  | currency
+                    : (isTranslated ? translatedText.EGP : originalText.EGP)
+              }}
             </td>
           </tr>
         </tbody>
       </table>
       <button routerLink="/checkout" class="btn btn-success col-12">
-        Checkout
+        {{ isTranslated ? translatedText.Checkout : originalText.Checkout }}
       </button>
     </div>
+      
   </div>
 </div>
