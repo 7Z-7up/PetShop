@@ -3,7 +3,7 @@
 </td>
 <td>{{ product.name }}</td>
 <td>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center quantity">
     <button class="btn btn-primary up px-2 w-25" (click)="upQuantity()">
       <i class="fa fa-chevron-up"></i>
     </button>
@@ -11,6 +11,7 @@
       type="number"
       class="form-control px-2 w-50"
       [value]="product.quan"
+      max="9"
     />
     <button class="btn btn-primary down px-2 w-25" (click)="downQuantity()">
       <i class="fa fa-chevron-down"></i>

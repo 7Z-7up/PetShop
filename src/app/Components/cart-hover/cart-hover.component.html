@@ -22,15 +22,27 @@
   }
   <div
     class="border border-secondary rounded mb-1 p-1 w-100 align-items-center d-flex justify-content-between bg-white"
+    [dir]="isTranslated ? 'rtl' : 'ltr'"
   >
-    <p class="fs-5 m-0">Subtotal:</p>
-    <p class="fs-5 m-0">{{ subTotal | currency : "EGP " }}</p>
+    <p class="fs-5 m-0">
+      {{ isTranslated ? translatedText.a1 : originalText.a1 }}:
+    </p>
+    <p class="fs-5 m-0">
+      {{
+        subTotal
+          | currency
+            : (isTranslated ? translatedText.a3 : originalText.a3)
+            : "symbol"
+            : "2.2-2"
+      }}
+    </p>
   </div>
+
   <button
     class="w-100 btn btn-primary fs-5"
     style="background-color: #001672"
     routerLink="/shopping-cart"
   >
-    View Cart
+    {{ isTranslated ? translatedText.a2 : originalText.a2 }}
   </button>
 </div>

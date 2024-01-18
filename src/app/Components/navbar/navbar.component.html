@@ -17,22 +17,21 @@
     } 
   -->
 
-  <div class="col text-white h-100 m-auto">
-    <ul id="log">
-      <li>
-        @if (userServ.getUser()) {
-        <a href="#" (click)="userServ.signout()"
-          ><i class="bi bi-person-dash"></i> Sign Out
-        </a>
-        } @if(!userServ.getUser()) {
-        <a routerLink="/login"><i class="bi bi-people"></i> Sign In </a>}
-      </li>
-    </ul>
-  </div>
+  @if (userServ.getUser()) {
+  <button class="btn btn-primary border m-2 log" (click)="userServ.signout()">
+    <i class="bi bi-person-dash"></i>
+    {{ isTranslated ? translatedText.a2 : originalText.a2 }}
+  </button>
+
+  } @if(!userServ.getUser()) {
+  <button class="btn btn-primary border m-2 log" routerLink="/login">
+    <i class="bi bi-people"></i>
+    {{ isTranslated ? translatedText.a1 : originalText.a1 }}</button
+  >}
   <!-- end Sign In button -->
 
   <button
-    class="btn btn-primary d-lg-none w-100"
+    class="btn btn-primary d-lg-none col-6 p-0 m-1"
     data-toggle="modal"
     data-target="#searchModal"
   >
@@ -99,8 +98,8 @@
   </div>
 </div>
 <!-- يتحط ف الصغيره ويتشال ف الكبيره- -->
-<div class="d-block d-lg-none a my-4">
-  <img src="../../../assets/logo.png" />
+<div class="d-block d-lg-none a my-4 p-2">
+  <img src="../../../assets/logo.png" class="w-100" />
 </div>
 
 <div id="nav" class="d-flex justify-content-around">
@@ -179,7 +178,11 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav m-auto" id="navbar">
+      <ul
+        class="navbar-nav m-auto"
+        id="navbar"
+        style="font-size: 2vmin !important"
+      >
         <li class="nav-item">
           <a
             class="btn btn-primary nav-link p-3 mt-lg-0 mt-sm-2 mx-lg-1 mt-2"
@@ -190,7 +193,6 @@
             <span id="Home">{{
               isTranslated ? translatedText.Home : originalText.Home
             }}</span>
-            <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">

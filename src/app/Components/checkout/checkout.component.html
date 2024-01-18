@@ -1,11 +1,14 @@
 <div class="container mt-3">
-  <div class="row">
+  <div class="row" [dir]="isTranslated ? 'rtl' : 'ltr'">
     <div class="col-9">
       <form action="/">
         <div class="row">
           <div class="col-50">
-            <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+            <h3>{{ isTranslated ? translatedText.a2 : originalText.a2 }}</h3>
+            <label for="fname"
+              ><i class="fa fa-user"></i
+              >{{ isTranslated ? translatedText.a2 : originalText.a2 }}</label
+            >
             <input
               type="text"
               id="fname"
@@ -13,7 +16,10 @@
               placeholder="PetShop Team3"
               required
             />
-            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <label for="email"
+              ><i class="fa fa-envelope"></i>
+              {{ isTranslated ? translatedText.a3 : originalText.a3 }}</label
+            >
             <input
               type="text"
               id="email"
@@ -22,7 +28,8 @@
               required
             />
             <label for="adr"
-              ><i class="fa fa-address-card-o"></i> Address</label
+              ><i class="fa fa-address-card-o"></i>
+              {{ isTranslated ? translatedText.a4 : originalText.a4 }}</label
             >
             <input
               type="text"
@@ -31,7 +38,10 @@
               placeholder="542 W. 15th Street"
               required
             />
-            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <label for="city"
+              ><i class="fa fa-institution"></i>
+              {{ isTranslated ? translatedText.a5 : originalText.a5 }}</label
+            >
             <input
               type="text"
               id="city"
@@ -42,7 +52,9 @@
 
             <div class="row">
               <div class="col-50">
-                <label for="state">State</label>
+                <label for="state">{{
+                  isTranslated ? translatedText.a6 : originalText.a6
+                }}</label>
                 <input
                   type="text"
                   id="state"
@@ -52,7 +64,9 @@
                 />
               </div>
               <div class="col-50">
-                <label for="zip">Zip</label>
+                <label for="zip">{{
+                  isTranslated ? translatedText.a7 : originalText.a7
+                }}</label>
                 <input
                   type="text"
                   id="zip"
@@ -65,15 +79,19 @@
           </div>
 
           <div class="col-50">
-            <h3>Payment</h3>
-            <label for="fname">Accepted Cards</label>
+            <h3>{{ isTranslated ? translatedText.a8 : originalText.a8 }}</h3>
+            <label for="fname">{{
+              isTranslated ? translatedText.a9 : originalText.a9
+            }}</label>
             <img
               src="https://images.ctfassets.net/gc4s9mi2asix/27iheywutAjlzI1CWL3srg/78dad30c9edccdf21edb709b6b0de272/Accepted-Cards-US.png"
               width="500px"
               height="50px"
               alt="We Accept Credit Cards - All Major Credit Cards Accepted @clipartmax.com"
             />
-            <label for="cname">Name on Card</label>
+            <label for="cname">{{
+              isTranslated ? translatedText.a10 : originalText.a10
+            }}</label>
             <input
               type="text"
               id="cname"
@@ -81,7 +99,9 @@
               placeholder="PetShop Team3"
               required
             />
-            <label for="ccnum">Credit card number</label>
+            <label for="ccnum">{{
+              isTranslated ? translatedText.a11 : originalText.a11
+            }}</label>
             <input
               type="text"
               id="ccnum"
@@ -89,7 +109,9 @@
               placeholder="1111-2222-3333-4444"
               required
             />
-            <label for="expmonth">Exp Month</label>
+            <label for="expmonth">{{
+              isTranslated ? translatedText.a12 : originalText.a12
+            }}</label>
             <input
               type="text"
               id="expmonth"
@@ -100,7 +122,9 @@
 
             <div class="row">
               <div class="col-50">
-                <label for="expyear">Exp Year</label>
+                <label for="expyear">{{
+                  isTranslated ? translatedText.a13 : originalText.a13
+                }}</label>
                 <input
                   type="text"
                   id="expyear"
@@ -110,7 +134,9 @@
                 />
               </div>
               <div class="col-50">
-                <label for="cvv">CVV</label>
+                <label for="cvv">{{
+                  isTranslated ? translatedText.a14 : originalText.a14
+                }}</label>
                 <input
                   type="text"
                   id="cvv"
@@ -124,15 +150,19 @@
         </div>
         <label>
           <input type="checkbox" checked="checked" name="sameadr" required />
-          Shipping address same as billing
+          {{ isTranslated ? translatedText.a15 : originalText.a15 }}
         </label>
-        <input type="submit" value="Continue to checkout" class="btn" />
+        <input
+          type="submit"
+          value="{{ isTranslated ? translatedText.a16 : originalText.a16 }}"
+          class="btn"
+        />
       </form>
     </div>
 
     <div class="border rounded col-3 p-2">
       <h4>
-        Cart
+        {{ isTranslated ? translatedText.a17 : originalText.a17 }}
         <span class="price" style="color: black">
           <i class="fa fa-shopping-cart"></i>
         </span>
@@ -148,5 +178,6 @@
 
       <app-cart-hover></app-cart-hover>
     </div>
+      
   </div>
 </div>

@@ -50,7 +50,7 @@ export class CartElementComponent implements OnInit {
   }
 
   upQuantity() {
-    this.product.quan += 1;
+    if (this.product.quan < 9) this.product.quan += 1;
     let keyUpdate = 0;
 
     for (const key in this.user.cart) {

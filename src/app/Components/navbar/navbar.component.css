@@ -1,38 +1,12 @@
-#log {
-  display: flex;
-  align-items: flex-end;
-  justify-content: start;
-  height: 65%;
-  padding-left: 0;
-}
-#log li {
-  list-style: none;
-  padding: 0 8px;
-  position: relative;
-}
-#log li a {
+.btn-primary {
   text-decoration: none;
-  font-size: 70%;
-  font-weight: 650;
-  color: black;
   transition: 0.1s ease;
-}
-#log li a:hover {
-  color: white;
+  font-size: 2.6vmin;
 }
 
-#log li a:hover::after {
-  content: "";
-  width: 30%;
-  height: 2px;
-  background: white;
-  position: absolute;
-  bottom: -4px;
-  left: 20px;
+.log:hover {
+  text-decoration: underline;
 }
-
-
-
 
 #bubble {
   display: none;
@@ -115,6 +89,7 @@
 a {
   color: white !important;
 }
+
 li > a:hover {
   background-color: dodgerBlue;
 }

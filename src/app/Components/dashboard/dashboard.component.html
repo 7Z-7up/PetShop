@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [dir]="isTranslated ? 'rtl' : 'ltr'">
   <div class="row breadcrumb col-12 my-3">
     <ul class="breadcrumb m-0">
       <li>
@@ -6,7 +6,11 @@
           ><i class="fa-solid fa-house-chimney"></i
         ></a>
       </li>
-      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li>
+        <a routerLink="/dashboard">{{
+          isTranslated ? translatedText.a1 : originalText.a1
+        }}</a>
+      </li>
     </ul>
   </div>
 
@@ -19,15 +23,74 @@
     Launch demo modal
   </button> -->
   <div class="row d-flex justify-content-between align-items-center m-0">
+    <!-- Modal -->
+    <!-- Modal -->
+    <div
+      class="modal"
+      id="statusSuccessModal"
+      tabindex="-1"
+      role="dialog"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center p-lg-4">
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 130.2 130.2"
+            >
+              <circle
+                class="path circle"
+                fill="none"
+                stroke="#198754"
+                stroke-width="6"
+                stroke-miterlimit="10"
+                cx="65.1"
+                cy="65.1"
+                r="62.1"
+              />
+              <polyline
+                class="path check"
+                fill="none"
+                stroke="#198754"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-miterlimit="10"
+                points="100.2,40.2 51.5,88.8 29.8,67.5 "
+              />
+            </svg>
+            <h4 class="text-success mt-3">Product got added!</h4>
+            <p class="mt-3">The product got added successfully.</p>
+            <button
+              (click)="closeModal()"
+              type="button"
+              class="btn btn-sm mt-3 btn-success w-50"
+              data-bs-dismiss="modal"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <!-- Modal -->
     <button
-      class="mb-3 add col-1"
+      class="mb-3 add"
+      style="width: 12vmin; height: 5vmin"
       data-toggle="modal"
       data-target="#addProductModal"
     >
-      <span>+ Add</span>
+      <span class="text-center">{{
+        isTranslated ? translatedText.a2 : originalText.a2
+      }}</span>
     </button>
-    <div class="d-flex col-4 align-items-center m-0 p-0 mb-3">
-      <label class="ms-3 me-2">Show:</label>
+    <div class="d-flex col-lg-4 col-6 align-items-center m-0 p-0 mb-3">
+      <label class="ms-3 me-2">{{
+        isTranslated ? translatedText.a3 : originalText.a3
+      }}</label>
       <select
         #selectedNumber
         [(ngModel)]="itemsInPage"
@@ -54,7 +117,9 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{ isTranslated ? translatedText.a4 : originalText.a4 }}
+          </h5>
           <button
             type="button"
             class="btn btn-danger rounded"
@@ -73,95 +138,129 @@
           >
             <div class="form-row d-flex gap-2 justify-content-between">
               <div class="form-group col-md-6">
-                <label class="pb-2" for="productName">Product Name</label>
+                <label class="pb-2" for="productName">{{
+                  isTranslated ? translatedText.a5 : originalText.a5
+                }}</label>
                 <input
                   formControlName="name"
                   required
                   type="text"
                   class="form-control"
                   id="productName"
-                  placeholder="Product Name"
+                  placeholder="{{
+                    isTranslated ? translatedText.a48 : originalText.a48
+                  }}"
                 />
               </div>
               <div class="form-group col-md-6">
                 <label class="pb-2" for="productID"
-                  >Product ID
-                  <span id="idExisted" class="alert alert-danger p-1"
-                    >ID Already existed!</span
-                  ></label
+                  >{{ isTranslated ? translatedText.a6 : originalText.a6 }}
+                  <span id="idExisted" class="alert alert-danger p-1">{{
+                    isTranslated ? translatedText.a7 : originalText.a7
+                  }}</span></label
                 >
                 <input
                   formControlName="id"
                   type="number"
                   class="form-control"
                   id="productID"
-                  placeholder="Product ID"
+                  placeholder="{{
+                    isTranslated ? translatedText.a49 : originalText.a49
+                  }}"
                 />
               </div>
             </div>
 
             <div class="form-row d-flex gap-2 justify-content-between">
               <div class="form-group col-md-6">
-                <label class="py-2" for="productQuantity">Quantity</label>
+                <label class="py-2" for="productQuantity">{{
+                  isTranslated ? translatedText.a8 : originalText.a8
+                }}</label>
                 <input
                   formControlName="quantity"
                   type="number"
                   class="form-control"
                   id="productQuantity"
-                  placeholder="Quantity"
+                  placeholder="{{
+                    isTranslated ? translatedText.a50 : originalText.a50
+                  }}"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label class="py-2" for="productPrice">Price</label>
+                <label class="py-2" for="productPrice">{{
+                  isTranslated ? translatedText.a9 : originalText.a9
+                }}</label>
                 <input
                   formControlName="price"
                   type="number"
                   class="form-control"
                   id="productPrice"
-                  placeholder="Price"
+                  placeholder="{{
+                    isTranslated ? translatedText.a51 : originalText.a51
+                  }}"
                 />
               </div>
             </div>
             <div class="form-row">
-              <label class="py-2" for="productDescription"
-                >Product Description</label
-              >
+              <label class="py-2" for="productDescription">{{
+                isTranslated ? translatedText.a10 : originalText.a10
+              }}</label>
               <textarea
                 formControlName="description"
                 class="form-control"
                 id="productDescription"
-                placeholder="Product Description"
+                placeholder="{{
+                  isTranslated ? translatedText.a52 : originalText.a52
+                }}"
                 rows="3"
               ></textarea>
             </div>
             <div class="form-row d-flex gap-2">
               <div class="form-group col-6">
-                <label class="py-2" for="sellerName">Seller Name</label>
+                <label class="py-2" for="sellerName">{{
+                  isTranslated ? translatedText.a11 : originalText.a11
+                }}</label>
                 <input
                   formControlName="seller"
                   type="text"
                   class="form-control"
                   id="sellerName"
-                  placeholder="Seller Name"
+                  placeholder="{{
+                    isTranslated ? translatedText.a53 : originalText.a53
+                  }}"
                 />
               </div>
               <div class="form-group col-6">
-                <label class="py-2" for="category">Category</label>
+                <label class="py-2" for="category">{{
+                  isTranslated ? translatedText.a12 : originalText.a12
+                }}</label>
                 <select
                   formControlName="category"
                   id="category"
                   class="form-control"
                 >
-                  <option>cat</option>
-                  <option>dog</option>
-                  <option>rodents</option>
-                  <option>bird</option>
-                  <option>fish</option>
+                  <option>
+                    {{ isTranslated ? translatedText.a13 : originalText.a13 }}
+                  </option>
+                  <option>
+                    {{ isTranslated ? translatedText.a14 : originalText.a14 }}
+                  </option>
+                  <option>
+                    {{ isTranslated ? translatedText.a15 : originalText.a15 }}
+                  </option>
+                  <option>
+                    {{ isTranslated ? translatedText.a16 : originalText.a16 }}
+                  </option>
+                  <option>
+                    {{ isTranslated ? translatedText.a17 : originalText.a17 }}
+                  </option>
                 </select>
               </div>
             </div>
             <div class="form-row">
-              <label class="py-2" for="productImage">Product Image</label>
+              <label class="py-2" for="productImage">{{
+                isTranslated ? translatedText.a18 : originalText.a18
+              }}</label>
               <!-- <input
                 formControlName="image"
                 type="text"
@@ -170,7 +269,9 @@
                 placeholder="Product Image Path or URL"
               /> -->
               <ngx-dropzone (change)="onSelect($event)" style="height: 20vh">
-                <ngx-dropzone-label>Drag And Drop!</ngx-dropzone-label>
+                <ngx-dropzone-label>{{
+                  isTranslated ? translatedText.a19 : originalText.a19
+                }}</ngx-dropzone-label>
                 <ngx-dropzone-preview
                   *ngFor="let f of files"
                   [removable]="true"
@@ -199,7 +300,7 @@
             type="submit"
             class="btn btn-primary col-5"
           >
-            Add Product
+            {{ isTranslated ? translatedText.a20 : originalText.a20 }}
           </button>
         </div>
       </div>
@@ -219,7 +320,9 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="updateModalLabel">Update Product</h5>
+          <h5 class="modal-title" id="updateModalLabel">
+            {{ isTranslated ? translatedText.a21 : originalText.a21 }}
+          </h5>
           <button
             type="button"
             class="btn btn-danger rounded"
@@ -238,7 +341,9 @@
           >
             <div class="form-row d-flex gap-2 justify-content-between">
               <div class="form-group col-md-6">
-                <label class="pb-2" for="productName">Product Name</label>
+                <label class="pb-2" for="productName">{{
+                  isTranslated ? translatedText.a22 : originalText.a22
+                }}</label>
                 <input
                   formControlName="name"
                   required
@@ -248,7 +353,9 @@
                 />
               </div>
               <div class="form-group col-md-6">
-                <label class="pb-2" for="productID">Product ID </label>
+                <label class="pb-2" for="productID">{{
+                  isTranslated ? translatedText.a23 : originalText.a23
+                }}</label>
                 <input
                   formControlName="id"
                   type="number"
@@ -260,7 +367,9 @@
 
             <div class="form-row d-flex gap-2 justify-content-between">
               <div class="form-group col-md-6">
-                <label class="py-2" for="productQuantity">Quantity</label>
+                <label class="py-2" for="productQuantity">{{
+                  isTranslated ? translatedText.a24 : originalText.a24
+                }}</label>
                 <input
                   formControlName="quantity"
                   type="number"
@@ -269,7 +378,9 @@
                 />
               </div>
               <div class="form-group col-md-6">
-                <label class="py-2" for="productPrice">Price</label>
+                <label class="py-2" for="productPrice">{{
+                  isTranslated ? translatedText.a25 : originalText.a25
+                }}</label>
                 <input
                   formControlName="price"
                   type="number"
@@ -279,9 +390,9 @@
               </div>
             </div>
             <div class="form-row">
-              <label class="py-2" for="productDescription"
-                >Product Description</label
-              >
+              <label class="py-2" for="productDescription">{{
+                isTranslated ? translatedText.a26 : originalText.a26
+              }}</label>
               <textarea
                 formControlName="description"
                 class="form-control"
@@ -291,7 +402,9 @@
             </div>
             <div class="form-row d-flex gap-2">
               <div class="form-group col-6">
-                <label class="py-2" for="sellerName">Seller Name</label>
+                <label class="py-2" for="sellerName">{{
+                  isTranslated ? translatedText.a27 : originalText.a27
+                }}</label>
                 <input
                   formControlName="seller"
                   type="text"
@@ -300,22 +413,36 @@
                 />
               </div>
               <div class="form-group col-6">
-                <label class="py-2" for="category">Category</label>
+                <label class="py-2" for="category">{{
+                  isTranslated ? translatedText.a28 : originalText.a28
+                }}</label>
                 <select
                   formControlName="categories"
                   id="category"
                   class="form-control"
                 >
-                  <option>cat</option>
-                  <option>dog</option>
-                  <option>rodents</option>
-                  <option>bird</option>
-                  <option>fish</option>
+                  <option>
+                    {{ isTranslated ? translatedText.a29 : originalText.a29 }}
+                  </option>
+                  <option>
+                    {{ isTranslated ? translatedText.a30 : originalText.a30 }}
+                  </option>
+                  <option>
+                    {{ isTranslated ? translatedText.a31 : originalText.a31 }}
+                  </option>
+                  <option>
+                    {{ isTranslated ? translatedText.a32 : originalText.a32 }}
+                  </option>
+                  <option>
+                    {{ isTranslated ? translatedText.a33 : originalText.a33 }}
+                  </option>
                 </select>
               </div>
             </div>
             <div class="form-row">
-              <label class="py-2" for="productImage">Product Image</label>
+              <label class="py-2" for="productImage">{{
+                isTranslated ? translatedText.a34 : originalText.a34
+              }}</label>
               <input
                 formControlName="image"
                 type="text"
@@ -332,7 +459,7 @@
             class="btn btn-dark col-5"
             data-dismiss="modal"
           >
-            Close
+            {{ isTranslated ? translatedText.a35 : originalText.a35 }}
           </button>
           <button
             [disabled]="updatedProduct.invalid"
@@ -340,7 +467,7 @@
             type="submit"
             class="btn btn-primary col-5"
           >
-            Apply Changes
+            {{ isTranslated ? translatedText.a36 : originalText.a36 }}
           </button>
         </div>
       </div>
@@ -355,18 +482,36 @@
         <table class="table table-hover table-bordered" style="font-size: 1rem">
           <thead class="thead-dark">
             <tr>
-              <th class="col-1">ID</th>
-              <th class="col-1">Image</th>
-              <th class="col-3">Name</th>
-              <th class="col-1">Price</th>
-              <th class="col-1 d-none d-lg-table-cell d-md-table-cell">
-                Quantity
+              <th class="col-1">
+                {{ isTranslated ? translatedText.a37 : originalText.a37 }}
               </th>
-              <th class="col-1 d-none d-lg-table-cell">Reviews</th>
-              <th class="col-1 d-none d-lg-table-cell">Category</th>
-              <th class="col-1 d-none d-lg-table-cell">Seller</th>
-              <th class="col-1">Remove</th>
-              <th class="col-1">Edit</th>
+              <th class="col-1">
+                {{ isTranslated ? translatedText.a38 : originalText.a38 }}
+              </th>
+              <th class="col-3">
+                {{ isTranslated ? translatedText.a39 : originalText.a39 }}
+              </th>
+              <th class="col-1">
+                {{ isTranslated ? translatedText.a40 : originalText.a40 }}
+              </th>
+              <th class="col-1 d-none d-lg-table-cell d-md-table-cell">
+                {{ isTranslated ? translatedText.a41 : originalText.a41 }}
+              </th>
+              <th class="col-1 d-none d-lg-table-cell">
+                {{ isTranslated ? translatedText.a42 : originalText.a42 }}
+              </th>
+              <th class="col-1 d-none d-lg-table-cell">
+                {{ isTranslated ? translatedText.a43 : originalText.a43 }}
+              </th>
+              <th class="col-1 d-none d-lg-table-cell">
+                {{ isTranslated ? translatedText.a44 : originalText.a44 }}
+              </th>
+              <th class="col-1">
+                {{ isTranslated ? translatedText.a45 : originalText.a45 }}
+              </th>
+              <th class="col-1">
+                {{ isTranslated ? translatedText.a46 : originalText.a46 }}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -398,7 +543,13 @@
                 >
               </td>
               <td>
-                <p>{{ product.price | currency : "EGP " }}</p>
+                <p>
+                  {{
+                    product.price
+                      | currency
+                        : (isTranslated ? translatedText.a47 : originalText.a47)
+                  }}
+                </p>
               </td>
               <td class="col-1 d-none d-lg-table-cell d-md-table-cell">
                 <p>{{ product.quantity }}</p>
@@ -415,12 +566,16 @@
               </td>
               <!--  -->
               <td>
-                <button (click)="deleteProduct(product.id)">
+                <button
+                  style="height: 5vmin; width: 6vmin"
+                  (click)="deleteProduct(product.id)"
+                >
                   <i class="fa fa-trash"></i>
                 </button>
               </td>
-              <td>
+              <td class="h-100">
                 <button
+                  style="height: 5vmin; width: 6vmin"
                   data-toggle="modal"
                   data-target="#updateProductModal"
                   (click)="updateProduct(product.id)"

@@ -3,6 +3,10 @@
   border: 0;
 }
 
+.quantity * {
+  font-size: 0.6rem;
+}
+
 input:focus {
   box-shadow: none;
 }

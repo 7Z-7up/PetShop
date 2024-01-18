@@ -24,11 +24,14 @@
     },
     "singleProjectMode": true
   },
-  "hosting": [
-    {
-      "target": "petshop",
-      "source": ".",
-      "frameworksBackend": {}
-    }
-  ]
+  "hosting": {
+    "public": "dist/pet-shop/browser",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }

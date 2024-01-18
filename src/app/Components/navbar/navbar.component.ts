@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import {
   Router,
@@ -6,7 +5,6 @@ import {
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
-
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslationService } from '../../Services/translation.service';
@@ -36,9 +34,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CartHoverComponent,
     AngularFireAuthModule,
     AngularFireModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [ProductService,AuthService],
+  providers: [ProductService, AuthService],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
@@ -52,16 +50,13 @@ export class NavbarComponent implements OnInit {
   constructor(
     private translationService: TranslationService,
     private myService: ProductService,
-    private router: Router,public userServ:AuthService
+    private router: Router,
+    public userServ: AuthService
   ) {}
 
-  private  auth:Auth=inject(Auth);
+  private auth: Auth = inject(Auth);
 
- 
-  
- 
   ngOnInit(): void {
-    
     this.myService.getUser(1).subscribe({
       next: (data: any) => {
         for (const key in data) {
@@ -103,6 +98,8 @@ export class NavbarComponent implements OnInit {
     paragraph2: "And here's the second paragraph waiting for translation.",
     allproducts: 'Products',
     dashboard: 'Dashboard',
+    a1: 'Sign In',
+    a2: 'Sign Out',
   };
 
   translatedText = {
@@ -120,6 +117,8 @@ export class NavbarComponent implements OnInit {
     paragraph2: 'وهذه الفقرة الثانية في انتظار الترجمة.',
     allproducts: 'المنتجات',
     dashboard: 'لوحة التحكم',
+    a1: 'تسجيل الدخول',
+    a2: 'تسجيل الخروج',
   };
 
   isTranslated = false;

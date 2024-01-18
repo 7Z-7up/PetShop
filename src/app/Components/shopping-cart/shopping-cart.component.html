@@ -24,6 +24,7 @@
       <tbody>
         @if(products.length > 0){ @for(pr of products; track pr.id){
         <tr
+          class="w-100"
           app-cart-element
           [product]="pr"
           [user]="User"
@@ -128,4 +129,3 @@
     </div>
   </div>
 </div>
-<!-- "../../../assets/test.jpg" -->

@@ -12,15 +12,8 @@ a:focus {
   color: #6f6f6f;
   text-decoration: none;
   transition-timing-function: ease-in-out;
-  -ms-transition-timing-function: ease-in-out;
-  -moz-transition-timing-function: ease-in-out;
-  -webkit-transition-timing-function: ease-in-out;
-  -o-transition-timing-function: ease-in-out;
   transition-duration: 0.2s;
-  -ms-transition-duration: 0.2s;
-  -moz-transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-  -o-transition-duration: 0.2s;
+  cursor: pointer;
 }
 
 ul {

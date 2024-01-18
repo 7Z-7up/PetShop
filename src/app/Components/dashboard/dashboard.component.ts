@@ -14,6 +14,7 @@ import {
 } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ImageService } from '../../Services/image.service';
+import { TranslationService } from '../../Services/translation.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,6 +40,17 @@ export class DashboardComponent implements OnInit {
   onRemove(r: any) {
     this.files.splice(this.files.indexOf(r, 1));
   }
+
+  openModal() {
+    const myModal = document.getElementById('statusSuccessModal');
+    if (myModal) myModal.style.display = 'block';
+  }
+
+  closeModal() {
+    const myModal = document.getElementById('statusSuccessModal');
+    if (myModal) myModal.style.display = 'none';
+  }
+
   uploadfiles() {
     if (!this.files[0]) {
       alert('No file selected');
@@ -59,6 +71,7 @@ export class DashboardComponent implements OnInit {
             next: () => console.log('product added!'),
             error: () => console.log('Error Adding the product'),
             complete: () => {
+              this.openModal();
               this.product.reset();
               this.files = [];
               this.closebutton.nativeElement.click();
@@ -98,10 +111,129 @@ export class DashboardComponent implements OnInit {
   Products: Product[] = [];
   productIndex: number = 0;
   addedProduct: Product = {};
+
+  originalText = {
+    a1: 'Dashboard ',
+    a2: '+ Add',
+    a3: 'Show:',
+    a4: 'Add Product',
+    a5: 'Product Name',
+    a6: 'Product ID',
+    a7: 'ID Already existed!',
+    a8: 'Quantity',
+    a9: 'Price',
+    a10: 'Product Description',
+    a11: 'Seller Name',
+    a12: 'Category',
+    a13: 'cat',
+    a14: 'dog',
+    a15: 'rodents',
+    a16: 'bird',
+    a17: 'fish',
+    a18: 'Product Image',
+    a19: 'Drag And Drop!',
+    a20: 'Add Product',
+    a21: 'Update Product',
+    a22: 'Product Name',
+    a23: 'Product ID ',
+    a24: 'Quantity',
+    a25: 'Price',
+    a26: 'Product Description',
+    a27: 'Seller Name',
+    a28: 'Category',
+    a29: 'cat',
+    a30: 'dog',
+    a31: 'rodents',
+    a32: 'bird',
+    a33: 'fish',
+    a34: 'Product Image',
+    a35: 'Close',
+    a36: 'Apply Changes',
+    a37: 'ID',
+    a38: 'Image',
+    a39: 'Name',
+    a40: 'Price',
+    a41: 'Quantity',
+    a42: 'Reviews',
+    a43: 'Category',
+    a44: 'Seller',
+    a45: 'Remove',
+    a46: 'Edit',
+    a47: 'EGP',
+    a48: 'Product Name',
+    a49: 'Product ID',
+    a50: 'Quantity',
+    a51: 'Price',
+    a52: 'Product Description',
+    a53: 'Seller Name',
+  };
+
+  translatedText = {
+    a1: 'لوحة التحكم',
+    a2: '+ إضافة',
+    a3: 'عرض',
+    a4: 'أضف منتح ',
+    a5: 'أسم المنتج',
+    a6: 'معرف المنتج',
+    a7: 'معرف المنتج موجود بالفعل !',
+    a8: 'الكمية',
+    a9: 'السعر',
+    a10: 'وصف المنتج',
+    a11: 'إسم التاجر',
+    a12: 'فئة',
+    a13: 'قطة',
+    a14: 'كلب',
+    a15: 'قوارض',
+    a16: 'طائر',
+    a17: 'سمكة',
+    a18: 'صورة المنتج',
+    a19: 'سحب وإسقاط!',
+    a20: 'أضف منتج',
+    a21: 'تحديث المنتج',
+    a22: 'أسم المنتج',
+    a23: 'معرف المنتج',
+    a24: 'الكمية',
+    a25: 'السعر',
+    a26: 'وصف المنتج',
+    a27: 'إسم التاجر',
+    a28: 'فئة',
+    a29: 'قطة',
+    a30: 'كلب',
+    a31: 'قوارض',
+    a32: 'طائر',
+    a33: 'سمكة',
+    a34: 'صورة المنتج',
+    a35: 'غلق',
+    a36: 'تطبيق التغيير',
+    a37: 'معرف',
+    a38: 'صورة',
+    a39: 'إسم',
+    a40: 'سعر',
+    a41: 'كمية',
+    a42: 'التعليقات',
+    a43: 'فئة',
+    a44: 'بائع ',
+    a45: 'مسح',
+    a46: 'تعديل',
+    a47: 'ج.م',
+    a48: 'اسم المنتج',
+    a49: 'معرف المنتج',
+    a50: 'الكمية',
+    a51: 'السعر',
+    a52: 'وصف المنتج',
+    a53: 'إسم التاجر',
+  };
+  isTranslated = false;
+
   constructor(
     private myService: ProductService,
-    private images: ImageService
-  ) {}
+    private images: ImageService,
+    private translationService: TranslationService
+  ) {
+    this.translationService.isTranslated$.subscribe((isTranslated) => {
+      this.isTranslated = isTranslated;
+    });
+  }
 
   ngOnInit(): void {
     this.myService.getAllSupplements().subscribe({

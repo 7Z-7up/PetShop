@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../Helpers/users';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartServiceService } from '../../Services/cart.service';
+import { TranslationService } from '../../Services/translation.service';
 
 @Component({
   selector: 'app-all-products',
@@ -36,10 +37,46 @@ export class AllProductsComponent implements OnInit {
   total: number = this.filterdproduct.length;
   itemsInPage: number = 12;
 
+  originalText = {
+    Products: 'Products',
+    SortBy: 'Sort By:',
+    default: 'default',
+    LowestPrice: 'Lowest Price',
+    HighestPrice: 'Highest Price ',
+    LowestRating: 'Lowest Rating ',
+    HighestRating: 'Highest Rating',
+    LowestReviews: 'Lowest Reviews',
+    HighestReviews: 'Highest Reviews',
+    Show: 'Show:',
+    EGP: 'EGP',
+    AddtoCart: 'Add to Cart',
+  };
+
+  translatedText = {
+    Products: 'منتجات',
+    SortBy: 'ترتيب ب',
+    default: 'إفتراضي',
+    LowestPrice: 'أقل سعر',
+    HighestPrice: 'أعلي سعر',
+    LowestRating: 'أقل تقييم',
+    HighestRating: 'أعلي تقييم',
+    LowestReviews: 'أقل المراجعات',
+    HighestReviews: 'أعلي المراجعات',
+    Show: 'عرض',
+    EGP: 'ج.م',
+    AddtoCart: 'أضف إلي العربة',
+  };
+
+  isTranslated = false;
   constructor(
     private myProducts: ProductService,
-    private cartService: CartServiceService
-  ) {}
+    private cartService: CartServiceService,
+    private translationService: TranslationService
+  ) {
+    this.translationService.isTranslated$.subscribe((isTranslated) => {
+      this.isTranslated = isTranslated;
+    });
+  }
 
   ngOnInit(): void {
     this.myProducts.getUser(1).subscribe({
@@ -73,6 +110,7 @@ export class AllProductsComponent implements OnInit {
         this.cartService.getCart();
       },
       error: () => console.log('Could not Add!'),
+      complete: () => this.openModal(),
     });
   }
 
@@ -105,6 +143,16 @@ export class AllProductsComponent implements OnInit {
 
   gethamester() {
     this.filter('rodents', 5);
+  }
+
+  openModal() {
+    const myModal = document.getElementById('statusSuccessModal');
+    if (myModal) myModal.style.display = 'block';
+  }
+
+  closeModal() {
+    const myModal = document.getElementById('statusSuccessModal');
+    if (myModal) myModal.style.display = 'none';
   }
 
   displayStars(rating: any) {

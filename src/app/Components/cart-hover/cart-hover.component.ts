@@ -6,6 +6,7 @@ import { User } from '../../Helpers/users';
 import { Router, RouterLink } from '@angular/router';
 import { CartServiceService } from '../../Services/cart.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslationService } from '../../Services/translation.service';
 
 @Component({
   selector: 'app-cart-hover',
@@ -20,11 +21,28 @@ export class CartHoverComponent implements OnInit {
   quantity: any;
   products: any[] = [];
   subTotal = 0;
+  originalText = {
+    a1: 'Subtotal',
+    a2: 'View Cart',
+    a3: 'EGP',
+  };
 
+  translatedText = {
+    a1: 'المجموع الكلي',
+    a2: 'عرض السلة',
+    a3: 'ج.م',
+  };
+
+  isTranslated = false;
   constructor(
     private myService: ProductService,
-    private cartService: CartServiceService
-  ) {}
+    private cartService: CartServiceService,
+    private translationService: TranslationService
+  ) {
+    this.translationService.isTranslated$.subscribe((isTranslated) => {
+      this.isTranslated = isTranslated;
+    });
+  }
   ngOnInit(): void {
     this.myService.getUser(1).subscribe({
       next: (data: any) => {

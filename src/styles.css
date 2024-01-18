@@ -24,6 +24,11 @@
   padding: 10px 10px 10px 35px !important;
 }
 
+h1,
+h2 {
+  font-size: 5vmin !important;
+}
+
 .breadcrumb li a::after {
   content: " ";
   display: block;

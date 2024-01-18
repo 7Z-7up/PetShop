@@ -1,7 +1,9 @@
 <div id="outercontainer">
-  <div class="container">
+  <div class="container" [dir]="isTranslated ? 'rtl' : 'ltr'">
     <div class="form signup col-10 col-md-6 position-relative">
-      <span class="title">Registration</span>
+      <span class="title">{{
+        isTranslated ? translatedText.Registration : originalText.Registration
+      }}</span>
 
       @if(User.register_error()){
 
@@ -21,7 +23,7 @@
 
       }
       <span class="popup end-0 top-0">
-        Incorrect Email or Password check your input and try again !
+        {{ isTranslated ? translatedText.Incorrect : originalText.Incorrect }}
       </span>
 
       <form [formGroup]="validate" action="#">
@@ -32,7 +34,11 @@
               id="name"
               type="text"
               [(ngModel)]="name"
-              placeholder="Enter your name"
+              placeholder="{{
+                isTranslated
+                  ? translatedText.Enteryourname
+                  : originalText.Enteryourname
+              }}"
               required
               formControlName="userName"
             />
@@ -40,15 +46,21 @@
           </div>
 
           @if(nameValid){
-          <p style="color: green; font-size: smaller">Valid input</p>
+          <p style="color: green; font-size: smaller">
+            {{
+              isTranslated ? translatedText.Validinput : originalText.Validinput
+            }}
+          </p>
           }@else if (name){
           <p style="color: red">
-            <span style="font-size: smaller"
-              >*Not Valid input-length must > 2</span
-            >
+            <span style="font-size: smaller">{{
+              isTranslated ? translatedText.NotValid : originalText.NotValid
+            }}</span>
           </p>
           } @else {
-          <p style="color: red; font-size: smaller">*required</p>
+          <p style="color: red; font-size: smaller">
+            {{ isTranslated ? translatedText.required : originalText.required }}
+          </p>
           }
         </div>
 
@@ -58,7 +70,9 @@
             <input
               type="text"
               [(ngModel)]="email"
-              placeholder="Enter your email"
+              placeholder="{{
+                isTranslated ? translatedText.youremail : originalText.youremail
+              }}"
               required
               formControlName="userEmail"
             />
@@ -66,13 +80,19 @@
           </div>
 
           @if(emailValid){
-          <p style="color: green; font-size: smaller">Valid input</p>
+          <p style="color: green; font-size: smaller">
+            {{
+              isTranslated ? translatedText.Validinput : originalText.Validinput
+            }}
+          </p>
           } @else if (email){
           <p style="color: red">
             <span style="font-size: smaller"> exemple"&#64;"gmail.com</span>
           </p>
           } @else {
-          <p style="color: red; font-size: smaller">*required</p>
+          <p style="color: red; font-size: smaller">
+            {{ isTranslated ? translatedText.required : originalText.required }}
+          </p>
           }
         </div>
 
@@ -84,7 +104,9 @@
               [(ngModel)]="password"
               formControlName="userPassword"
               class="password"
-              placeholder="Create a password"
+              placeholder="{{
+                isTranslated ? translatedText.password : originalText.password
+              }}"
               required
             />
             <i [class]="icon" (click)="showHidePw()"></i>
@@ -92,15 +114,25 @@
           </div>
 
           @if(passValid){
-          <p style="color: green; font-size: smaller">Valid input</p>
+          <p style="color: green; font-size: smaller">
+            {{
+              isTranslated ? translatedText.Validinput : originalText.Validinput
+            }}
+          </p>
           } @else if (password){
           <p style="color: red">
             <span style="font-size: smaller">
-              password character length must be > 7
+              {{
+                isTranslated
+                  ? translatedText.passwordcharacter
+                  : originalText.passwordcharacter
+              }}
             </span>
           </p>
           } @else {
-          <p style="color: red; font-size: smaller">*required</p>
+          <p style="color: red; font-size: smaller">
+            {{ isTranslated ? translatedText.required : originalText.required }}
+          </p>
           }
         </div>
 
@@ -112,22 +144,33 @@
               [(ngModel)]="conPass"
               formControlName="passconfirm"
               class="password"
-              placeholder="Confirm a password"
+              placeholder="{{
+                isTranslated ? translatedText.Confirm : originalText.Confirm
+              }}
+              "
               required
             />
             <i [class]="icon" (click)="showHidePw()"></i>
             <i class="bi bi-person-lock"></i>
           </div>
           @if(passwordconfirm){
-          <p style="color: green; font-size: smaller">Valid input</p>
+          <p style="color: green; font-size: smaller">
+            {{
+              isTranslated ? translatedText.Validinput : originalText.Validinput
+            }}
+          </p>
           } @else if (conPass){
           <p style="color: red">
             <span style="font-size: smaller">
-              *Not match to password yet!
+              {{
+                isTranslated ? translatedText.Notmatch : originalText.Notmatch
+              }}
             </span>
           </p>
           } @else {
-          <p style="color: red; font-size: smaller">*required</p>
+          <p style="color: red; font-size: smaller">
+            {{ isTranslated ? translatedText.required : originalText.required }}
+          </p>
           }
         </div>
 
@@ -140,9 +183,9 @@
               id="termCon"
               required
             />
-            <label for="termCon" class="text"
-              >I accepted all terms and conditions</label
-            >
+            <label for="termCon" class="text">{{
+              isTranslated ? translatedText.Iaccepted : originalText.Iaccepted
+            }}</label>
           </div>
         </div>
         <div class="input-field button">
@@ -154,39 +197,18 @@
             id="liveToastBtn"
             (click)="register_config()"
           >
-            Signup
+            {{ isTranslated ? translatedText.Signup : originalText.Signup }}
           </button>
         </div>
       </form>
       <div class="login-signup">
         <span class="text"
-          >Already a member?
-          <a routerLink="/login" class="text login-link">Login Now</a>
+          >{{ isTranslated ? translatedText.Already : originalText.Already }}
+          <a routerLink="/login" class="text login-link">{{
+            isTranslated ? translatedText.LoginNow : originalText.LoginNow
+          }}</a>
         </span>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div
-    id="liveToast"
-    class="toast"
-    role="alert"
-    aria-live="assertive"
-    aria-atomic="true"
-  >
-    <div class="toast-header">
-      <img src="..." class="rounded me-2" alt="..." />
-      <strong class="me-auto">Bootstrap</strong>
-      <small>11 mins ago</small>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="toast"
-        aria-label="Close"
-      ></button>
-    </div>
-    <div class="toast-body">Hello, world! This is a toast message.</div>
-  </div>
-</div> -->

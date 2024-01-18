@@ -1,28 +1,70 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../Helpers/products';
 import { ProductService } from '../../Services/product.service';
 import { User } from '../../Helpers/users';
 import { CartServiceService } from '../../Services/cart.service';
+import { SwiperContainer, register } from 'swiper/element/bundle';
+import Swiper from 'swiper';
+import { SwiperOptions } from 'swiper/types';
 
 @Component({
   selector: 'app-products-category',
   standalone: true,
   imports: [RouterLink, CommonModule],
   providers: [ProductService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './products-category.component.html',
   styleUrl: './products-category.component.css',
 })
-export class ProductsCategoryComponent implements OnInit {
+export class ProductsCategoryComponent implements OnInit, AfterViewInit {
   products: Product[] = [];
   User: User = { id: 0, cart: [] };
   dummy = [1, 2, 3, 4];
+
+  @ViewChild('ProductSwiper') ProductSwiper?: ElementRef;
 
   constructor(
     private myProducts: ProductService,
     private cartService: CartServiceService
   ) {}
+
+  ngAfterViewInit(): void {
+    register();
+
+    const swiperEl = document.querySelector('swiper-container');
+    if (swiperEl) {
+      const swiperConfig = {
+        slidesPerView: 4,
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+          },
+          480: {
+            slidesPerView: 2,
+          },
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        },
+      };
+      Object.assign(swiperEl, swiperConfig);
+    }
+  }
 
   ngOnInit(): void {
     this.myProducts.getAllSupplements().subscribe({
@@ -43,29 +85,40 @@ export class ProductsCategoryComponent implements OnInit {
   getfish() {
     this.filterdproduct = this.products
       .filter((product) => product.categories === 'fish')
-      .slice(0, 4);
+      .slice(0, 8);
     // this.filterdproduct.slice
   }
   getcats() {
     this.filterdproduct = this.products
       .filter((product) => product.categories === 'cat')
-      .slice(0, 4);
+      .slice(0, 8);
   }
   getdogs() {
     this.filterdproduct = this.products
       .filter((product) => product.categories === 'dog')
-      .slice(0, 4);
+      .slice(0, 8);
   }
   getbirds() {
     this.filterdproduct = this.products
       .filter((product) => product.categories === 'bird')
-      .slice(0, 4);
+      .slice(0, 8);
   }
   gethamester() {
     this.filterdproduct = this.products
       .filter((product) => product.categories === 'rodents')
-      .slice(0, 4);
+      .slice(0, 8);
   }
+
+  openModal() {
+    const myModal = document.getElementById('statusSuccessModal');
+    if (myModal) myModal.style.display = 'block';
+  }
+
+  closeModal() {
+    const myModal = document.getElementById('statusSuccessModal');
+    if (myModal) myModal.style.display = 'none';
+  }
+
   displayStars(rating: any) {
     const starsArray: string[] = [];
 
@@ -95,6 +148,7 @@ export class ProductsCategoryComponent implements OnInit {
     this.myProducts.updateUser(this.User).subscribe({
       next: () => {
         this.cartService.getCart();
+        this.openModal();
       },
       error: () => console.log('Could not Add!'),
     });

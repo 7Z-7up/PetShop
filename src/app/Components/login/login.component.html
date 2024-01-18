@@ -1,29 +1,35 @@
 <div id="outercontainer">
-  <div class="container">
+  <div class="container" [dir]="isTranslated ? 'rtl' : 'ltr'">
     <div class="form login col-10 col-md-6 position-relative">
-      <span class="title">Login</span>
+      <div class="c1">
+        <span class="title">
+          {{ isTranslated ? translatedText.a1 : originalText.a1 }}</span
+        >
 
-      @if(User.ckeckError()){
+        @if(User.ckeckError()){
 
-      <button
-        type="button"
-        class="btn btn-light position-absolute end-0 mx-2 px-2 Err"
-        data-bs-toggle="popover"
-        data-bs-title="Popover title"
-        data-bs-trigger="hover focus"
-        data-bs-title="error"
-        data-bs-content="the email or password that you've entered doesn't match any account (may you need to register first or check your input and try again)"
-      >
-        <i
-          class="bi bi-exclamation-triangle btn btn-outline-danger m-1 px-1"
-        ></i>
-      </button>
+        <button
+          type="button"
+          class="btn btn-light position-absolute mx-2 px-2 Err"
+          data-bs-toggle="popover"
+          data-bs-title="Popover title"
+          data-bs-trigger="hover focus"
+          data-bs-title="error"
+          data-bs-content="the email or password that you've entered doesn't match any account (may you need to register first or check your input and try again)"
+          [style.left]="isTranslated ? '0' : 'auto'"
+          [style.right]="isTranslated ? 'auto' : '0'"
+          #errorButton
+        >
+          <i
+            class="bi bi-exclamation-triangle btn btn-outline-danger m-1 px-1"
+          ></i>
+        </button>
 
-      }
-      <span class="popup end-0 top-0">
-        The Email or Password that you've entered doesn't match any account....
-        may you need to register first or check your input and try again
-      </span>
+        }
+        <span class="popup end-0 top-0">
+          {{ isTranslated ? translatedText.a2 : originalText.a2 }}
+        </span>
+      </div>
 
       <form [formGroup]="validate" action="#">
         <!-- email -->
@@ -33,7 +39,9 @@
               type="text"
               [(ngModel)]="email"
               name="email"
-              placeholder="Enter your email"
+              placeholder=" {{
+                isTranslated ? translatedText.a3 : originalText.a3
+              }}"
               required
               formControlName="userEmail"
             />
@@ -47,7 +55,9 @@
           </p>
 
           } @else {
-          <p style="color: red; font-size: smaller">*required</p>
+          <p style="color: red; font-size: smaller">
+            {{ isTranslated ? translatedText.a8 : originalText.a8 }}
+          </p>
           }
         </div>
 
@@ -60,14 +70,18 @@
               name="password"
               formControlName="userPassword"
               class="password"
-              placeholder="Enter your password"
+              placeholder="{{
+                isTranslated ? translatedText.a4 : originalText.a4
+              }}"
               required
             />
             <i [class]="icon" (click)="showHidePw()"></i>
             <i class="bi bi-person-lock"></i>
           </div>
           @if(passValid){ } @else if(password){
-          <p style="color: red; font-size: smaller">*required</p>
+          <p style="color: red; font-size: smaller">
+            {{ isTranslated ? translatedText.a8 : originalText.a8 }}
+          </p>
           }
         </div>
 
@@ -75,9 +89,13 @@
         <div class="checkbox-text">
           <div class="checkbox-content">
             <input type="checkbox" id="logCheck" />
-            <label for="logCheck" class="text">Remember me</label>
+            <label for="logCheck" class="text">{{
+              isTranslated ? translatedText.a5 : originalText.a5
+            }}</label>
           </div>
-          <a href="#" class="text">Forgot password?</a>
+          <a href="#" class="text">{{
+            isTranslated ? translatedText.a6 : originalText.a6
+          }}</a>
         </div>
         <!-- Login button -->
         <div class="input-field button">
@@ -89,23 +107,25 @@
             id="liveToastBtn"
             (click)="login_config()"
           >
-            LogIn
+            {{ isTranslated ? translatedText.a7 : originalText.a7 }}
           </button>
         </div>
       </form>
 
       <div class="login-signup">
-        <span class="text"
-          >Not a member?
+        <span class="text">
+          {{ isTranslated ? translatedText.a9 : originalText.a9 }}
           <a
             routerLink="/register"
             routerLinkActive="router-link-active"
             class="text signup-link"
-            >Signup Now
+          >
+            {{ isTranslated ? translatedText.a10 : originalText.a10 }}
           </a>
           <!-- (click)="go_regist()" -->
         </span>
       </div>
     </div>
+      
   </div>
 </div>

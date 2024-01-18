@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+} from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import {
   ActivatedRoute,
@@ -10,21 +14,29 @@ import {
 } from '@angular/router';
 import { CartServiceService } from '../../Services/cart.service';
 import { User } from '../../Helpers/users';
+import { SwiperContainer, register } from 'swiper/element/bundle';
+import Swiper from 'swiper';
+import { SwiperOptions } from 'swiper/types';
+import { Product } from '../../Helpers/products';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
   imports: [HttpClientModule, CommonModule, RouterLink],
   providers: [ProductService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements AfterViewInit {
   ID: number = 0;
-  product?: any;
+  product: Product = {};
   selectedQuantity: number | undefined;
   quantityOptions: number[] = [];
   User: User = { id: 0, cart: [] };
+  dummy = [1, 2, 3, 4];
+  allProducts: Product[] = [];
+  filterdproduct: Product[] = [];
 
   constructor(
     private myProduct: ProductService,
@@ -38,6 +50,36 @@ export class ProductDetailsComponent {
       }
     });
   }
+
+  ngAfterViewInit(): void {
+    register();
+
+    const swiperEl = document.querySelector('swiper-container');
+    if (swiperEl) {
+      const swiperConfig = {
+        slidesPerView: 4,
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+          },
+          480: {
+            slidesPerView: 2,
+          },
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        },
+      };
+      Object.assign(swiperEl, swiperConfig);
+    }
+  }
+
   ngOnInit(): void {
     this.myProduct.getUser(1).subscribe({
       next: (userData) => {
@@ -48,21 +90,46 @@ export class ProductDetailsComponent {
     });
 
     this.myProduct.getSupplements(this.ID).subscribe({
-      next: (data) => {
-        this.product = data;
-        for (const key in this.product) {
-          this.product = this.product[key];
-          for (const key in this.product) {
-            if (key === 'quantity') {
-              this.quantityOptions = this.generateQuantityOptions(
-                this.product[key]
-              );
-            }
-          }
+      next: (data: any) => {
+        for (const key in data) {
+          this.product = data[key];
+          // for (const key in this.product) {
+          //   if (key === 'quantity') {
+          //     this.quantityOptions = this.generateQuantityOptions(
+          //       this.product[key]
+          //     );
+          //   }
+          // }
         }
       },
       error: () => console.log('Error getting product data!'),
     });
+
+    this.myProduct.getAllSupplements().subscribe({
+      next: (data: any) => {
+        this.allProducts = [...data];
+      },
+      error: () => console.log('Error!'),
+      complete: () => {
+        this.filterdproduct = this.allProducts
+          .filter(
+            (element) =>
+              element.categories == this.product.categories &&
+              element.id != this.product.id
+          )
+          .slice(0, 8);
+      },
+    });
+  }
+
+  openModal() {
+    const myModal = document.getElementById('statusSuccessModal');
+    if (myModal) myModal.style.display = 'block';
+  }
+
+  closeModal() {
+    const myModal = document.getElementById('statusSuccessModal');
+    if (myModal) myModal.style.display = 'none';
   }
 
   generateQuantityOptions(maxQuantity: number): number[] {
@@ -108,6 +175,7 @@ export class ProductDetailsComponent {
         this.cartService.getCart();
       },
       error: () => console.log('Could not Add!'),
+      complete: () => this.openModal(),
     });
   }
 }
