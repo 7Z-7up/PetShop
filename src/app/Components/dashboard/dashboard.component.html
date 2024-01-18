@@ -155,9 +155,14 @@
               <div class="form-group col-md-6">
                 <label class="pb-2" for="productID"
                   >{{ isTranslated ? translatedText.a6 : originalText.a6 }}
-                  <span id="idExisted" class="alert alert-danger p-1">{{
-                    isTranslated ? translatedText.a7 : originalText.a7
-                  }}</span></label
+                  <span
+                    id="idExisted"
+                    class="alert alert-danger p-1"
+                    style="font-size: 0.6rem !important"
+                    >{{
+                      isTranslated ? translatedText.a7 : originalText.a7
+                    }}</span
+                  ></label
                 >
                 <input
                   formControlName="id"

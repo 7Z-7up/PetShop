@@ -77,11 +77,16 @@
                 <h2 class="card-title text-primary text-center font-italic">
                   <strong>{{ product.name }}</strong>
                 </h2>
-                <p class="card-text text-muted">
-                  <strong>Price: </strong>
-                  <strong class="price">{{
-                    product.price | currency : "EGP " : "symbol" : "1.2-2"
-                  }}</strong>
+                <p class="card-text text-muted d-flex justify-content-between">
+                  <strong
+                    >Price:
+                    {{
+                      product.price | currency : "EGP " : "symbol" : "1.2-2"
+                    }}</strong
+                  >
+                  <strong class="me-5"
+                    >Available: {{ product.quantity }}</strong
+                  >
                 </p>
 
                 <div>

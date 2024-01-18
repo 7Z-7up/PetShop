@@ -31,8 +31,6 @@ import { Product } from '../../Helpers/products';
 export class ProductDetailsComponent implements AfterViewInit {
   ID: number = 0;
   product: Product = {};
-  selectedQuantity: number | undefined;
-  quantityOptions: number[] = [];
   User: User = { id: 0, cart: [] };
   dummy = [1, 2, 3, 4];
   allProducts: Product[] = [];
@@ -93,13 +91,6 @@ export class ProductDetailsComponent implements AfterViewInit {
       next: (data: any) => {
         for (const key in data) {
           this.product = data[key];
-          // for (const key in this.product) {
-          //   if (key === 'quantity') {
-          //     this.quantityOptions = this.generateQuantityOptions(
-          //       this.product[key]
-          //     );
-          //   }
-          // }
         }
       },
       error: () => console.log('Error getting product data!'),
@@ -130,15 +121,6 @@ export class ProductDetailsComponent implements AfterViewInit {
   closeModal() {
     const myModal = document.getElementById('statusSuccessModal');
     if (myModal) myModal.style.display = 'none';
-  }
-
-  generateQuantityOptions(maxQuantity: number): number[] {
-    // Generate an array of numbers from 1 to maxQuantity
-    return Array.from({ length: maxQuantity }, (_, index) => index + 1);
-  }
-
-  selectQuantity(quantity: number): void {
-    this.selectedQuantity = quantity;
   }
 
   displayStars(rating: any) {

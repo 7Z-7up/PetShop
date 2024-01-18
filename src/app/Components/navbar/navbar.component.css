@@ -114,3 +114,8 @@ nav {
 *:not(i) {
   font-family: BukraRegular;
 }
+li a,
+.log,
+.searcher {
+  font-size: 0.8rem;
+}

@@ -60,8 +60,8 @@
   <hr />
   <!-- خلي كريم يشيل دي -->
   <div class="row d-flex align-items-center justify-content-between">
-    <div class="col-6 d-flex align-items-center justify-content-end">
-      <label class="col-2"
+    <div class="col-6 d-flex align-items-center">
+      <label
         >{{
           isTranslated ? translatedText.SortBy : originalText.SortBy
         }}
@@ -71,7 +71,7 @@
         [(ngModel)]="selectedSort"
         #sorts
         (change)="sorting(sorts.value)"
-        class="form-control w-50"
+        class="form-control w-75"
         name="sorts"
         id="sorts"
       >
@@ -121,8 +121,8 @@
       </select>
     </div>
 
-    <div class="col-6 d-flex align-items-center justify-content-end">
-      <label class="col-2 ms-3"
+    <div class="col-6 d-flex align-items-center">
+      <label
         >{{
           isTranslated ? translatedText.Show : originalText.Show
         }}
@@ -132,7 +132,7 @@
         #selectedNumber
         [(ngModel)]="itemsInPage"
         (change)="changeValue(+selectedNumber.value)"
-        class="form-control w-50"
+        class="form-control w-75"
         name="show"
         id="show"
       >

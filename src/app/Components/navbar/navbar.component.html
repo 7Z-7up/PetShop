@@ -1,4 +1,7 @@
-<div class="top-head d-flex justify-content-between">
+<div
+  class="top-head d-flex justify-content-between"
+  [dir]="isTranslated ? 'rtl' : 'ltr'"
+>
   <!-- start Sign In button -->
 
   <!-- <div class="p-0 m-1"> -->
@@ -92,7 +95,10 @@
   <!--  -->
 
   <div class="p-0 m-1">
-    <button class="btn btn-primary border m-1" (click)="toggleTranslation()">
+    <button
+      class="btn btn-primary border m-1 searcher"
+      (click)="toggleTranslation()"
+    >
       {{ isTranslated ? "Back to English" : "ترجمة إلي العربية" }}
     </button>
   </div>

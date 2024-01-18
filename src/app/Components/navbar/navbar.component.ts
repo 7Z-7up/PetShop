@@ -131,9 +131,9 @@ export class NavbarComponent implements OnInit {
     const smallNav = document.getElementById('smallNav');
     const search = document.getElementById('searchBtn');
     const searchInput = document.getElementById('searchInput');
-    if (navbar) navbar.style.direction = this.isTranslated ? 'rtl' : 'ltr';
-    if (nav) nav.style.direction = this.isTranslated ? 'rtl' : 'ltr';
-    if (smallNav) smallNav.style.direction = this.isTranslated ? 'rtl' : 'ltr';
+    // if (navbar) navbar.style.direction = this.isTranslated ? 'rtl' : 'ltr';
+    // if (nav) nav.style.direction = this.isTranslated ? 'rtl' : 'ltr';
+    // if (smallNav) smallNav.style.direction = this.isTranslated ? 'rtl' : 'ltr';
     if (search)
       search.style.borderRadius = this.isTranslated
         ? '4px 0 0 4px'
