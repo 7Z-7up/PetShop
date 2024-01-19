@@ -15,6 +15,7 @@ import { CartServiceService } from '../../Services/cart.service';
 import { SwiperContainer, register } from 'swiper/element/bundle';
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
+import { TranslationService } from '../../Services/translation.service';
 
 @Component({
   selector: 'app-products-category',
@@ -29,13 +30,35 @@ export class ProductsCategoryComponent implements OnInit, AfterViewInit {
   products: Product[] = [];
   User: User = { id: 0, cart: [] };
   dummy = [1, 2, 3, 4];
+  isTranslated = false;
+
+  originalText = {
+    latest: 'Latest',
+    addToCart: 'Add to Cart',
+    addedToCart: 'Added to cart!',
+    addedToCartmsg: 'The product got successfully added to your cart.',
+    ok: 'Ok',
+  };
+
+  translatedText = {
+    latest: 'الأحدث',
+    addToCart: 'أضف إلى السلة',
+    addedToCart: 'تم الإضافة إلى السلة!',
+    addedToCartmsg: 'المنتج قد تم إضافته بنجاح إلى السلةالخاصة بك.',
+    ok: 'حسنا',
+  };
 
   @ViewChild('ProductSwiper') ProductSwiper?: ElementRef;
 
   constructor(
     private myProducts: ProductService,
-    private cartService: CartServiceService
-  ) {}
+    private cartService: CartServiceService,
+    private translationService: TranslationService
+  ) {
+    this.translationService.isTranslated$.subscribe((isTranslated) => {
+      this.isTranslated = isTranslated;
+    });
+  }
 
   ngAfterViewInit(): void {
     register();

@@ -297,7 +297,7 @@
             class="btn btn-dark col-5"
             data-dismiss="modal"
           >
-            Close
+            {{ isTranslated ? translatedText.a35 : originalText.a35 }}
           </button>
           <button
             [disabled]="product.invalid"

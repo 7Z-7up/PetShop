@@ -50,6 +50,11 @@ export class AllProductsComponent implements OnInit {
     Show: 'Show:',
     EGP: 'EGP',
     AddtoCart: 'Add to Cart',
+    latest: 'الأحدث',
+    addToCart: 'أضف إلى السلة',
+    addedToCart: 'تم الإضافة إلى السلة!',
+    addedToCartmsg: 'المنتج قد تم إضافته بنجاح إلى السلةالخاصة بك.',
+    ok: 'حسنا',
   };
 
   translatedText = {
@@ -65,6 +70,11 @@ export class AllProductsComponent implements OnInit {
     Show: 'عرض',
     EGP: 'ج.م',
     AddtoCart: 'أضف إلي العربة',
+    latest: 'الأحدث',
+    addToCart: 'أضف إلى السلة',
+    addedToCart: 'تم الإضافة إلى السلة!',
+    addedToCartmsg: 'المنتج قد تم إضافته بنجاح إلى السلةالخاصة بك.',
+    ok: 'حسنا',
   };
 
   isTranslated = false;

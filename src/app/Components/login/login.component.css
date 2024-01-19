@@ -142,10 +142,6 @@
 }
 .input-field i.showHidePw {
   cursor: pointer;
-  text-align: center;
-  align-items: center;
-  margin-left: 350px;
-  margin-right: 350px;
 }
 .form .checkbox-text {
   display: flex;

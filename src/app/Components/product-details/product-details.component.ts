@@ -18,6 +18,7 @@ import { SwiperContainer, register } from 'swiper/element/bundle';
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { Product } from '../../Helpers/products';
+import { TranslationService } from '../../Services/translation.service';
 
 @Component({
   selector: 'app-product-details',
@@ -36,16 +37,38 @@ export class ProductDetailsComponent implements AfterViewInit {
   allProducts: Product[] = [];
   filterdproduct: Product[] = [];
 
+  isTranslated = false;
+
+  originalText = {
+    latest: 'Latest',
+    addToCart: 'Add to Cart',
+    addedToCart: 'Added to cart!',
+    addedToCartmsg: 'The product got successfully added to your cart.',
+    ok: 'Ok',
+  };
+
+  translatedText = {
+    latest: 'الأحدث',
+    addToCart: 'أضف إلى السلة',
+    addedToCart: 'تم الإضافة إلى السلة!',
+    addedToCartmsg: 'المنتج قد تم إضافته بنجاح إلى السلةالخاصة بك.',
+    ok: 'حسنا',
+  };
+
   constructor(
     private myProduct: ProductService,
     router: Router,
-    private cartService: CartServiceService
+    private cartService: CartServiceService,
+    private translationService: TranslationService
   ) {
     router.events.subscribe((data) => {
       if (data instanceof ActivationEnd) {
         this.ID = data.snapshot.params['id'];
         this.ngOnInit();
       }
+    });
+    this.translationService.isTranslated$.subscribe((isTranslated) => {
+      this.isTranslated = isTranslated;
     });
   }
 

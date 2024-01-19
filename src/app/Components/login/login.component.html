@@ -75,7 +75,11 @@
               }}"
               required
             />
-            <i [class]="icon" (click)="showHidePw()"></i>
+            <i
+              [class]="icon"
+              (click)="showHidePw()"
+              [style]="isTranslated ? 'left: 0' : 'right: 0'"
+            ></i>
             <i class="bi bi-person-lock"></i>
           </div>
           @if(passValid){ } @else if(password){
